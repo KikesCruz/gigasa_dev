@@ -10,10 +10,14 @@ class LoginController extends Controller{
     {
         if ($_POST['email'] == 'admin') {
 
-            return Controller::views('home', [
-                'dato' => $_POST['email']
-            ]);
+           
+            
+            
+            header('Location: /admin/home');
+        }else{
+
+            header('Location:http: /admin');
         }
-        header('Location: /admin');
+
     }
 }
