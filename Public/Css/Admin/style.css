@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+* {
+    font-family: Roboto;
+    list-style: none;
+}
+
+:root {
+    --sidebar-bg: #FEFBF6;
+    --bg-title-section: #30475E;
+    --font-menu: #3D3C42;
+    --hover-bg: #90d52c;
+    --hover-down: #e5ffd3;
+    --font-title: #164863;
+    --font-sidebar: font-family: 'Roboto', sans-serif;
+}
+
+
+#container-main {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.5rem;
+}
+
+/** generales */
+
+.menuDown li {
+    margin-top: 0.3rem;
+    padding: 0.3rem 1.4rem;
+}
+
+.menuDown li:hover {
+    background-color: var(--hover-down);
+}
+
+/** buttons actions */
+.btn.btn-edit {
+    font-size: 1rem;
+    background-color: #676FA3;
+    color: white;
+}
+
+.btn.btn-delete {
+    background-color: #FF5959;
+    font-size: 1rem;
+    color: white;
+}
+
+.btn.btn-list {
+    background-color: #FFCF96;
+    font-size: 1rem;
+    color: white;
+}
+
+.btn.btn-confirm {
+    background-color: #4F4A45;
+    font-size: 1rem;
+    color: white;
+}
+
+.btn.btn-list:hover {
+    background-color: #FFBB5C;
+    font-size: 1rem;
+    color: white;
+}
+
+.btn.btn-edit:hover {
+    font-size: 1rem;
+    background-color: #4B527E;
+    color: white;
+}
+
+ .btn.btn-delete:hover {
+    background-color: #872341;
+    color: white;
+}
+
+.btn.btn-confirm:hover {
+    background-color: #6C5F5B;
+    font-size: 1rem;
+    color: white;
+}
+
+
+/** Alert */
+.alert_ms {
+    display: none;
+    background-color: #FF5959;
+    border-radius: 0.3rem;
+    color: white;
+}
+
+/** pictures product */
+.img-product-container {
+    height: 15rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img-product-container img {
+    height: 100%;
+
+    display: block;
+}
+
+.item-menu a {
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--font-menu);
+    text-decoration: none;
+}
+
+
+/** side bar */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding: 0.3rem;
+    height: auto;
+}
+
+.sidebar .navbarH {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar .navbarH .logo {
+    padding: 0.2rem;
+}
+
+.logo .icon-logo img {
+    width: 100%;
+}
+
+.logo .logo-title {
+    padding-top: 0.3rem;
+    text-align: center;
+}
+
+
+/** Primer Menú */
+.container-menu .menuOperations {
+    width: 100%;
+}
+
+.container-menu .menuOperations .item-menu {
+    width: 100%;
+    padding: 0.3rem;
+    list-style: none;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+
+}
+
+.container-menu .menuOperations .item-menu:hover {
+    background-color: var(--hover-bg);
+}
+
+
+
+/** Profile menu */
+.profile {
+
+    position: absolute;
+
+    bottom: 10px;
+}
+
+/** contenido page */
+.container {
+    padding: 1.3rem 5rem;
+    grid-column-start: 3;
+    grid-column-end: 13;
+}
+
+.container .title-section {
+    width: 100%;
+    text-align: center;
+    background-color: #30475E;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.container .container-section {
+    margin-top: 1.5rem;
+}
