@@ -4,13 +4,9 @@ namespace App\Controllers\Admin;
 
 class HomeController extends Controller
 {
-    public function __construct(){
-        if(){
-            
-        }
-    }
-    public static function home()
+
+    public  function home()
     {
-        return Controller::views("home");
+        return $this -> views("home");
     }
 }

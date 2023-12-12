@@ -2,7 +2,7 @@
     <nav class="navbarH">
         <div class="logo">
             <div class="icon-logo">
-                <img src="<?= URL_BASE . 'Public/Img/icons/icon-horizontal.png'; ?> " alt="logo-admin">
+                <img src="<?= URL_BASE . 'Public/Img/icons/icon-horizontal.png';?> " alt="logo-admin">
             </div>
             <div class="logo-title">
                 <h4>Admin</h4>
@@ -10,25 +10,50 @@
         </div>
         <div class="container-menu">
             <ul class="menuOperations">
+                <!-- <li class="item-menu"> <a href="./home"> <i class="fa-solid fa-chart-pie"></i>
+                        DashBoard </a> </li>
+                <li class="dropdown item-menu">
+                    <a id="dropdown" class="dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                        <i class="fa-solid fa-book"></i> Catalogo
+                    </a>
+                    <ul class="dropdown-menu menuDown">
+                        <li>
+                            <a href="./category">
+                                Categorías
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./subcategory">
+                                Sub Categorías
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./brands">
+                                Marcas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./articulos">
+                                Articulos
+                            </a>
+                        </li>
 
+                    </ul>
+
+                </li> -->
                 <li class="dropdown item-menu">
                     <a id="dropdown" class="dropdown-toggle" data-bs-toggle="dropdown" href="#">
                         <i class="fa-solid fa-shop"></i> Ecommers
                     </a>
                     <ul class="dropdown-menu menuDown">
                         <li>
-                            <a href="./datos">
-                                Datos
+                            <a href="./intvecommers">
+                                Inventario
                             </a>
                         </li>
                         <li>
-                            <a href="./banners">
+                            <a href="./subcategory">
                                 Banners
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./usuarios">
-                                Usuarios
                             </a>
                         </li>
 
@@ -48,7 +73,7 @@
                         </a>
                         <ul class="dropdown-menu menuDown">
                             <li class="item-menu">
-                                <a href="/admin/profile">
+                                <a href="#">
                                     Perfil
                                 </a>
                             </li>

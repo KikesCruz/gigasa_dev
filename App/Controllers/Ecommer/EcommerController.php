@@ -4,8 +4,8 @@ namespace App\Controllers\Ecommer;
 
 class EcommerController extends Controller
 {
-    public static function index()
+    public function index()
     {
-        return Controller::views("home");
+        return $this -> views("home");
     }
 }

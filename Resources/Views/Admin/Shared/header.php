@@ -5,4 +5,5 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> <?= NAME_PAGE ?> </title>
     <?php include PATH_ROOT.'Resources/Views/Admin/Css/css.php'; ?>
+
 </head>

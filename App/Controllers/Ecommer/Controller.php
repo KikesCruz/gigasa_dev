@@ -5,7 +5,7 @@ namespace App\Controllers\Ecommer;
 class Controller
 {
 
-    public static function views($view, $data = [])
+    public function views($view, $data = [])
     {
         extract($data);
 

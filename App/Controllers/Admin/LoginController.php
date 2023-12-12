@@ -1,23 +1,44 @@
 <?php 
 namespace App\Controllers\Admin;
 
+use App\Models\Admin\LoginModel;
+
+use Lib\Session;
+
 class LoginController extends Controller{
-    public static function login(){
-        return Controller::views("login");
+    
+    private $model;
+    public function __construct(){
+        $this -> model = new LoginModel();
+    }
+    
+    public  function login(){
+        return $this ->views("login");
     }
 
-    public static function auth()
+    public  function auth()
     {
-        if ($_POST['email'] == 'admin') {
+        $json_response = '';
 
-           
-            
-            
-            header('Location: /admin/home');
-        }else{
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            header('Location:http: /admin');
+            $request = [
+                "user_name" => $_POST['user_name'],
+                "user_pass" => $_POST['user_pass']
+            ];
+
+            $response = $this -> model -> searchUser($request);
+            
+            if($response == '' || is_null($response)){
+                $json_response = "sin registros";
+            
+            }else{
+
+                $json_response = "usr_valido";
+            }
+            
         }
 
+        echo json_encode($json_response);
     }
 }

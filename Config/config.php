@@ -8,8 +8,13 @@ define('NAME_PAGE' ,NAME_APP);
 define('PATH_ROOT',$universal_path.'/');
 
 
-
-
+/**
+ * config database
+ */
+define('HOST_DB',DB_HOST);
+define('DATABASE',DB_DATABASE);
+define('DB_USR',DB_USERNAME);
+define('DB_PASS',DB_PASSWORD);
 
 
 

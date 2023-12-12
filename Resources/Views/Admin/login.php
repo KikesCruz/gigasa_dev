@@ -13,19 +13,26 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                     </div>
 
                     <div class='form-input p-3'>
-                        <form action='./admin/auth' method='POST'>
+                        <form id="form_login">
                             <!-- Email input -->
                             <div class='form-outline mb-4'>
-                                <input name='email' type='text' id='form1Example1' class='form-control' />
+                                <input name='user_name' type='text' id='form1Example1' class='form-control' />
                             </div>
 
                             <!-- Password input -->
                             <div class='form-outline mb-4'>
-                                <input name='pass' type='password' id='form1Example2' class='form-control' />
+                                <input name='user_pass' type='password' id='form1Example2' class='form-control' />
+                            </div>
+
+                            <div id="alert" class="alert_ms alert-danger m-2 text-center" role="alert">
+                                Usuario o contraseña invalidos!
                             </div>
 
                             <!-- Submit button -->
-                            <button type='submit' class='btn btn-success col-12'>
+                            <button 
+                            id="btn_login"
+                            type='button' 
+                            class='btn btn-success col-12'>
                                 Inicia Sesión
                             </button>
                         </form>

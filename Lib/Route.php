@@ -36,7 +36,7 @@ class Route
             if (preg_match("#^$route$#", $uri, $matches)) {
                 $params = array_slice($matches, 1);
 
-                if (is_callable($callback)) {
+                if (!is_callable($callback)) {
                     $response = $callback(...$params);
                 }
 
