@@ -25,4 +25,12 @@ class Controller
 
         return $page;
     }
+
+    public function redirect($route = false){
+        if($route){
+            header("Location:".PATH_ROOT.$route);
+        }else{
+            header("Location:".PATH_ROOT . "Resources/Views/Admin");
+        }
+    }
 }

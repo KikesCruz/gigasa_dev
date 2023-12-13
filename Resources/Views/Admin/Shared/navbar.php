@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./usuarios">
+                            <a href="./users">
                                 Usuarios
                             </a>
                         </li>

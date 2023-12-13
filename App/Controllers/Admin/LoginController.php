@@ -1,15 +1,17 @@
-<?php 
+<?php
 namespace App\Controllers\Admin;
 
 use App\Models\Admin\LoginModel;
-
 use Lib\Session;
+
 
 class LoginController extends Controller{
     
     private $model;
+
     public function __construct(){
         $this -> model = new LoginModel();
+
     }
     
     public  function login(){
@@ -30,10 +32,12 @@ class LoginController extends Controller{
             $response = $this -> model -> searchUser($request);
             
             if($response == '' || is_null($response)){
+                
                 $json_response = "sin registros";
             
             }else{
-
+                
+                Session::add('user',$request);
                 $json_response = "usr_valido";
             }
             

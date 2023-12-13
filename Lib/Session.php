@@ -1,36 +1,38 @@
-<?php 
-
+<?php
+namespace Lib;
 class Session{
 
-    public function init(){
+    public static function init(){
+        session_id();
         session_start();
     }
 
-    public function add($key, $value){
+    public static function add($key, $value){
+        if(!empty($clave))
         $_SESSION[$key] = $value;
     }
 
-    public function get($key)
+    public static function get($key)
     {
         return !empty($_SESSION[$key]) ? $_SESSION[$key] : null;
     }
 
-    public function getAll(){
+    public static function getAll(){
         return $_SESSION;
     }
 
-    public function remove($key){
+    public static function remove($key){
         if(!empty($_SESSION[$key]))
         unset($_SESSION[$key]);
     }
 
     // close session
-    public function close(){
+    public static function close(){
         session_unset();
         session_destroy();
     }
 
-    public function getStatus(){
+    public static function getStatus(){
         return session_status();
     }
 
