@@ -97,10 +97,22 @@ create table ecommInvent(
 
 
 create table banners(
-id_bin UUID,
+id_banner int auto_increment,
 banner json not null,
-primary key(id_bin)
-);
+banner_status varchar(30) default 'active',
+banner_datecreate DATETIME default CURRENT_TIMESTAMP,
+      constraint PK_banners_banner primary key(
+            id_banner
+      )
+)ENGINE = InnoDB auto_increment = 100;
+drop table banners
+select * from banners
+
+insert into banners values(null,'{
+"banner_up_one" : "Public/Img/Ecommer/banner/banner-image-1.jpg",
+"banner_up_two" : "Public/Img/Ecommer/banner/banner-image-2.jpg",
+"banner_up_three" : "Public/Img/Ecommer/banner/banner-image-3.jpg"
+}',default,now());
 
 create table if not exists customers(
 id_customer UUID not null,
@@ -112,12 +124,19 @@ status INT not null DEFAULT 0,
 date_create_user DATETIME DEFAULT CURRENT_TIMESTAMP 
 )ENGINE=InnoDB default  CHARSET=utf8mb4;
 
-describe customers
+create table if not exists users(
+id_user UUID not null,
+user_name VARCHAR(50) not null,
+user_pass VARCHAR(500) not null,
+user_status VARCHAR(20) not null DEFAULT 'active',
+date_create_user DATETIME DEFAULT CURRENT_TIMESTAMP,
+      constraint PK_users primary key(
+            id_user 
+      )
+)ENGINE=InnoDB default  CHARSET=utf8mb4;
 
-insert into customers values (SYS_GUID(),'enrique','12345','12454654','213423565789978367',1,null)
-select * from customers
-insert into customers VALUES  
-describe customers
+
+
 create table if not exists shopping_cart(
 id_carshop UUID,
 products JSON,
@@ -126,8 +145,11 @@ date_dalete_cart DATETIME,
 id_customer_FK UUID,
 );
 
+drop table  users ;
+select * from users;
+
+select user_name, user_pass  from users where user_name = :user_name and user_pass = :user_pass and user_status  = 'active' 
 
 
-
-
+UPDATE users SET user_pass = :user_pass, user_name =:user_name WHERE id_user = :id_user
 

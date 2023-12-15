@@ -12,6 +12,6 @@ class BannersController extends Controller{
     }
 
     public function banners_page(){
-        return $this -> views();
+        return $this -> views('banners');
     }
 }
