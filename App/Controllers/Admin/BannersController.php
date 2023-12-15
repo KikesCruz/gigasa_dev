@@ -12,6 +12,10 @@ class BannersController extends Controller{
     }
 
     public function banners_page(){
-        return $this -> views('banners');
+
+        $db_response = $this -> model ->getBanners();
+        $banners = json_decode($db_response['banner'],true);
+
+        return $this -> views('banners',$banners);
     }
 }

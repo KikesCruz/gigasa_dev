@@ -25,7 +25,8 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                             <p>Primer banner</p>
                         </div>
                         <div class="img">
-                            <img class="img-fluid" src=" <?= URL_BASE . 'Public/Img/Admin/no_picture.png' ?> " alt="img">
+                            <img class="img-fluid" src=" <?= URL_BASE . $data['banner_up_one'] ?> " alt="img">
+                     
                         </div>
                     </div>
                     <input type="file" class="form-control" id="customFile" />

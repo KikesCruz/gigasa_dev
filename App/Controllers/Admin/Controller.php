@@ -59,4 +59,11 @@ class Controller
 
         return $paramsInt;
     }
+
+    public function debug($param){
+        
+        echo'<pre>';
+        print_r($param);
+        echo '</pre>';
+    }
 }
