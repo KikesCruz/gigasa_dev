@@ -11,7 +11,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <section class="container">
         <div class="title-section">
             <h2> DASHBOARD </h2>
-
+            <?php var_dump($_SESSION) ?>
         </div>
         <div class="container-section">
 

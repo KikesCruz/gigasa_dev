@@ -28,11 +28,54 @@ class UsersModel
     
 
         $this -> db -> bind(':user_name',$params['user_name']);
-        $this->db->bind(':user_pass', $params['user_pass']);
+        $this->db->bind(':user_pass', password_hash($params['user_pass'], PASSWORD_DEFAULT));
         
         if($this -> db -> execute()){
             return true;
         }else{
+            return false;
+        }
+    }
+
+    public function update_user($params){
+        $query = "UPDATE users SET user_pass = :user_pass WHERE id_user = :id_user";
+
+        $this -> db -> query($query);
+        $this->db->bind(":id_user", $params['id_user']);
+        $this -> db -> bind(":user_pass",password_hash($params['user_password'], PASSWORD_DEFAULT));
+        
+        if($this -> db -> execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function down_user($params)
+    {
+        $query = "UPDATE users SET user_status = 'inactive' WHERE id_user = :id_user";
+
+        $this->db->query($query);
+        $this->db->bind(":id_user", $params);
+     
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function active_user($params){
+        $query = "UPDATE users SET user_status = 'active' WHERE id_user = :id_user";
+
+        $this->db->query($query);
+        $this->db->bind(":id_user", $params);
+
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
             return false;
         }
     }

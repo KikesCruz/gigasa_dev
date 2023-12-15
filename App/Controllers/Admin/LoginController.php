@@ -1,8 +1,8 @@
 <?php
 namespace App\Controllers\Admin;
 
-use App\Models\Admin\LoginModel;
 use Lib\Session;
+use App\Models\Admin\LoginModel;
 
 
 class LoginController extends Controller{
@@ -25,24 +25,32 @@ class LoginController extends Controller{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $request = [
-                "user_name" => $_POST['user_name'],
-                "user_pass" => $_POST['user_pass']
+                "user_name" => $this -> sanitizerString($_POST['user_name']),
+                "user_pass" => $this -> sanitizerString($_POST['user_pass'])
             ];
 
-            $response = $this -> model -> searchUser($request);
-            
+
+          $response = $this -> model -> searchUser($request);
+          
             if($response == '' || is_null($response)){
                 
-                $json_response = "sin registros";
+                $json_response = "empty_search";
             
             }else{
+                if(password_verify($request['user_pass'],$response['user_pass'])){
+                    Session::init();
+                    Session::add('user', $request['user_name']);
+                    Session::add('auth', true);
+                    $json_response = "Logged_Successfully";
+                }else{
+                    $json_response = "empty_search";
+                }
                 
-                Session::add('user',$request);
-                $json_response = "usr_valido";
             }
             
         }
-
+      
+    
         echo json_encode($json_response);
     }
 }

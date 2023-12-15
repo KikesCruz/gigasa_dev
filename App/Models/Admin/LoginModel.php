@@ -12,12 +12,12 @@ class LoginModel{
 
     public function searchUser($param){
 
-        $query = "select user_name, user_pass  from users where user_name = :user_name and user_pass = :user_pass and user_status  = 'active'";
+        $query = "select user_pass  from users where user_name = :user_name and user_status  = 'active' LIMIT 1";
 
         $this -> db -> query($query);
 
         $this -> db -> bind(':user_name',$param['user_name']);
-        $this -> db ->bind(':user_pass', $param['user_pass']);
+ 
     
         $response = $this -> db ->resultOne();
 

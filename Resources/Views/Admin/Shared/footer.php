@@ -1,7 +1,7 @@
 <?php
 $js_file = trim($_SERVER['REQUEST_URI'], '/');
 
-echo $js_file;
+
 if($js_file == 'admin'){
     $js_file = 'index';
 }else{

@@ -8,7 +8,7 @@ class Session{
     }
 
     public static function add($key, $value){
-        if(!empty($clave))
+        if(!empty($key))
         $_SESSION[$key] = $value;
     }
 
