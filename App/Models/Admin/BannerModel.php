@@ -17,4 +17,8 @@ class BannerModel{
 
         return $result;
     }
+
+    public function updateBanner(){
+        
+    }
 }

@@ -5,7 +5,7 @@
     <div id="carouselExampleControls" class="carousel slide banner-carousel" data-bs-ride="carousel">
         <div class="carousel-inner">
 
-            <div class="carousel-item active slide-item" style="background-image: url(./assets/images/banner/banner-image-1.jpg);" data-bs-interval="5000">
+            <div class="carousel-item active slide-item" style="background-image: url(<?= URL_BASE . 'Public/Img/Ecommers/Banner/banner-image-1.jpg'; ?>);" data-bs-interval="5000">
                 <div class="auto-container">
                     <div class="content-inner">
                         <div class="content-box">
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="carousel-item slide-item" style="background-image: url(./assets/images/banner/banner-image-2.jpg);" data-bs-interval="5000">
+            <div class="carousel-item slide-item" style="background-image: url(<?= URL_BASE . 'Public/Img/Ecommers/Banner/banner-image-2.jpg'; ?>);" data-bs-interval="5000">
                 <div class="auto-container">
                     <div class="content-inner">
                         <div class="content-box">
@@ -168,7 +168,7 @@
 
 <!-- cta-section -->
 <section class="cta-section">
-    <div class="image-layer" style="background-image: url(assets/images/banner/banner-image-2.jpg);"></div>
+    <div class="image-layer" style="background-image: url(<?= URL_BASE . 'Public/Img/Ecommers/Banner/banner-image-2.jpg'; ?>);"></div>
     <div class="auto-container">
         <div class="cta-inner centred">
             <h2>Lorem ipsum, dolor sit amet consectetur

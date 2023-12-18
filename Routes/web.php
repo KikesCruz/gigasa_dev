@@ -25,6 +25,7 @@ Route::post('/admin/users/down', [UsersController::class, 'users_down']);
 Route::post('/admin/users/active', [UsersController::class, 'users_active']);
 /** Routes Banners */
 Route::get('/admin/banners', [BannersController::class, 'banners_page']);
+Route::post('/admin/banners/upload', [BannersController::class, 'banners_upload']);
 
 
 
