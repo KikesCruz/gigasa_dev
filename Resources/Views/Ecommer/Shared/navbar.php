@@ -42,7 +42,7 @@
 
                             <?php foreach( $data as $key_cat => $cat) : ?>
                                 <li>
-                                    <a href=""></a>
+                                    <a href="#"> <?= $cat['categoria'] ?> </a>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
