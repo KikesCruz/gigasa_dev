@@ -16,5 +16,8 @@ define('DATABASE',DB_DATABASE);
 define('DB_USR',DB_USERNAME);
 define('DB_PASS',DB_PASSWORD);
 
+/** Bind ERP */
+define('TOKE_ACCESS',TOKEN);
+
 
 

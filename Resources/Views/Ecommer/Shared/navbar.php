@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar_top">
         <div class="navbar_top-logo">
-            <img src="./assets/images/icon-horizontal.png" alt>
+            <img src=" <?= URL_BASE . 'Public/Img/Icons/icon-horizontal.png' ?>" alt>
         </div>
         <div class="burger__menu">
             <i class="fa-solid fa-bars icons-menu"></i>
@@ -39,19 +39,12 @@
                     <a href="#">
                         Productos <i class="fa-solid fa-pills"></i>
                         <ul class="drop-down menu_two">
-                            <li>
-                                <a href="#">Dermatologia
-                                    <i class="fa-solid fa-caret-down"></i>
-                                    <ul class="drop-down menu_three">
-                                        <li> <a href="#">Ciudado de la
-                                                piel</a> </li>
-                                        <li> <a href="#">Ciudado facial</a>
-                                        </li>
-                                    </ul>
-                                </a>
-                            </li>
-                            <li>Patente</li>
-                            <li>Similar</li>
+
+                            <?php foreach( $data as $key_cat => $cat) : ?>
+                                <li>
+                                    <a href=""></a>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </a>
                 </li>

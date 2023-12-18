@@ -16,3 +16,9 @@ define('DB_HOST',$_ENV['DB_HOST']);
 define('DB_DATABASE',$_ENV['DB_DATABASE']);
 define('DB_USERNAME',$_ENV['DB_USERNAME']);
 define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+
+/**
+ * CONF BIND
+ */
+
+ define('TOKEN',$_ENV['BIND']);

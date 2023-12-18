@@ -25,4 +25,12 @@ class Controller
 
         return $page;
     }
+
+    public function debug($param)
+    {
+
+        echo '<pre>';
+        print_r($param);
+        echo '</pre>';
+    }
 }
