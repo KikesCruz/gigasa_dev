@@ -50,113 +50,44 @@
     <div class="auto-container">
         <div class="sortable-masonry">
             <div class="items-container row clearfix">
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="shop-block-one">
-                        <div class="inner-box">
-                            <figure class="image-box">
-                                <a href="./product-details.html"> <img src="./assets/images/resource/shop/shop-1.jpg" alt> </a>
-                            </figure>
-                            <div class="info-list">
-                                <a href="#">
-                                    <button class="theme-button"> <span>Añadir
-                                            <i class="fa-solid fa-cart-plus"></i>
-                                        </span> </button>
-                                </a>
-                            </div>
-                            <div class="lower-content">
-                                <div class="details">
+                <?php $count = 0; ?>
+                <?php foreach ($data['inventario'] as $key => $product) : ?>
+                    <?php $count++; ?>
 
-                                    <a href="product-details.html">Nuevo
-                                        Anthelios Uvmune 400
-                                        jjguyguguyguhfhfhfhfytfyfyfyftfyfytyfyfytfyfytfytfytfytfytfyfytfgxdgxgxgxgfxgxfg</a>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="shop-block-one">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    <a href="./product-details.html"> <img src="<?= $product['img_url']['url_picture'] ?>" alt> </a>
+                                </figure>
+                                <div class="info-list">
+                                    <a href="#">
+                                        <button class="theme-button"> <span>Añadir
+                                                <i class="fa-solid fa-cart-plus"></i>
+                                            </span> </button>
+                                    </a>
                                 </div>
-                                <span class="price">$70.30</span>
+                                <div class="lower-content">
+                                    <div class="details">
+
+                                        <a href="product-details.html"> <?= $product['title_product']  ?> </a>
+                                    </div>
+                                    <span class="price">$ <?= $product['details']['precio']  ?></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <?php if ($count >= 4) : ?>
+                    <?php break;
+                    endif; ?>
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="shop-block-one">
-                        <div class="inner-box">
-                            <figure class="image-box">
-                                <a href="./product-details.html"> <img src="./assets/images/resource/shop/shop-1.jpg" alt> </a>
-                            </figure>
-                            <div class="info-list">
-                                <a href="#">
-                                    <button class="theme-button"> <span>Añadir
-                                            <i class="fa-solid fa-cart-plus"></i>
-                                        </span> </button>
-                                </a>
-                            </div>
-                            <div class="lower-content">
-                                <div class="details">
+                <?php endforeach; ?>
 
-                                    <a href="product-details.html">Nuevo
-                                        Anthelios Uvmune 400
-                                        jjguyguguyguhfhfhfhfytfyfyfyftfyfytyfyfytfyfytfytfytfytfytfyfytfgxdgxgxgxgfxgxfg</a>
-                                </div>
-                                <span class="price">$70.30</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="shop-block-one">
-                        <div class="inner-box">
-                            <figure class="image-box">
-                                <a href="./product-details.html"> <img src="./assets/images/resource/shop/shop-1.jpg" alt> </a>
-                            </figure>
-                            <div class="info-list">
-                                <a href="#">
-                                    <button class="theme-button"> <span>Añadir
-                                            <i class="fa-solid fa-cart-plus"></i>
-                                        </span> </button>
-                                </a>
-                            </div>
-                            <div class="lower-content">
-                                <div class="details">
-
-                                    <a href="product-details.html">Nuevo
-                                        Anthelios Uvmune 400
-                                        jjguyguguyguhfhfhfhfytfyfyfyftfyfytyfyfytfyfytfytfytfytfytfyfytfgxdgxgxgxgfxgxfg</a>
-                                </div>
-                                <span class="price">$70.30</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="shop-block-one">
-                        <div class="inner-box">
-                            <figure class="image-box">
-                                <a href="./product-details.html"> <img src="./assets/images/resource/shop/shop-1.jpg" alt> </a>
-                            </figure>
-                            <div class="info-list">
-                                <a href="#">
-                                    <button class="theme-button"> <span>Añadir
-                                            <i class="fa-solid fa-cart-plus"></i>
-                                        </span> </button>
-                                </a>
-                            </div>
-                            <div class="lower-content">
-                                <div class="details">
-
-                                    <a href="product-details.html">Nuevo
-                                        Anthelios Uvmune 400
-                                        jjguyguguyguhfhfhfhfytfyfyfyftfyfytyfyfytfyfytfytfytfytfytfyfytfgxdgxgxgxgfxgxfg</a>
-                                </div>
-                                <span class="price">$70.30</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             <div class="col-12 d-flex justify-content-center mt-5">
-                <a href="#">
+                <a href="./products">
                     <button class="theme-button">
                         <span>Todos los productos <i class="fa-solid fa-pills"></i>
                         </span>

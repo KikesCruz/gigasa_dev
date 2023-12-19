@@ -40,9 +40,13 @@
                         Productos <i class="fa-solid fa-pills"></i>
                         <ul class="drop-down menu_two">
 
-                            <?php foreach( $data as $key_cat => $cat) : ?>
+                            <?php foreach ($data['menu_navbar'] as $key_cat => $cat) : ?>
                                 <li>
                                     <a href="#"> <?= $cat['categoria'] ?> </a>
+                                    <i class="fa-solid fa-caret-down"></i>
+                                    <ul class="drop-down menu_three">
+                                        <li> <a href="#"> <?= $cat['sub']['name_sub'] ?> </a> </li>
+                                    </ul>
                                 </li>
                             <?php endforeach; ?>
                         </ul>

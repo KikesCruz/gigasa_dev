@@ -9,6 +9,7 @@ use App\Controllers\Admin\BannersController;
 
 // controllers ecommers
 use App\Controllers\Ecommer\EcommerController;
+use App\Controllers\Ecommer\GetProducsController;
 
 
 // Routes by admin
@@ -30,5 +31,6 @@ Route::post('/admin/banners/upload', [BannersController::class, 'banners_upload'
 
 
 Route::get('/', [EcommerController::class, 'index']);
+Route::get('/products', [GetProducsController::class, 'getAllProducts']);
 
 Route::dispatch();
