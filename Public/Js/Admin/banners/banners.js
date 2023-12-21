@@ -1,8 +1,7 @@
-$(document).on("click", "#img-up", function () {
-  let formData = new FormData();
-  let img = $("#customFile")[0].files[0];
-
-  formData.append('img-file',img);
+$(document).on("click", "#img-up", function (event) {
+  event.preventDefault();
+  let formData = new FormData($('#form_banner_one')[0]);
+  
 
   $.ajax({
     type: "POST",

@@ -13,7 +13,8 @@ class EcommerModel
             'http' => [
                 'method' => 'GET',
                 'header' => [
-                    'Content-Type: application/json',
+                    'Content-Type: application/json; charset =utf-8',
+
                     'Authorization: Bearer ' . TOKE_ACCESS,
                 ],
             ],

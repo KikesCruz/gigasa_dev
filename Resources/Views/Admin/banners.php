@@ -15,7 +15,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
         <div class="container-section">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2>Banners superiores</h2>
+                    <h2>Banners</h2>
                 </div>
             </div>
             <div class="row">
@@ -25,28 +25,26 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                             <p>Primer banner</p>
                         </div>
                         <div class="img">
-                            <img class="img-fluid" src="<?= URL_BASE . $data['banner_up_one'] ?>" alt="img">
-
+                            <img class="img-fluid" src=" <?= URL_BASE . 'Public/Img/Admin/no_picture.png' ?> " alt="img">
                         </div>
+                        <form id="form_banner_one" enctype="multipart/form-data">
+                            <input name="banners" type="file" class="form-control" id="customFile" accept="image/jpeg, image/jpg, image/png" />
+                            <button id="img-up" class="btn btn-success mt-2">Actualizar Imagen</button>
+                        </form>
                     </div>
-                    <input name="banners" type="file" class="form-control" id="customFile" />
-                    <input type="text" class="form-control mt-2" placeholder="nombre de campaña">
-                    <button id="img-up" class="btn btn-success mt-2">Subir Imgagen</button>
                 </div>
                 <div class="col-4">
                     <div class="container">
                         <div class="text-center">
-                            intpu
+                            <p>Primer tercer</p>
                         </div>
                         <div class="img">
-                            <img class="img-fluid" src="<?= URL_BASE . $data['banner_up_two'] ?>" alt="img">
+                            <img class="img-fluid" src=" <?= URL_BASE . 'Public/Img/Admin/no_picture.png' ?> " alt="img">
                         </div>
                     </div>
-                    <input type="text" placeholder="campaña">
                     <input type="file" class="form-control" id="customFile" />
                 </div>
                 <div class="col-4">
-
                     <div class="container">
                         <div class="text-center">
                             <p>Primer tercer</p>
@@ -60,49 +58,6 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             </div>
         </div>
 
-        <div class="container-section">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h2>Banners inferiores</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-4">
-                    <div class="container">
-                        <div class="text-center">
-                            <p>Primer banner</p>
-                        </div>
-                        <div class="img">
-                            <img class="img-fluid" src=" <?= URL_BASE . 'Public/Img/Admin/no_picture.png' ?> " alt="img">
-                        </div>
-                    </div>
-                    <input type="file" class="form-control" id="customFile" />
-                </div>
-                <div class="col-4">
-                    <div class="container">
-                        <div class="text-center">
-                            <p>Primer segundo</p>
-                        </div>
-                        <div class="img">
-                            <img class="img-fluid" src=" <?= URL_BASE . 'Public/Img/Admin/no_picture.png' ?> " alt="img">
-                        </div>
-                    </div>
-                    <input type="file" class="form-control" id="customFile" />
-                </div>
-                <div class="col-4">
-
-                    <div class="container">
-                        <div class="text-center">
-                            <p>Primer tercer</p>
-                        </div>
-                        <div class="img">
-                            <img class="img-fluid" src=" <?= URL_BASE . 'Public/Img/Admin/no_picture.png' ?> " alt="img">
-                        </div>
-                    </div>
-                    <input type="file" class="form-control" id="customFile" />
-                </div>
-            </div>
-        </div>
     </section>
 </main>
 

@@ -2,7 +2,7 @@
     <nav class="navbarH">
         <div class="logo">
             <div class="icon-logo">
-                <img src="<?= URL_BASE . 'Public/Img/icons/icon-horizontal.png'; ?> " alt="logo-admin">
+                <img src="<?= URL_BASE . 'Public/Img/Icons/icon-horizontal.png'; ?> " alt="logo-admin">
             </div>
             <div class="logo-title">
                 <h4>Admin</h4>
@@ -12,13 +12,13 @@
             <ul class="menuOperations">
 
                 <li class="dropdown item-menu">
-                    <a id="dropdown" class="dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                    <a id="dropdown" class="dropdown-toggle" data-bs-toggle="dropdown">
                         <i class="fa-solid fa-shop"></i> Ecommers
                     </a>
                     <ul class="dropdown-menu menuDown">
                         <li>
-                            <a href="./datos">
-                                Datos
+                            <a href="./provedores">
+                                Proovedores
                             </a>
                         </li>
                         <li>
@@ -33,6 +33,21 @@
                         </li>
 
                     </ul>
+
+                </li>
+
+                <li class="item-menu">
+                    <a>
+                        <i class="fa-solid fa-truck"></i>
+
+                        </i> Inventario
+                    </a>
+
+                </li>
+                <li class="item-menu">
+                    <a>
+                        <i class="fa-solid fa-users"></i> Clientes
+                    </a>
 
                 </li>
             </ul>

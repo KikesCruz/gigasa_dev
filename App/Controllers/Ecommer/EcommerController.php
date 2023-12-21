@@ -44,7 +44,7 @@ class EcommerController extends Controller
             if ($value['Visible'] == true) {
                 $inventoriWarehouse[$key] = array(
                     'id_product' => $value['ProductID'],
-                    'title_product' => $value['Title'],
+                    'title_product' =>  $value['Title'],
                     'sku' => $value['SKU'],
                     'details' =>'',
                     'img_url' =>'',

@@ -15,23 +15,37 @@ class BannersController extends Controller
 
     public function banners_page()
     {
-
-        $db_response = $this->model->getBanners();
-        $banners = json_decode($db_response['banner'], true);
-
-        return $this->views('banners', $banners);
+        return $this->views('banners');
     }
 
     public function banners_upload()
     {
 
-        $img_dir = PATH_ROOT . "Public/Img/Ecommers/banner/";
+       $files_access = array("image/jpeg", "image/jpg","image/png");     
+       
+       
+       if($_SERVER['REQUEST_METHOD'] && isset($_FILES['banners'])){
+            $imagen = $_FILES['banners'];
+            if(in_array($imagen["type"],$files_access)){
+                $path = PATH_ROOT.'Public/Img/Ecommers/Banner/';
+                $name_img = 'banner.webp';
+                $path_finally = $path.$name_img;
 
-        if ($_FILES['img-file']['type'] == 'image/jpeg') {
-            if (move_uploaded_file($_FILES['img-file']['tmp_name'], $img_dir. 'banner-image-1.jpg')) {
-                echo "imagen subida";
+                if(move_uploaded_file($imagen['tmp_name'], $path_finally)){
+                    $imagen_webp = imagecreatefromstring(file_get_contents($path_finally));
+                    imagewebp($imagen_webp,$path_finally,65);
+                    imagedestroy($imagen_webp);
+                }
+
+
             }
         }
+
+       /* $img_dir = PATH_ROOT . "Public/Img/Ecommers/banner/";
+
+        if ($_FILES['img-file']['type'] == 'image/jpeg') {
+            imagewebp();
+        }*/
         $this->debug($_FILES);
     }
 }
