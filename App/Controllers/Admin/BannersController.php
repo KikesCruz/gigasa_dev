@@ -28,8 +28,13 @@ class BannersController extends Controller
             $imagen = $_FILES['banners'];
             if(in_array($imagen["type"],$files_access)){
                 $path = PATH_ROOT.'Public/Img/Ecommers/Banner/';
-                $name_img = 'banner.webp';
+                
+                $name = explode(".",$_FILES['banners']['name']);
+                $name_img = $name[0].'.webp';
+                
                 $path_finally = $path.$name_img;
+
+
 
                 if(move_uploaded_file($imagen['tmp_name'], $path_finally)){
                     $imagen_webp = imagecreatefromstring(file_get_contents($path_finally));
