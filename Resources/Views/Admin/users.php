@@ -57,24 +57,24 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                 </table>
                             </div>
                             <div class="col-6 card-body">
-                                <form class="form-horizontal">
+                                <form id="form_user" class="form-horizontal">
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label" for="">Usuario</label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="text">
+                                                <input name="user_name" class="form-control" type="text">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label" for="">Contraseña</label>
                                             <div class="col-sm-8">
-                                                <input class="form-control" type="password">
+                                                <input name="user_pass" class="form-control" type="password">
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="card-footer">
-                                        <button type="submit" class="btn bg-add"> <i class="fa-solid fa-user-plus"></i> Crear Nuevo</button>
+                                        <button id="add_user" type="submit" class="btn bg-add"> <i class="fa-solid fa-user-plus"></i> Crear Nuevo</button>
                                     </div>
                                 </form>
                             </div>
