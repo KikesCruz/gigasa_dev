@@ -1,5 +1,12 @@
-<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Admin/style.css";  ?>>
-<link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="<?= URL_BASE.'Public/Adminlte/plugins/sweetalert2/sweetalert2.min.css'?>">
+<!-- Toastr -->
+<link rel="stylesheet" href="<?=URL_BASE. "Public/Adminlte/plugins/toastr/toastr.min.css"?>">
+<!-- Theme style -->
+<link rel="stylesheet" href="<?=URL_BASE. "Public/Adminlte/dist/css/adminlte.min.css"?>">
+<!--Style-->
+<link rel="stylesheet" href="<?=URL_BASE."Public/Css/Admin/style.css"?>">

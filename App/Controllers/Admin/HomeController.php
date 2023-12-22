@@ -8,10 +8,10 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        Session::init();
+        /**Session::init();
         if (!Session::get('auth')) {
             $this->redirect();
-        }
+        }*/
 
     }
 

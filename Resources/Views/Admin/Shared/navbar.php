@@ -1,82 +1,120 @@
-<section class="sidebar">
-    <nav class="navbarH">
-        <div class="logo">
-            <div class="icon-logo">
-                <img src="<?= URL_BASE . 'Public/Img/Icons/icon-horizontal.png'; ?> " alt="logo-admin">
-            </div>
-            <div class="logo-title">
-                <h4>Admin</h4>
-            </div>
-        </div>
-        <div class="container-menu">
-            <ul class="menuOperations">
+ <!-- Navbar -->
+ <nav class="main-header navbar navbar-expand bg_navbar">
+     <!-- Right navbar links -->
+     <ul class="navbar-nav ml-auto">
+         <!-- Messages Dropdown Menu -->
+         <li class="nav-item dropdown">
+             <a class="nav-link" data-toggle="dropdown" href="#">
+                 <i class="far fa-comments"></i>
+                 <span class="badge badge-danger navbar-badge">3</span>
+             </a>
+             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                 <a href="#" class="dropdown-item">
+                     <!-- Message Start -->
+                     <div class="media">
+                         <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                         <div class="media-body">
+                             <h3 class="dropdown-item-title">
+                                 Brad Diesel
+                                 <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                             </h3>
+                             <p class="text-sm">Call me whenever you
+                                 can
 
-                <li class="dropdown item-menu">
-                    <a id="dropdown" class="dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="fa-solid fa-shop"></i> Ecommers
-                    </a>
-                    <ul class="dropdown-menu menuDown">
-                        <li>
-                            <a href="./provedores">
-                                Proovedores
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./banners">
-                                Banners
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./users">
-                                Usuarios
-                            </a>
-                        </li>
+                             </p>
+                             <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4
+                                 Hours Ago</p>
+                         </div>
+                     </div>
+                     <!-- Message End -->
+                 </a>
+                 <div class="dropdown-divider"></div>
+                 <a href="#" class="dropdown-item">
+                     <!-- Message Start -->
+                     <div class="media">
+                         <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                         <div class="media-body">
+                             <h3 class="dropdown-item-title">
+                                 John Pierce
+                                 <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                             </h3>
+                             <p class="text-sm">I got your message
+                                 bro</p>
+                             <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4
+                                 Hours Ago</p>
+                         </div>
+                     </div>
+                     <!-- Message End -->
+                 </a>
+                 <div class="dropdown-divider"></div>
+                 <a href="#" class="dropdown-item">
+                     <!-- Message Start -->
+                     <div class="media">
+                         <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                         <div class="media-body">
+                             <h3 class="dropdown-item-title">
+                                 Nora Silvester
+                                 <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                             </h3>
+                             <p class="text-sm">The subject goes
+                                 here</p>
+                             <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4
+                                 Hours Ago</p>
+                         </div>
+                     </div>
+                     <!-- Message End -->
+                 </a>
+                 <div class="dropdown-divider"></div>
+                 <a href="#" class="dropdown-item dropdown-footer">See All
+                     Messages</a>
+             </div>
+         </li>
+         <!-- Notifications Dropdown Menu -->
+         <li class="nav-item dropdown">
+             <a class="nav-link" data-toggle="dropdown" href="#">
+                 <i class="far fa-bell"></i>
+                 <span class="badge badge-warning navbar-badge">15</span>
+             </a>
+             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                 <span class="dropdown-item dropdown-header">15
+                     Notifications</span>
+                 <div class="dropdown-divider"></div>
+                 <a href="#" class="dropdown-item">
+                     <i class="fas fa-envelope mr-2"></i> 4 new
+                     messages
+                     <span class="float-right text-muted text-sm">3
+                         mins</span>
+                 </a>
+                 <div class="dropdown-divider"></div>
+                 <a href="#" class="dropdown-item">
+                     <i class="fas fa-users mr-2"></i> 8 friend
+                     requests
+                     <span class="float-right text-muted text-sm">12
+                         hours</span>
+                 </a>
+                 <div class="dropdown-divider"></div>
+                 <a href="#" class="dropdown-item">
+                     <i class="fas fa-file mr-2"></i> 3 new reports
+                     <span class="float-right text-muted text-sm">2
+                         days</span>
+                 </a>
+                 <div class="dropdown-divider"></div>
+                 <a href="#" class="dropdown-item dropdown-footer">See All
+                     Notifications</a>
+             </div>
+         </li>
+         <!-- Profile -->
+         <li class="nav-item dropdown">
+             <a class="nav-link" data-toggle="dropdown" href="#">
+                 <i class="fa-solid fa-id-card-clip"></i>
 
-                    </ul>
-
-                </li>
-
-                <li class="item-menu">
-                    <a>
-                        <i class="fa-solid fa-truck"></i>
-
-                        </i> Inventario
-                    </a>
-
-                </li>
-                <li class="item-menu">
-                    <a>
-                        <i class="fa-solid fa-users"></i> Clientes
-                    </a>
-
-                </li>
-            </ul>
-
-        </div>
-        <div class="profile">
-            <div class="menu-profile">
-                <ul class="profile-menu_group">
-                    <li class="dropdown item-menu">
-                        <a href="#" id="dropdown" class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa-solid fa-id-card-clip"></i>
-                            Nombre Apellido
-                        </a>
-                        <ul class="dropdown-menu menuDown">
-                            <li class="item-menu">
-                                <a href="/admin/profile">
-                                    Perfil
-                                </a>
-                            </li>
-                            <li class="item-menu">
-                                <a href="/admin">
-                                    Cerrar Sesión
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</section>
+             </a>
+             <div class="dropdown-menu">
+                 <a href="#" class="dropdown-item">
+                     <i class="fa-solid fa-right-from-bracket"></i> Salir
+                 </a>
+             </div>
+         </li>
+     </ul>
+ </nav>
+ <!-- /.navbar -->
