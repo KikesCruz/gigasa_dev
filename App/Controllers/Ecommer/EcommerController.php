@@ -90,6 +90,6 @@ class EcommerController extends Controller
             "inventario" => $inventoriWarehouse
         ];
 
-        return $this->views("home", $bind_fetch);
+        return $this->views("home");
     }
 }
