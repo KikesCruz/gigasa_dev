@@ -4,7 +4,7 @@ namespace App\Controllers\Ecommer;
 
 use App\Models\Ecommer\EcommerModel;
 
-class EcommerController extends Controller
+class CustomerController  extends Controller
 {
 
     private $model;
@@ -12,8 +12,10 @@ class EcommerController extends Controller
     {
         $this->model = new EcommerModel();
     }
-    public function index()
-    { 
-        return $this->views("home");
+
+    public function view()
+    {
+
+        return $this->views('customer');
     }
 }

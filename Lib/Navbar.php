@@ -3,12 +3,13 @@ class Navbar{
 
 
 
-    public  function navbar(){
+    static function menu(){
 
         $items = [
-            "patente","dermatologia"
+            "Patente","Dermatologia","Similares"
         ];
 
         return $items;
+
     }
 }   

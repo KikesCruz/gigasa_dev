@@ -8,8 +8,11 @@ use App\Controllers\Admin\UsersController;
 use App\Controllers\Admin\BannersController;
 
 // controllers ecommers
-use App\Controllers\Ecommer\EcommerController;
-use App\Controllers\Ecommer\GetProducsController;
+use App\Controllers\Ecommer\IndexController;
+use App\Controllers\Ecommer\CartController;
+use App\Controllers\Ecommer\CustomerController;
+use App\Controllers\Ecommer\ProfileCustomerController;
+
 
 
 // Routes by admin
@@ -29,8 +32,15 @@ Route::get('/admin/banners', [BannersController::class, 'banners_page']);
 Route::post('/admin/banners/upload', [BannersController::class, 'banners_upload']);
 
 
+/** Ecommer Routes */
 
-Route::get('/', [EcommerController::class, 'index']);
-Route::get('/products', [GetProducsController::class, 'getAllProducts']);
+Route::get('/', [IndexController::class, 'index']);
+
+Route::get('/cart', [CartController::class, 'view']);
+
+Route::get('/account', [CustomerController::class, 'view']);
+
+Route::get('/profile', [ProfileCustomerController::class, 'view']);
+
 
 Route::dispatch();
