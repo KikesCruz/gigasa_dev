@@ -7,6 +7,8 @@ use App\Controllers\Admin\ProfileController;
 use App\Controllers\Admin\UsersController;
 use App\Controllers\Admin\BannersController;
 
+use App\Controllers\Admin\DepartmentsController;
+
 // controllers ecommers
 use App\Controllers\Ecommer\IndexController;
 use App\Controllers\Ecommer\CartController;
@@ -16,7 +18,6 @@ use App\Controllers\Ecommer\ProfileCustomerController;
 
 
 // Routes by admin
-
 Route::get('/admin',[LoginController::class,'login']);
 Route::post('/admin/auth',[LoginController::class,'auth']);
 Route::get('/admin/home', [HomeController::class, 'home']);
@@ -30,6 +31,12 @@ Route::post('/admin/users/active', [UsersController::class, 'users_active']);
 /** Routes Banners */
 Route::get('/admin/banners', [BannersController::class, 'banners_page']);
 Route::post('/admin/banners/upload', [BannersController::class, 'banners_upload']);
+
+/** Departamentos */
+Route::get('/admin/departamentos',[DepartmentsController::class,'view']);
+Route::post('/admin/departamentos/add', [DepartmentsController::class, 'add']);
+Route::post('/admin/departamentos/enable', [DepartmentsController::class, 'enable']);
+Route::post('/admin/departamentos/disable', [DepartmentsController::class, 'disable']);
 
 
 /** Ecommer Routes */
