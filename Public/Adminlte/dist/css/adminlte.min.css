@@ -75,7 +75,6 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
 }
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
@@ -156,12 +155,12 @@ sup {
   top: -0.5em;
 }
 a {
-  color: #007bff;
+  color: white;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #0056b3;
+  color: #00b327;
   text-decoration: none;
 }
 a:not([href]):not([class]) {
@@ -11976,6 +11975,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 .main-header {
   border-bottom: 1px solid #dee2e6;
   z-index: 1034;
+  /**background: var(--blue);*/
+  background-color: #75cb36;
 }
 .main-header .nav-link {
   height: 2.5rem;
@@ -12226,6 +12227,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   height: 100vh;
   overflow-y: hidden;
   z-index: 1038;
+  background-color: #191919;
 }
 .main-sidebar a:-moz-focusring {
   border: 0;
@@ -12360,6 +12362,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   display: none;
   list-style: none;
   padding: 0;
+  margin-left:1.5rem
 }
 .nav-sidebar .nav-treeview > .nav-item > .nav-link > .nav-icon {
   width: 1.6rem;
@@ -17185,10 +17188,10 @@ body.text-sm .control-sidebar {
   color: #ced4da !important;
 }
 .nav-pills .nav-link {
-  color: #6c757d;
+  color: white;
 }
 .nav-pills .nav-link:not(.active):hover {
-  color: #007bff;
+  color: #90d52c;
 }
 .nav-pills .nav-item.dropdown.show .nav-link:hover {
   color: #fff;

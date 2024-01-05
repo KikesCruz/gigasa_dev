@@ -8,7 +8,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="content-header">
-            <div class="ccontainer-fluid">
+            <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-12 text-center mt-2">
                         <h1>Departamentos</h1>
@@ -17,11 +17,11 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             </div>
         </div>
         <section class="content">
-            <div class="container-fluid">
+            <div class="container-fluid ">
                 <div class="row">
-                    <div class="col-12 rounded elevation-2">
+                    <div class="col-12 elevation-2">
                         <div class="row">
-                            <div class="col-6 card-body">
+                            <div class="col box-widget">
                                 <table class="table table-sm">
                                     <thead>
                                         <tr>
@@ -41,10 +41,10 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                 <td>
                                                     <div class="group-btn">
                                                         <?= $depto['status_depto'] == 'off' ?
-                                                            '<button id="btnEnableDepto" type="button" class="btn btn-edit" data-toggle="modal" data-target="#enableModal"><i class="fa-solid fa-user-check"></i></button>'
+                                                        '<button id="btnEnableDepto" type="button" class="btn" data-toggle="modal" data-target="#enableModal"><i class="fa-solid fa-circle-check btn-enable-icon"></i></button>'
                                                             :
-                                                            '<button id="btn-updateUsr" type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#modal_usr_update"><i class="fa-solid fa-user-pen"></i></button>
-                                                             <button id="btnDisableDepto" class="btn btn-delete" data-toggle="modal" data-target="#disableModal"><i class="fa-solid fa-user-xmark"></i></button>
+                                                            '<button id="btn-updateUsr" type="button" class="btn" data-toggle="modal" data-target="#modal_usr_update"><i class="fa-solid fa-pen-to-square btn-update-icon"></i></button>
+                                                             <button id="btnDisableDepto" class="btn" data-toggle="modal" data-target="#disableModal"><i class="fa-solid fa-circle-minus btn-error-icon"></i></button>
                                                             '
                                                         ?>
 
@@ -56,7 +56,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-6 card-body">
+                            <div class="col box-widget">
                                 <form id="form_depto" class="form-horizontal">
                                     <div class="card-body">
                                         <div class="form-group row">
@@ -67,9 +67,15 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                         </div>
 
                                     </div>
-                                    <div class="card-footer">
-                                        <button id="add_depto" type="submit" class="btn bg-add"> <i class="fa-solid fa-plus"></i> Crear Nuevo</button>
-                                    </div>
+                                    <div class="row p-2">
+                                                <button 
+                                                    id="add_depto"
+                                                    type="submit"
+                                                    class="btn-theme-one"> 
+                                                    <i class="fa-solid fa-plus"></i>
+                                                    Crear Nuevo
+                                                </button>
+                                            </div>
                                 </form>
                             </div>
                         </div>
@@ -107,7 +113,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar el departamento?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar el departamento?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -68,10 +68,10 @@ $(document).on("click", "#btnEnableDepto", function () {
         </div>
             <hr>
         <div class="row p-3">
-            <div class="col-12">
-                <button type="submit" class="btn btn-secondary">Activar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            </div>
+        <div class="col-12 d-flex flex-row-reverse">
+        <button type="submit" class="btn-theme-one ml-1">Activar</button>
+        <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
+    </div>
         </div>
     </form>
     `;
@@ -111,9 +111,9 @@ $(document).on("click", "#btnDisableDepto", function () {
         </div>
             <hr>
         <div class="row p-3">
-            <div class="col-12">
-                <button type="submit" class="btn btn-secondary">Activar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <div class="col-12 d-flex flex-row-reverse">
+                <button type="submit" class="btn-theme-one ml-1">Desactivar</button>
+                <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </form>
