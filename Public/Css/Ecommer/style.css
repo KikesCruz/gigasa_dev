@@ -586,17 +586,23 @@ header nav .menu_navigations ul li a span {
 
 
 /** Parnets styles */
-.parnets .box-container {
-  padding: 5rem 9%;
-  display: flex;
+.parnets .box-container .marcas .box {
+  width: 15rem;
+  padding: 0.5rem;
+ 
 }
 
-.parnets .box-container .box {
-  width: 20rem;
+.parnets .box-container .marcas .box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
 
 .parnets .box-container .box img {
-  width: 100%;
+  width: 80%;
 }
 
 /** Services styles */

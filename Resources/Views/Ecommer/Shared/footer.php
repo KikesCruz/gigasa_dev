@@ -1,7 +1,7 @@
 <footer>
     <div class="box-container">
         <div class="box">
-            <img src="<?= URL_BASE . 'Public/Img/Ecommers/Icons/Ecommer/icon-horizontal.png'?>" alt>
+            <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Site/icon-horizontal.png'?>" alt>
         </div>
 
         <div class="box">
@@ -25,9 +25,9 @@
 
         <div class="box-social">
             <h3>Siguenos en:</h3>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommers/Icons/Social/facebook.png'?>" alt> </a>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommers/Icons/Social/facebook.png'?>" alt> </a>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommers/Icons/Social/facebook.png'?>" alt> </a>
+            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.png'?>" alt> </a>
+            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.png'?>" alt> </a>
+            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.png'?>" alt> </a>
 
         </div>
     </div>

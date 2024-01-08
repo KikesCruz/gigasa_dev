@@ -6,7 +6,7 @@
         <nav>
             <div class='logo'>
                 <a href='./'>
-                    <img src="<?= URL_BASE. 'Public/Img/Ecommers/Icons/Ecommer/icon-horizontal.png'?>" alt='logo' />
+                    <img src="<?= URL_BASE. 'Public/Img/Ecommerce/Icons/Site/icon-horizontal.png'?>" alt='logo' />
                 </a>
             </div>
             <div class='container-form_search'>
