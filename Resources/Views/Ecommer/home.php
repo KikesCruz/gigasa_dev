@@ -7,7 +7,15 @@
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Mega_banners/mega_banner_one.png' ?>" class="d-block w-100" alt="...">
+                    <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Mega_banners/banner_one.jpg' ?>" class="d-block w-100" alt="...">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Mega_banners/banner_two.jpg' ?>" class="d-block w-100" alt="...">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Mega_banners/banner_three.jpg' ?>" class="d-block w-100" alt="...">
                 </div>
 
             </div>
@@ -34,7 +42,7 @@
 <section class="products">
     <div class="box-container">
         <h6 class="header">Top Productos</h6>
-        <hr>
+        <div class="divider"></div>
         <div class="slider-products owl-carousel owl-theme">
 
             <div class="box">
@@ -185,40 +193,110 @@
 <section class="panels-promos">
     <div class="box-container">
         <h6 class="header">Promociones</h6>
-        <hr>
+        <div class="divider"></div>
         <div class="box-items">
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/PROMOX1.jpg' ?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/promo_1.jpg' ?>" alt />
             </div>
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/PROMOX2.jpg' ?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/promo_2.jpg' ?>" alt />
             </div>
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/PROMOX3.jpg' ?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/promo_3.jpg' ?>" alt />
             </div>
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/PROMOX4.jpg' ?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Banner/Square_banner/promo_4.jpg' ?>" alt />
             </div>
         </div>
     </div>
 </section>
 
-<section class="parnets">
+<section class="brands">
     <h1 class="heading">Marcas</h1>
     <div class="box-container">
         <div class="marcas owl-carousel owl-theme">
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/brand1.jpg'?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_1.jpg'?>" alt />
             </div>
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/brand2.jpg' ?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_2.jpg' ?>" alt />
             </div>
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/brand3.jpg' ?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_3.jpg' ?>" alt />
             </div>
             <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/brand4.jpg' ?>" alt />
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_4.jpg' ?>" alt />
             </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_5.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_6.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_7.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_8.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_9.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_10.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_11.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_12.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_13.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_14.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_15.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_16.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_17.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_18.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_19.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_20.jpg' ?>" alt />
+            </div>
+
+            <div class="box">
+                <img src="<?= URL_BASE . 'Public/Img/Ecommerce/Icons/Brands/logos_21.jpg' ?>" alt />
+            </div>
+
+            
           
         </div>
     </div>
@@ -233,13 +311,13 @@
 <section class="services">
     <div class="box-container">
         <div class="box">
-            <i class="fa-solid fa-credit-card"></i>
+            <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/card.svg'?>" alt="">
             <span>Pagos en linea</span>
         </div>
 
         <div class="box">
-            <i class="fa-solid fa-truck"></i>
-            <span>Envios a domicilio</span>
+        <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/envios.svg'?>" alt="">
+            <span>Envíos a domicilio</span>
         </div>
     </div>
 </section>

@@ -4,22 +4,24 @@ const slide_mega_banner = $(".slide_mega_banner");
 
 marcas.owlCarousel({
   loop: true,
-  margin: 10,
+  margin: 5,
   smartSpeed: 500,
   autoplay: 5000,
   nav: false,
+  dots:false,
   responsive: {
     0: {
-      items: 3,
+      items: 2,
     },
     600: {
-      items: 3,
+      items: 2,
     },
     1000: {
       items: 5,
     },
   },
 });
+
 
 slideProducts.owlCarousel({
   loop: true,

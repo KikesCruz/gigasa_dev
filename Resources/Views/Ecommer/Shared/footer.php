@@ -6,12 +6,12 @@
 
         <div class="box">
             <h3>Informacion de contacto:</h3>
-            <a href="#"> <i class="fas fa-phone"></i> +52 55 1729-7128 </a>
-            <a href="#"> <i class="fas fa-phone"></i> +52 55 3220-9774 </a>
-            <a href="#"> <i class="fas fa-envelope"></i>
+            <a href="#"> <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/whatsapp.svg'?>" alt=""> +52 55 1729-7128 </a>
+            <a href="#"> <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/phone.svg'?>" alt=""> +52 55 3220-9774 </a>
+            <a href="#"> <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/mail.svg'?>" alt="">
                 info@comercializadoragigasa.com</a>
             <a href="#">
-                <i class="fas fa-map-marker-alt"></i> Cafetal 147-b, Granjas México,
+            <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/site.svg'?>" alt=""> Cafetal 147-b, Granjas México,
                 Iztacalco, 08400, Ciudad de México, CDMX
             </a>
         </div>
@@ -25,9 +25,9 @@
 
         <div class="box-social">
             <h3>Siguenos en:</h3>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.png'?>" alt> </a>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.png'?>" alt> </a>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.png'?>" alt> </a>
+            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.svg'?>" alt> </a>
+            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/instagram.svg'?>" alt> </a>
+            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/linkedin.svg'?>" alt> </a>
 
         </div>
     </div>

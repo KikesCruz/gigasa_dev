@@ -77,10 +77,20 @@
   }
 
   /** Panels Promo */
+  .panels-promos .box-container .box-items{
+    flex-flow: row wrap;
+    justify-content: center;
+  }
 
   .panels-promos .box-container .box-items .box {
-    width: 100%;
+    width: 45%;
   }
+
+  /** brands */
+  .brands .box-container .marcas .box {
+    width: 20rem;
+  }
+
 
   /** Section service */
   .services .box-container {
