@@ -37,6 +37,7 @@ Route::get('/admin/departamentos',[DepartmentsController::class,'view']);
 Route::post('/admin/departamentos/add', [DepartmentsController::class, 'add']);
 Route::post('/admin/departamentos/enable', [DepartmentsController::class, 'enable']);
 Route::post('/admin/departamentos/disable', [DepartmentsController::class, 'disable']);
+Route::post('/admin/departamentos/update', [DepartmentsController::class, 'update']);
 
 
 /** Ecommer Routes */

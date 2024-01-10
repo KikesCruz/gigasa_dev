@@ -71,6 +71,25 @@ class DepartmentsController extends Controller
             $request = $_POST['id_depto'];
 
             $data = $this->model->disableDepto($request);
+
+            if($data == 'true'){
+                echo json_encode('actualizado');
+            }else{
+                echo json_encode('error');
+            }
+        }
+    }
+
+    public function update(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $request = array (
+                "id_depto" => $_POST['id_depto'],
+                "name_depto" => $this -> sanitizerString($_POST['depto']),
+                
+            );
+
+            $data = $this->model->updateDepto($request);
         }
     }
 }

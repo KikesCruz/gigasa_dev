@@ -79,4 +79,18 @@ class DepartmentsModel
             return false;
         }
     }
+
+    public function updateDepto($param){
+        $query = "UPDATE department SET depto_name = :depto_name WHERE id_depto = :id_depto ";
+
+        $this->db->query($query);
+        $this->db->bind(":id_depto", $param['id_depto']);
+        $this->db->bind(":depto_name", $param['name_depto']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

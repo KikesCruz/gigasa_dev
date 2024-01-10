@@ -92,3 +92,54 @@ button .btn-enable-icon{
 .main-sidebar .box-logo .box img {
   width: 5rem;
 }
+
+/** categories */
+.content .container-box{
+  padding: 1rem 2%;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.content .container-box .box{
+  background: white;
+  border: solid 1px gray;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+}
+
+.content .container-box .box-form{
+  height: auto;
+}
+
+.panels .box-container{
+  padding: 2rem 2%;
+  display: flex;
+  gap: 2rem;
+}
+
+.panels .box-container .box{
+  width: 13rem;
+  height: 5rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  padding:  0.5rem;
+  background-color: #ffffff;
+}
+
+
+.panels .box-container .box .box-title h6{
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.panels .box-container .box span{
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  display: inline-block;
+}

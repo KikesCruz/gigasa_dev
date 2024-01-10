@@ -112,7 +112,7 @@ $(document).on("click", "#btnDisableDepto", function () {
             <hr>
         <div class="row p-3">
             <div class="col-12 d-flex flex-row-reverse">
-                <button type="submit" class="btn-theme-one ml-1">Desactivar</button>
+                <button id="btn_disable_conf" type="button" class="btn-theme-one ml-1">Desactivar</button>
                 <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -121,7 +121,7 @@ $(document).on("click", "#btnDisableDepto", function () {
   $("#body_modal_disable").html(body_modal);
 });
 
-$(document).on("submit", function (e) {
+$(document).on("click", "#btn_disable_conf",function (e) {
   e.preventDefault();
 
   $.ajax({
@@ -130,5 +130,51 @@ $(document).on("submit", function (e) {
     data: $("#disable_depto").serialize(),
     dataType: "json",
     success: function (response) {},
+  });
+});
+
+
+/** function update depto */
+$(document).on("click", "#btnUpdateDepto", function(e){
+   
+    let table = $(this).closest("#tableDeptos");
+
+    let body_modal = `
+      <form id="update_depto">
+          <div class="row p-3">
+              <div class="col-4">
+                  <input name="id_depto" class="form-control shadow-none" type="text" value="${table
+                    .find("td:eq(0)")
+                    .text()}" readonly>
+              </div>
+              <div class="col-8">
+                  <input name="depto" class="form-control shadow-none" type="text" value="${table
+                    .find("td:eq(1)")
+                    .text()}">
+              </div>
+          </div>
+              <hr>
+          <div class="row p-3">
+              <div class="col-12 d-flex flex-row-reverse">
+                  <button id="btn_update_conf" type="button" class="btn-theme-one ml-1">Actualizar</button>
+                  <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
+              </div>
+          </div>
+      </form>
+      `;
+    
+    $("#body_modal_update").html(body_modal);
+
+});
+
+$(document).on("click", "#btn_update_conf", function (e){
+  e.preventDefault();
+
+  $.ajax({
+    type: "POST",
+    url: "departamentos/update",
+    data: $("#update_depto").serialize(),
+    dataType: "json",
+    success: function (response) {}
   });
 });
