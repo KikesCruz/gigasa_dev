@@ -25,9 +25,21 @@
 
         <div class="box-social">
             <h3>Siguenos en:</h3>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.svg'?>" alt> </a>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/instagram.svg'?>" alt> </a>
-            <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/linkedin.svg'?>" alt> </a>
+            <div class="social-group">
+                <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/facebook.svg'?>" alt> </a>
+                <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/instagram.svg'?>" alt> </a>
+                <a href="#"> <img src=" <?= URL_BASE . 'Public/Img/Ecommerce/Icons/Social/linkedin.svg'?>" alt> </a>
+            </div>
+            <div class="box-info">
+            <a>
+              <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/card.svg'?>" alt>
+              Pagos en linea
+            </a>
+            <a>
+              <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/envios.svg'?>" alt>
+              Envíos a domicilio
+            </a>
+            </div>
 
         </div>
     </div>

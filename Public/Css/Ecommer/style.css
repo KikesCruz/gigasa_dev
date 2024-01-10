@@ -252,6 +252,7 @@ img {
 /** Leader board start*/
 .loader-banner {
   padding: 0 9%;
+  margin: 5rem 0;
 }
 
 .loader-banner .box-container {
@@ -624,6 +625,49 @@ header nav .menu_navigations ul li a span {
 .panels-promos .box-container .box-items .box{
   cursor: pointer;
 }
+/** novedades */
+.novedades .box-container {
+  padding: 2rem 5%;
+  background-color: white;
+  box-shadow:var(--box-shadow-widget);
+}
+
+.novedades .box-container .header {
+  font-size: var(--font-sz-widget);
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-title-widget);
+}
+
+.novedades .box-container .box-items{
+  display: flex;
+  width: 100%;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.novedades .box-container .box-items .box a{
+  width: 22rem;
+  height: 15rem;
+  display: inline-block;
+
+}
+
+.novedades .box-container .box-items .box a .box-img{
+  width: 100%;
+  height: 10rem;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.novedades .box-container .box-items .box a h6{
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+
 
 /** Brands styles */
 .brands .box-container .marcas .box {
@@ -1030,11 +1074,11 @@ footer {
 }
 
 footer .box-container {
-  padding: 5rem 2%;
+  padding: 5rem 1%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
-  gap: 1.5rem;
+  gap: 5rem;
 }
 
 footer .box-container .box h3 {
@@ -1066,10 +1110,32 @@ footer .box-container .box a img {
   font-weight: bold;
 }
 
+footer .box-container .box-social{
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+}
+
 .box-social a {
   margin: 1rem;
 }
 
 .box-social a img {
+  width: 4rem;
+}
+
+footer .box-container .box-social .box-info{
+  display: flex;
+  flex-flow: column;
+}
+
+footer .box-container .box-social .box-info a{
+  display: block;
+  font-size: 1.5rem;
+  color: var(--color-title-footer);
+  font-weight: 600;
+}
+
+.box-social .box-info img{
   width: 4rem;
 }

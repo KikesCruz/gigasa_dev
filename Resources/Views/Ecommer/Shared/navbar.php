@@ -54,8 +54,8 @@
                    
                 </ul>
             </li>
-            <li><a href='#'>Acer de Nosotros</a></li>
-            <li><a href='#'>Contactanos</a></li>
+            <li><a href='#'>Nosotros</a></li>
+            <li><a href='#'>Contáctenos</a></li>
         </ul>
     </div>
     <!-- Desktop menu end-->

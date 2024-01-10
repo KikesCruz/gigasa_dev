@@ -211,6 +211,43 @@
     </div>
 </section>
 
+<section class="novedades">
+      <div class="box-container">
+        <h6 class="header">Novedades</h6>
+        <div class="divider"></div>
+        <div class="box-items">
+          <div class="box">
+            <a href="">
+              <div class="box-img" style="background-image: url('<?= URL_BASE .'Public/Img/Ecommerce/Novedades/tratamiento_capilar.jpg'?>');"></div>
+              <h6>Tratamiento Capilares</h6>
+            </a>
+          </div>
+
+          <div class="box">
+            <a href="">
+            <div class="box-img" style="background-image: url('<?= URL_BASE .'Public/Img/Ecommerce/Novedades/home_0.webp'?>');"></div>
+              <h6>Skincare</h6>
+            </a>
+          </div>
+
+          <div class="box">
+            <a href="">
+            <div class="box-img" style="background-image: url('<?= URL_BASE .'Public/Img/Ecommerce/Novedades/landng_0.webp'?>');"></div>
+              <h6>Bebés</h6>
+            </a>
+          </div>
+
+
+          <div class="box">
+            <a href="">
+            <div class="box-img" style="background-image: url('<?= URL_BASE .'Public/Img/Ecommerce/Novedades/landing_1.webp'?>');"></div>
+              <h6>Salud</h6>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
 <section class="brands">
     <h1 class="heading">Marcas</h1>
     <div class="box-container">
@@ -308,18 +345,6 @@
     </div>
 </section>
 
-<section class="services">
-    <div class="box-container">
-        <div class="box">
-            <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/card.svg'?>" alt="">
-            <span>Pagos en linea</span>
-        </div>
 
-        <div class="box">
-        <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/envios.svg'?>" alt="">
-            <span>Envíos a domicilio</span>
-        </div>
-    </div>
-</section>
 
 <?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/footer.php'; ?>
