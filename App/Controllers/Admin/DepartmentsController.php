@@ -55,17 +55,32 @@ class DepartmentsController extends Controller
     }
 
     public function enable(){
+
+        $notifications = array('success','update','empty','error');
+        $response_json = '';
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $request = $_POST['id_depto'];
 
             $data = $this -> model -> enableDepto($request);
 
+            if($data == 'true'){
+                $response_json = $notifications[1];
+            }else{
+                $response_json = $notifications[3];
+            }
+
+            echo json_encode($response_json);
+
         }
     }
 
     public function disable()
     {
+        $notifications = array('success','update','empty','error');
+        $response_json = '';
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $request = $_POST['id_depto'];
@@ -73,15 +88,22 @@ class DepartmentsController extends Controller
             $data = $this->model->disableDepto($request);
 
             if($data == 'true'){
-                echo json_encode('actualizado');
+                $response_json = $notifications[1];
             }else{
-                echo json_encode('error');
+                $response_json = $notifications[3];
             }
+
+            echo json_encode($response_json);
         }
     }
 
     public function update(){
+
+        $notifications = array('success','update','empty','error');
+        $response_json = '';
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 
             $request = array (
                 "id_depto" => $_POST['id_depto'],
@@ -89,7 +111,22 @@ class DepartmentsController extends Controller
                 
             );
 
-            $data = $this->model->updateDepto($request);
+            
+            if($request['name_depto'] != ''){
+                $data = $this->model->updateDepto($request);
+
+                if($data == 'true'){
+                    $response_json = $notifications[1];
+                }else{
+                    $response_json = $notifications[3];
+                }
+
+            }else{
+                $response_json = $notifications[2];
+            }
+
+            echo json_encode($response_json);
+            
         }
     }
 }

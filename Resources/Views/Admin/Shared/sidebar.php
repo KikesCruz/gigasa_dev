@@ -40,14 +40,14 @@
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="../../index.html" class="nav-link">
+                        <a href="./categorias" class="nav-link">
 
                             <p>Categorías</p>
                         </a>
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="../../index.html" class="nav-link">
+                        <a href="./categorias" class="nav-link">
 
                             <p>Sub Categorías</p>
                         </a>

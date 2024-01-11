@@ -8,6 +8,7 @@ use App\Controllers\Admin\UsersController;
 use App\Controllers\Admin\BannersController;
 
 use App\Controllers\Admin\DepartmentsController;
+use App\Controllers\Admin\CategoriesController;
 
 // controllers ecommers
 use App\Controllers\Ecommer\IndexController;
@@ -38,6 +39,10 @@ Route::post('/admin/departamentos/add', [DepartmentsController::class, 'add']);
 Route::post('/admin/departamentos/enable', [DepartmentsController::class, 'enable']);
 Route::post('/admin/departamentos/disable', [DepartmentsController::class, 'disable']);
 Route::post('/admin/departamentos/update', [DepartmentsController::class, 'update']);
+
+/** Categorías */
+Route::get('/admin/categorias',[CategoriesController::class,'view']);
+Route::post('/admin/categorias/add',[CategoriesController::class,'add']);
 
 
 /** Ecommer Routes */

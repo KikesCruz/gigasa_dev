@@ -3,7 +3,7 @@ toastr.options = {
   debug: false,
   newestOnTop: false,
   progressBar: false,
-  positionClass: "toast-top-center",
+  positionClass: "toast-bottom-right",
   preventDuplicates: false,
   onclick: null,
   showDuration: "300",
@@ -69,7 +69,7 @@ $(document).on("click", "#btnEnableDepto", function () {
             <hr>
         <div class="row p-3">
         <div class="col-12 d-flex flex-row-reverse">
-        <button type="submit" class="btn-theme-one ml-1">Activar</button>
+        <button id="btn_enable_conf" type="button" class="btn-theme-one ml-1">Activar</button>
         <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
     </div>
         </div>
@@ -78,17 +78,29 @@ $(document).on("click", "#btnEnableDepto", function () {
   $("#body_modal_enable").html(body_modal);
 });
 
-$(document).on("click", "#enable_depto", function (e) {
+$(document).on("click", "#btn_enable_conf", function (e) {
   e.preventDefault();
-  
+
   $.ajax({
     type: "POST",
     url: "departamentos/enable",
     data: $("#enable_depto").serialize(),
     dataType: "json",
-    success: function (response) {},
-  });
+    success: function (response) {
+      switch (response) {
+        case "update":
+            toastr["success"]("Se actualizo correctamente", "Realizado");
+            setTimeout(function () {
+            location.reload();
+            }, 500);
+        break;
 
+        case "error":
+            toastr["error"]("Sucedió un error al actualizar", "Error");
+        break;
+      }
+    },
+  });
 });
 
 /** function disable depto */
@@ -121,7 +133,7 @@ $(document).on("click", "#btnDisableDepto", function () {
   $("#body_modal_disable").html(body_modal);
 });
 
-$(document).on("click", "#btn_disable_conf",function (e) {
+$(document).on("click", "#btn_disable_conf", function (e) {
   e.preventDefault();
 
   $.ajax({
@@ -129,17 +141,28 @@ $(document).on("click", "#btn_disable_conf",function (e) {
     url: "departamentos/disable",
     data: $("#disable_depto").serialize(),
     dataType: "json",
-    success: function (response) {},
+    success: function (response) {
+      switch (response) {
+        case "update":
+            toastr["success"]("Se actualizo correctamente", "Realizado");
+            setTimeout(function () {
+            location.reload();
+            }, 500);
+        break;
+
+        case "error":
+            toastr["error"]("Sucedió un error al actualizar", "Error");
+        break;
+      }
+    },
   });
 });
 
-
 /** function update depto */
-$(document).on("click", "#btnUpdateDepto", function(e){
-   
-    let table = $(this).closest("#tableDeptos");
+$(document).on("click", "#btnUpdateDepto", function (e) {
+  let table = $(this).closest("#tableDeptos");
 
-    let body_modal = `
+  let body_modal = `
       <form id="update_depto">
           <div class="row p-3">
               <div class="col-4">
@@ -162,12 +185,11 @@ $(document).on("click", "#btnUpdateDepto", function(e){
           </div>
       </form>
       `;
-    
-    $("#body_modal_update").html(body_modal);
 
+  $("#body_modal_update").html(body_modal);
 });
 
-$(document).on("click", "#btn_update_conf", function (e){
+$(document).on("click", "#btn_update_conf", function (e) {
   e.preventDefault();
 
   $.ajax({
@@ -175,6 +197,24 @@ $(document).on("click", "#btn_update_conf", function (e){
     url: "departamentos/update",
     data: $("#update_depto").serialize(),
     dataType: "json",
-    success: function (response) {}
+    success: function (response) {
+      switch (response) {
+        case "update":
+            toastr["success"]("Se actualizo correctamente", "Realizado");
+            setTimeout(function () {
+            location.reload();
+            }, 500);
+        break;
+
+        case "empty":
+            toastr["warning"]("Campos Vacíos", "Advertencia");
+        break;
+
+        case "error":
+            toastr["error"]("Sucedió un error al actualizar", "Error");
+        break;
+      }
+
+    },
   });
 });
