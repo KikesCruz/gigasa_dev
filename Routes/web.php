@@ -43,6 +43,10 @@ Route::post('/admin/departamentos/update', [DepartmentsController::class, 'updat
 /** Categorías */
 Route::get('/admin/categorias',[CategoriesController::class,'view']);
 Route::post('/admin/categorias/add',[CategoriesController::class,'add']);
+Route::post('/admin/categorias/disable',[CategoriesController::class,'disable']);
+Route::post('/admin/categorias/enable',[CategoriesController::class,'enable']);
+Route::get('/admin/categorias/update',[CategoriesController::class,'update']);
+Route::post('/admin/categorias/update',[CategoriesController::class,'update']);
 
 
 /** Ecommer Routes */

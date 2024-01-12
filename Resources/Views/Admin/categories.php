@@ -135,7 +135,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar el departamento?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar la categoría?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -153,7 +153,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar el departamento?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar la categoría?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -170,7 +170,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualice el nombre</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar categoría</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

@@ -25,7 +25,7 @@ class CategoriesController extends Controller
             "categories" => $categories
         ];
 
-        $this->debug($dataArray);
+
 
         return $this->views('categories', $dataArray);
     }
@@ -72,13 +72,49 @@ class CategoriesController extends Controller
 
     public function enable()
     {
+        $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $request = $_POST['id_cat'];
+
+            if ($this->model->enable($request)) {
+                return json_encode($notifications[0]);
+            }
+        }
     }
 
     public function disable()
     {
+        $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $request = $_POST['id_cat'];
+
+            if ($this->model->disable($request)) {
+                return json_encode($notifications[0]);
+            }
+        }
     }
 
     public function update()
     {
+        $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+            $departments = $this->model->getAllDepartments();
+          
+            return json_encode($departments);
+
+        }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            $request = [
+                'id_category' => $_POST['id_cat'],
+                'id_depto' => $_POST['depto'],
+                'category_name' => $_POST['cat']
+            ];  
+
+            $this -> debug($request);
+
+            $this -> model -> update($request);
+        }
     }
 }

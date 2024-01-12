@@ -66,4 +66,54 @@ class CategoriesModel{
             return false;
         }
     }
+
+    public function disable($param){
+        $query = "UPDATE category SET status_category ='off' WHERE id_category = :id_category";
+
+        $this -> db -> query($query);
+        $this -> db -> bind(":id_category",$param);
+
+        if($this -> db -> execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function enable($param){
+        $query = "UPDATE category SET status_category ='on' WHERE id_category = :id_category";
+
+        $this -> db -> query($query);
+        $this -> db -> bind(":id_category",$param);
+
+        if($this -> db -> execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function update($param){
+
+        $set = $param['id_depto'] == 0 ? "SET category_name = :category_name" : "SET id_depto = :id_depto";
+
+        $query = "UPDATE category {$set} WHERE id_category = :id_category";
+
+        $this -> db -> query($query);
+
+        if($param['id_depto'] == 0){
+            $this -> db -> bind(":id_category",$param['id_category']);
+            $this -> db -> bind(":category_name",$param['category_name']);
+        }else{
+            $this -> db -> bind(":id_category",$param['id_category']);
+            $this -> db -> bind(":id_depto",$param['id_depto']);
+        }
+
+        if($this -> db -> execute()){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }
