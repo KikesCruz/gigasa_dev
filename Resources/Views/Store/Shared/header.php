@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= NAME_PAGE ?></title>
     <link rel="icon" type="image/x-icon" href=" <?= URL_BASE . 'Public/Img/Icons/favicon.png' ?> ">
-    <?php require PATH_ROOT . 'Resources/Views/Ecommer/Css/css.php'; ?>
+    <?php require PATH_ROOT . 'Resources/Views/Store/Css/css.php'; ?>
 </head>
 
 <body>
 
-    <?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/navbar.php'; ?>
+    <?php require PATH_ROOT . 'Resources/Views/Store/Shared/navbar.php'; ?>

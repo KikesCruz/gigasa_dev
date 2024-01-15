@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Controllers\Ecommer;
+namespace App\Controllers\Store;
 
-use App\Models\Ecommer\EcommerModel;
+use App\Models\Store\StoreModel;
 class SomosController extends Controller{
 
     private $model;
     public function __construct()
     {
-        $this->model = new EcommerModel();
+        $this->model = new StoreModel();
     }
 
 public function view(){

@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Controllers\Ecommer;
+namespace App\Controllers\Store;
 
-use App\Models\Ecommer\EcommerModel;
+use App\Models\Store\StoreModel;
 
-class EcommerController extends Controller
-{
+class GetProducsController extends Controller{
 
     private $model;
     public function __construct()
     {
-        $this->model = new EcommerModel();
+        $this->model = new StoreModel();
     }
-    public function index()
-    {
+    public function getAllProducts(){
 
-       // $bind_category = $this->model->getCategory();
+
+        $bind_category = $this->model->getCategory();
 
         $menu = array();
 
@@ -44,11 +43,11 @@ class EcommerController extends Controller
             if ($value['Visible'] == true) {
                 $inventoriWarehouse[$key] = array(
                     'id_product' => $value['ProductID'],
-                    'title_product' =>  $value['Title'],
+                    'title_product' => $value['Title'],
                     'sku' => $value['SKU'],
-                    'details' =>'',
-                    'img_url' =>'',
-                    );
+                    'details' => '',
+                    'img_url' => '',
+                );
             }
         }
 
@@ -57,27 +56,26 @@ class EcommerController extends Controller
 
         foreach ($inventoriWarehouse as $key_invent => $inventoriH) {
             foreach ($inventoriPrice as $key => $priceListInvent) {
-                if($inventoriH['id_product'] == $priceListInvent['ID']){
-                        $inventoriWarehouse[$key_invent]['details'] = array(
-                            'id' => $priceListInvent['ID'],
-                            'name' => $priceListInvent['Title'],
-                            'precio' => $priceListInvent['Price'],
-                            'departamento' => $priceListInvent['Cat1ID'],
-                            'subdepartamento' => $priceListInvent['Cat2ID'],
-                            'categoria' => $priceListInvent['Cat3ID'],
-                            'description' => $priceListInvent['Descripcion'],
-                            'cantInventory' => $priceListInvent['Inventory']
-                        );
-                       
+                if ($inventoriH['id_product'] == $priceListInvent['ID']) {
+                    $inventoriWarehouse[$key_invent]['details'] = array(
+                        'id' => $priceListInvent['ID'],
+                        'name' => $priceListInvent['Title'],
+                        'precio' => $priceListInvent['Price'],
+                        'departamento' => $priceListInvent['Cat1ID'],
+                        'subdepartamento' => $priceListInvent['Cat2ID'],
+                        'categoria' => $priceListInvent['Cat3ID'],
+                        'description' => $priceListInvent['Descripcion'],
+                        'cantInventory' => $priceListInvent['Inventory']
+                    );
                 }
-            }      
+            }
         }
 
-        $img_url_product = $this -> model -> getUrlImg();
+        $img_url_product = $this->model->getUrlImg();
 
         foreach ($inventoriWarehouse as $key_for_inventory => $inventoriH) {
-            foreach ($img_url_product['value'] as $key_for_img => $url_img) {    
-                if($inventoriH['id_product'] == $url_img['ID']){
+            foreach ($img_url_product['value'] as $key_for_img => $url_img) {
+                if ($inventoriH['id_product'] == $url_img['ID']) {
                     $inventoriWarehouse[$key_for_inventory]['img_url'] = array(
                         'url_picture' => $url_img['ImageUrl']
                     );
@@ -90,6 +88,7 @@ class EcommerController extends Controller
             "inventario" => $inventoriWarehouse
         ];
 
-        return $this->views("home");
+     
+        return $this -> views('products', $bind_fetch);
     }
 }

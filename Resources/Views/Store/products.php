@@ -1,4 +1,4 @@
-<?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/header.php'; ?>
+<?php require PATH_ROOT . 'Resources/Views/Store/Shared/header.php'; ?>
 
 <!-- page-title -->
 <section class="page-title centred">
@@ -120,4 +120,4 @@
 </section>
 
 
-<?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/footer.php'; ?>
+<?php require PATH_ROOT . 'Resources/Views/Store/Shared/footer.php'; ?>

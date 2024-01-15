@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Ecommer;
+namespace App\Controllers\Store;
 
 class Controller
 {
@@ -12,14 +12,14 @@ class Controller
         $view = str_replace(".", "/", $view);
 
 
-        if (!file_exists(PATH_ROOT . "Resources/Views/Ecommer/{$view}.php")) {
+        if (!file_exists(PATH_ROOT . "Resources/Views/Store/{$view}.php")) {
             return "No existe";
         }
 
 
         ob_start();
 
-        include(PATH_ROOT . "Resources/Views/Ecommer/{$view}.php");
+        include(PATH_ROOT . "Resources/Views/Store/{$view}.php");
 
         $page = ob_get_clean();
 

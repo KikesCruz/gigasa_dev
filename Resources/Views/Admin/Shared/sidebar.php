@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <div class="box-logo">
         <div class="box">
-            <img src="<?= BASE_URL.'Public/Ecommer/Icons/Ecommer/'?>" class="brand-image">
+            <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/icon-vertical.png'?>" class="brand-image">
         </div>
         <div class="box">
             <span>Admin Panel</span>

@@ -2,12 +2,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha 384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 <!-- CSS Styles -->
-<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Ecommer/style.css" ?>>
-<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Ecommer/responsive.css" ?>>
+<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Store/style.css" ?>>
+<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Store/responsive.css" ?>>
 
 <!-- OWL Carousel Plugin-->
-<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Ecommer/owl/owl.carousel.min.css" ?>>
-<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Ecommer/owl/owl.theme.default.min.css" ?>>
+<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Store/owl/owl.carousel.min.css" ?>>
+<link rel="stylesheet" href=<?= URL_BASE . "Public/Css/Store/owl/owl.theme.default.min.css" ?>>
 
 
 

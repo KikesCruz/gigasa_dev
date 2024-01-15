@@ -1,4 +1,4 @@
-<?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/header.php'; ?>
+<?php require PATH_ROOT . 'Resources/Views/Store/Shared/header.php'; ?>
 
 
 <section class="my-profile">
@@ -46,7 +46,7 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="inputContainer">
                                 <input type="text" class="input" placeholder="a" value="+52 55 4512-4582">
-                                <label for class="label">Telefono:</label>
+                                <label for class="label">Teléfono:</label>
                             </div>
                         </div>
                     </div>
@@ -175,4 +175,4 @@
 </section>
 
 
-<?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/footer.php'; ?>
+<?php require PATH_ROOT . 'Resources/Views/Store/Shared/footer.php'; ?>

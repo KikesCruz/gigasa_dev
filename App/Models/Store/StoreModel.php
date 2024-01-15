@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Ecommer;
+namespace App\Models\Store;
 
-class EcommerModel
+class StoreModel
 {
 
     public function getCategory()

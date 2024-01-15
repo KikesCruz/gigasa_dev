@@ -1,4 +1,4 @@
-<?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/header.php'; ?>
+<?php require PATH_ROOT . 'Resources/Views/Store/Shared/header.php'; ?>
 
 <section class="cart">
     <div class="box-container">
@@ -82,4 +82,4 @@
 
 
 
-<?php require PATH_ROOT . 'Resources/Views/Ecommer/Shared/footer.php'; ?>
+<?php require PATH_ROOT . 'Resources/Views/Store/Shared/footer.php'; ?>
