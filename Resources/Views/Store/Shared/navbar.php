@@ -12,6 +12,7 @@
             <div class='container-form_search'>
                 <form action='#' class='search-form'>
                     <input type='text' placeholder='Buscar Articulo' />
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </form>
             </div>
             <div class='menu_navigations'>

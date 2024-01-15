@@ -1,6 +1,6 @@
 const marcas = $(".marcas");
 const slideProducts = $(".slider-products");
-const slide_mega_banner = $(".slide_mega_banner");
+const slide_mega_banner = $(".box__carousel");
 
 marcas.owlCarousel({
   loop: true,
@@ -43,13 +43,11 @@ slideProducts.owlCarousel({
 });
 
 slide_mega_banner.owlCarousel({
-  loop: true,
-  margin: 0,
-  smartSpeed: 500,
+  loop:true,
+  slideSpeed : 300,
+  paginationSpeed : 400,
+  singleItem:true,
   autoplay: 5000,
-  nav: false,
-  dots: false,
-  autoWidth: true,
   responsive: {
     0: {
       items: 1,
