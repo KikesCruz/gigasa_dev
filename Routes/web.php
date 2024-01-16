@@ -10,6 +10,7 @@ use App\Controllers\Admin\BannersController;
 use App\Controllers\Admin\DepartmentsController;
 use App\Controllers\Admin\CategoriesController;
 use App\Controllers\Admin\BrandsController;
+use App\Controllers\Admin\CatalogoController;
 
 // controllers e-commerce
 use App\Controllers\Store\StoreController;
@@ -58,6 +59,11 @@ Route::post('admin/brands/add',[BrandsController::class,'add']);
 Route::post('admin/brands/disable',[BrandsController::class,'disable']);
 Route::post('admin/brands/enable',[BrandsController::class,'enable']);
 Route::post('admin/brands/update',[BrandsController::class,'update']);
+
+
+/** Catalog */
+Route::get('admin/catalogo',[CatalogoController::class,'view']);
+
 /** Store Routes */
 
 Route::get('/', [StoreController::class, 'home']);

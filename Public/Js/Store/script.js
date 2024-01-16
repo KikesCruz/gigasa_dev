@@ -1,6 +1,7 @@
 const marcas = $(".marcas");
 const slideProducts = $(".slider-products");
 const slide_mega_banner = $(".box__carousel");
+const carouse_category = $(".carousel-category");
 
 marcas.owlCarousel({
   loop: true,
@@ -60,6 +61,26 @@ slide_mega_banner.owlCarousel({
     },
   },
 });
+
+carouse_category.owlCarousel({
+  loop:false,
+  slideSpeed : 300,
+  paginationSpeed : 400,
+  autoplay: 5000,
+  responsive: {
+    0: {
+      items: 3,
+    },
+    600: {
+      items: 3,
+    },
+    1000: {
+      items: 8,
+    },
+  },
+});
+
+
 
 $(document).ready(function () {
   $("#mobile_menu").click(function () {

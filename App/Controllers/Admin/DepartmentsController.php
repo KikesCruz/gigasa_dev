@@ -15,7 +15,7 @@ class DepartmentsController extends Controller
     }
     public function view()
     {
-        $data = $this->model->getAllDepartments();
+        $data = $this->model->getDepartments();
 
         return $this->views('departments', $data);
     }
@@ -27,11 +27,17 @@ class DepartmentsController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $request = $this->sanitizerString($_POST['depto_name']);
 
+            $request = [
+                'depto_name' => $this->sanitizerString($_POST['depto_name']),
+                'path_default' => FILES_IMG."Departments/",
+                'file_img' => $_FILES['img_file'],
+            ];
+            
+        
             if ($request != '') {
 
-                $data = $this->model->findByDepto($request);
+                $data = $this->model->findByDepto($request['depto_name']);
 
                 switch (true) {
                     case is_array($data):
@@ -42,7 +48,8 @@ class DepartmentsController extends Controller
                         break;
 
                     case is_bool($data):
-                        $this->model->addDepto($request);
+                        $this->model->addDepto($request['depto_name']);
+                        $this -> img_save($request);
                         $res_json = 'success';
                         break;
                 }

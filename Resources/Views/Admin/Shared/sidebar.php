@@ -61,7 +61,7 @@
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="../../index.html" class="nav-link">
+                        <a href="./catalogo" class="nav-link">
 
                             <p>Productos</p>
                         </a>

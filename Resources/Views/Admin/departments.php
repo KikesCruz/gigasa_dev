@@ -27,6 +27,8 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                 <th>#ID Depto</th>
                 <th>Departamentos</th>
                 <th>Estatus</th>
+                <th>Web Estatus</th>
+                <th>Img</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -37,6 +39,22 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $depto['id_depto'] ?></td>
                   <td><?= $depto['depto_name'] ?></td>
                   <td><?= $depto['status_depto'] ?></td>
+                  <td><?= $depto['view_web'] ?></td>
+                  <td>
+                  <div class="group-btn">
+                    <?= $depto['img_name'] != '' ?
+                          '<button 
+                          id="btnEnableDepto" 
+                          type="button" 
+                          class="btn" 
+                          data-toggle="modal" 
+                          data-target="#enableModal">
+                          <i class="fa-solid fa-image"></i>
+                         </button>' :''
+                    ?>
+                  </div>  
+                  
+                  </td>
                   <td>
                     <div class="group-btn">
                       <?= $depto['status_depto'] == 'off' ?
@@ -79,9 +97,15 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             <div class="row">
               <div class="col">
                 <label for="">Departamento</label>
-                <input name="depto_name" type="text" class="form-control shadow-none" />
+                <input name="depto_name" id="depto_name" type="text" class="form-control shadow-none" />
               </div>
+            </div>
 
+            <div class="row">
+              <div class="col">
+                <label for="">Imagen</label>
+                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/jpeg, image/jpg, image/png" />
+              </div>
             </div>
 
             <div class="row p-2">

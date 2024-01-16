@@ -20,13 +20,18 @@ toastr.options = {
 $(document).on("click", "#add_depto", function (e) {
   e.preventDefault();
 
-  let formData = $("#form_depto").serialize();
+ const formdata = document.querySelector("#form_depto");
+
+  let data = new FormData(formdata);
+  console.log(data);
 
   $.ajax({
     type: "POST",
     url: "departamentos/add",
-    data: formData,
+    data: data,
     dataType: "json",
+    contentType: false,
+    processData: false,
     success: function (response) {
       console.log(response);
       switch (response) {
@@ -46,6 +51,7 @@ $(document).on("click", "#add_depto", function (e) {
       }
     },
   });
+
 });
 
 /** function active depto */

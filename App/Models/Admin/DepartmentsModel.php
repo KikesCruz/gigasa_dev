@@ -13,10 +13,10 @@ class DepartmentsModel
         $this->db = new Database();
     }
 
-    public function getAllDepartments()
+    public function getDepartments()
     {
 
-        $query = "SELECT * FROM department";
+        $query = "SELECT * FROM departments";
 
         $this->db->query($query);
         $response = $this->db->resultSet();
@@ -26,7 +26,7 @@ class DepartmentsModel
 
     public function findByDepto($param)
     {
-        $query = "SELECT * FROM department WHERE depto_name = :depto_name";
+        $query = "SELECT depto_name FROM departments WHERE depto_name = :depto_name";
 
         $this->db->query($query);
         $this->db->bind(":depto_name", $param);
@@ -38,10 +38,11 @@ class DepartmentsModel
 
     public function addDepto($param)
     {
-        $query = "INSERT INTO department VALUES(null,:depto_name,default,default)";
+        $query = "INSERT INTO departments VALUES(null,:depto_name,:img_name,default,default,default)";
 
         $this->db->query($query);
         $this->db->bind(":depto_name", $param);
+        $this->db->bind(":img_name", str_replace(' ','_',$param.'.webp'));
 
         if ($this->db->execute()) {
             return true;
@@ -53,7 +54,7 @@ class DepartmentsModel
     public function enableDepto($param)
     {
 
-        $query = "UPDATE department SET status_depto = 'on' WHERE id_depto = :id_depto ";
+        $query = "UPDATE departments SET status_depto = 'on' WHERE id_depto = :id_depto ";
 
         $this->db->query($query);
         $this->db->bind(":id_depto", $param);
@@ -68,7 +69,7 @@ class DepartmentsModel
     public function disableDepto($param)
     {
 
-        $query = "UPDATE department SET status_depto = 'off' WHERE id_depto = :id_depto ";
+        $query = "UPDATE departments SET status_depto = 'off' WHERE id_depto = :id_depto ";
 
         $this->db->query($query);
         $this->db->bind(":id_depto", $param);
@@ -81,7 +82,7 @@ class DepartmentsModel
     }
 
     public function updateDepto($param){
-        $query = "UPDATE department SET depto_name = :depto_name WHERE id_depto = :id_depto ";
+        $query = "UPDATE departments SET depto_name = :depto_name WHERE id_depto = :id_depto ";
 
         $this->db->query($query);
         $this->db->bind(":id_depto", $param['id_depto']);

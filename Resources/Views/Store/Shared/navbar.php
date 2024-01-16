@@ -11,7 +11,7 @@
             </div>
             <div class='container-form_search'>
                 <form action='#' class='search-form'>
-                    <input type='text' placeholder='Buscar Articulo' />
+                    <input type='text' placeholder='!Encuéntralo aquí¡' />
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </form>
             </div>

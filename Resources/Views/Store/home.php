@@ -24,11 +24,71 @@
       </div>
     </section>
 
-<section class="loader-banner">
-    <div class="box-container">
-        <img src="<?= URL_BASE . 'Public/Img/Store/Banner/Loader_banners/banner-firts.webp' ?>" alt />
-    </div>
-</section>
+    <section class="categories">
+      <div class="box-container">
+        <h6 class="header">Categorías</h6>
+        <div class="carousel-category owl-carousel owl-theme ">
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/promociones.svg'?>" alt="">
+              <h6>Promociones</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/dermo_cosmeticos.svg'?>" alt="">
+              <h6>Dermo Cosmeticos</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/medicamentos.svg'?>" alt="">
+              <h6>Medicamentos</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/botiquin.svg'?>" alt="">
+              <h6>Botiquin</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/suplementos_alimenticios.svg'?>" alt="">
+              <h6>Suplementos Alimenticios</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/cuidado_personal.svg'?>" alt="">
+              <h6>Cuidado Personal</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/tratamiento_capilar.svg'?>" alt="">
+              <h6>Tratamiento Capilar</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/salud_sexual.svg'?>" alt="">
+              <h6>Salud Sexual</h6>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
 
 <section class="products">
     <div class="box-container">

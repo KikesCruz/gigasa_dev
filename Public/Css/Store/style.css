@@ -319,7 +319,8 @@ header nav .container-form_search .search-form input {
 }
 
 header nav .container-form_search .search-form input::placeholder {
-  color: #ccc;
+  color: #acacac;
+  font-weight: 400;
 }
 
 header nav .container-form_search  i{
@@ -561,7 +562,34 @@ header nav .menu_navigations ul li a span {
 
 /** Carousel banner ends */
 
+/** Categories */
+.categories{
+  padding: 0 5%; 
+}
 
+.categories .box-container .header{
+  font-size: var(--font-sz-widget);
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-title-widget);
+}
+
+.categories .box-container .carousel-category{
+  width: 100%;
+  padding: 3rem;
+}
+
+
+.categories .box-container .carousel-category .item__category{
+  width:10rem;
+}
+
+.categories .box-container .carousel-category .item__category h6{
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+/** Categories ends */
 
 /** Widget products slide*/
 
