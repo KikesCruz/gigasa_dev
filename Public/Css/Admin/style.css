@@ -97,8 +97,9 @@ button .btn-enable-icon{
 .content .container-box{
   padding: 1rem 2%;
   display: flex;
+  flex-flow: column-reverse;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .content .container-box .box{
   background: white;
@@ -110,7 +111,7 @@ button .btn-enable-icon{
 }
 
 .content .container-box .box-form{
-  height: 10rem;
+  width: 25rem;
 }
 
 .panels .box-container{

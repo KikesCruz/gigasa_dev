@@ -34,39 +34,45 @@ class CategoriesController extends Controller
     {
 
 
-        $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
-
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $request_array = [
-                "id_depto" => $_POST['depto'],
-                "name_category" => $this->sanitizerString($_POST['name_category'])
-            ];
+            $name_category = $this->sanitizerString($_POST['name_category']);
+            $id_depto = $this->sanitizerInt($_POST['depto']);
 
-            if ($request_array['name_category'] == '') {
-                return json_encode($notifications[2]);
+            if ($name_category == '' || $id_depto == 0) {
+                return json_encode($this->message_type(1));
             }
 
-            if ($request_array['id_depto'] == 0) {
-                return json_encode($notifications[3]);
-            }
+            $search = $this -> $this -> model -> searchCategory($name_category);
 
+            switch(true){
+                case is_array($search):
 
-            $category_find = $this->model->searchCategory($request_array);
-
-            switch (true) {
-                case is_array($category_find):
-                    if ($category_find['category_name'] == $request_array['name_category']) {
-                        return json_encode($notifications[4]);
+                    if($search['category_name'] == $name_category){
+                        return json_encode($this -> message_type(3));
                     }
-                    break;
 
-                case is_bool($category_find):
-                    $this->model->new_category($request_array);
-                    echo json_encode($notifications[0]);
-                    break;
+                break;
+
+                case is_bool($search):
+
+                $img_save = $_FILES['img_file']['name'] == '' ? 'empty' : $this->img_save('Categories/', $name_category, $_FILES);
+                
+                $depto_array = [
+                    'category_name' => $name_category,
+                    'depto_id' => $id_depto,
+                    'img' => $img_save
+                ];
+
+                if ($this->model->new_category($depto_array) == 'true') {
+                    return json_encode($this->message_type(0));
+                }
+
+                break;
             }
+
+
+    
         }
     }
 
@@ -99,22 +105,21 @@ class CategoriesController extends Controller
     public function update()
     {
         $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
-        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $departments = $this->model->getAllDepartments();
-          
-            return json_encode($departments);
 
-        }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            return json_encode($departments);
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $request = [
                 'id_category' => $_POST['id_cat'],
                 'id_depto' => $_POST['depto'],
                 'category_name' => $_POST['cat']
-            ];  
+            ];
 
-            $this -> debug($request);
+            $this->debug($request);
 
-            $this -> model -> update($request);
+            $this->model->update($request);
         }
     }
 }

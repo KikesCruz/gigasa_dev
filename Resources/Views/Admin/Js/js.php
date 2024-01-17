@@ -19,5 +19,7 @@ if ($js_file == 'admin') {
 <script src="<?= URL_BASE . 'Public/Adminlte/dist/js/adminlte.min.js' ?>"></script>
 <script src="<?= URL_BASE . 'Public/Adminlte/plugins/toastr/toastr.min.js' ?>"></script>
 
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.js"></script>
 <!-- Genera el archivo JS por view -->
 <script src="<?= URL_BASE . "Public/Js/Admin/" . $js_file . "/" . $js_file . ".js"; ?>"></script>

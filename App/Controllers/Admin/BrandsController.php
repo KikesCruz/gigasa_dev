@@ -108,7 +108,6 @@ class BrandsController extends Controller
             $request = array (
                 "id_brand" => $_POST['id_brand'],
                 "name_brand" => $this -> sanitizerString($_POST['brand']),
-                
             );
 
             

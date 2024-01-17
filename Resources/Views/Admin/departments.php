@@ -21,7 +21,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
       <div class="container-box">
 
         <div class="box">
-          <table class="table table-bordered">
+          <table id="tb_deptos" class="table table-bordered">
             <thead>
               <tr>
                 <th>#ID Depto</th>
