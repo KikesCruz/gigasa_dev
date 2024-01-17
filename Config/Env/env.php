@@ -8,6 +8,7 @@ $dotenv->load();
  */
 define('PATH_APP',$_ENV['APP_URL_DEV']);
 define('NAME_APP',$_ENV['APP_NAME']);
+define('IMG_URL_FILE',$_ENV['PATH_IMG']);
 
 /**
  * Config Database

@@ -52,14 +52,14 @@
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="../../index.html" class="nav-link">
+                        <a href="./brands" class="nav-link">
 
                             <p>Marcas</p>
                         </a>
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="../../index.html" class="nav-link">
+                        <a href="./catalogo" class="nav-link">
 
                             <p>Productos</p>
                         </a>

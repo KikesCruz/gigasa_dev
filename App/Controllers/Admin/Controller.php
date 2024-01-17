@@ -66,4 +66,26 @@ class Controller
         print_r($param);
         echo '</pre>';
     }
+
+
+    public function img_save($param){
+        
+       $files_access = array("image/jpeg", "image/jpg","image/png");   
+
+
+        if(in_array($param["file_img"]['type'],$files_access)){
+            $path = $param['path_default'];
+
+            $save_img = $path.$param['depto_name'].'.webp';
+
+            if(move_uploaded_file($param['file_img']['tmp_name'],$save_img)){
+                $imagen_webp = imagecreatefromstring(file_get_contents($save_img));
+                imagewebp($imagen_webp,$save_img,65);
+                imagedestroy($imagen_webp);
+            }
+        }
+
+
+
+    }
 }

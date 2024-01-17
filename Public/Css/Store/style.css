@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600;700&display=swap');
 
 :root {
   --bg-icons-i:#73b730;
@@ -246,14 +246,12 @@ img {
   text-transform: uppercase;
   font-size: 4rem;
   padding-bottom: 2rem;
-  font-weight: bold;
 }
 
 
 /** Leader board start*/
 .loader-banner {
   padding: 0 9%;
-  margin: 5rem 0;
 }
 
 .loader-banner .box-container {
@@ -318,6 +316,20 @@ header nav .container-form_search .search-form input {
   font-size: 1.6rem;
   color: #000000;
   padding: 1rem;
+}
+
+header nav .container-form_search .search-form input::placeholder {
+  color: #acacac;
+  font-weight: 400;
+}
+
+header nav .container-form_search  i{
+  position: relative;
+  right: 0;
+  left: 46rem;
+  top: -2rem;
+  color: #a1a1a1;
+  font-size: 1.6rem;
 }
 
 header nav .menu_navigations .icons-menu {
@@ -501,48 +513,83 @@ header nav .menu_navigations ul li a span {
 /** header & navbar ends */
 
 
-/** Mega banners Start */
-
-.mega-banner {
-  margin-top: 12rem;
+/** Carousel banners Start */
+.mega-banner{
+  margin-top: 10%;
 }
 
-.mega-banner .box-container {
+.mega-banner .box-container{
   display: flex;
-  margin: 5rem 2%;
-  gap: 2rem;
 }
 
-.mega-banner .box-container .box_mega-banner {
+.mega-banner .box-container .box__carousel{
+
   width: 70%;
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-}
-
-
-.mega-banner .box-container .box_medium-banner {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 30%;
   height: auto;
+  padding: 0.5rem;
 }
 
-.mega-banner .box-container .box_medium-banner .box {
-  height: 50%;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+.mega-banner .box-container .box__carousel .carousel-img{
+  width: 100%;
 }
 
-
-.mega-banner .box-container .box_medium-banner .box img {
+.mega-banner .box-container .box__carousel .carousel-img img{
+  display: block;
   width: 100%;
   height: 100%;
-  border-radius: 0.5rem;
   object-fit: cover;
 }
 
-/** Mega banner ends */
+.mega-banner .box-container .box__medium-banners{
+  padding: 0.5rem;
+  width: 30%;
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+}
+
+.mega-banner .box-container .box__medium-banners .box-img{
+  width: 100%;
+}
+
+.mega-banner .box-container .box__medium-banners .box-img img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 
+/** Carousel banner ends */
+
+/** Categories */
+.categories{
+  padding: 0 5%; 
+}
+
+.categories .box-container .header{
+  font-size: var(--font-sz-widget);
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-title-widget);
+}
+
+.categories .box-container .carousel-category{
+  width: 100%;
+  padding: 3rem;
+}
+
+
+.categories .box-container .carousel-category .item__category{
+  width:10rem;
+}
+
+.categories .box-container .carousel-category .item__category h6{
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+/** Categories ends */
 
 /** Widget products slide*/
 
@@ -626,6 +673,7 @@ header nav .menu_navigations ul li a span {
 .panels-promos .box-container .box-items .box{
   cursor: pointer;
 }
+
 /** novedades */
 .novedades .box-container {
   padding: 2rem 5%;
@@ -669,7 +717,6 @@ header nav .menu_navigations ul li a span {
 }
 
 
-
 /** Brands styles */
 .brands .box-container .marcas .box {
   width: 15rem;
@@ -691,7 +738,7 @@ header nav .menu_navigations ul li a span {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   justify-content: space-around;
-  gap: 1.5rem;
+  
 }
 
 .services .box-container .box {
@@ -701,7 +748,6 @@ header nav .menu_navigations ul li a span {
   padding: 2rem 1rem;
   border-radius: 0.5rem;
   background-color: white;
-  border: solid 1px gray;
 }
 
 .services .box-container .box span {

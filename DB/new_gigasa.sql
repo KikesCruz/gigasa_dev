@@ -5,10 +5,13 @@ drop database gigasa_db;
 
 use database gigasa_db;
 
-create table department(
+create table departments(
 id_depto int auto_increment,
 depto_name varchar(50) not null,
+img_name varchar(30),
+view_web varchar(10) default 'off',
 status_depto varchar(10) default 'on',
+
 create_at DATETIME default CURRENT_TIMESTAMP,
       
       constraint PK_deptos primary key(
@@ -29,7 +32,7 @@ id_depto int,
       ),
       
       constraint FK_depto_category foreign key(id_depto)
-            references department (id_depto)
+            references departments (id_depto)
 
 
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment=200;

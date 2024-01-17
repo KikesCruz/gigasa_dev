@@ -21,31 +21,25 @@
   }
 
   /** Mega banner start */
-  .mega-banner {
-    margin-top: 3rem;
+  .mega-banner{
+    margin-top: 15%;
+
+  }
+  .mega-banner .box-container{
+    flex-flow: column;
+
   }
 
-  .mega-banner .box-container {
-    flex-direction: column;
+  .mega-banner .box-container .box__carousel{
+    width: 100%;
+
   }
 
-  .box_mega-banner .box img {
+  .mega-banner .box-container .box__medium-banners{
+    flex-flow: row;
     width: 100%;
   }
-
-  .mega-banner .box-container .box_medium-banner {
-    width: 100%;
-    height: 40%;
-    flex-direction: row;
-    gap: 2rem;
-  }
-
-  .mega-banner .box-container .box_medium-banner .box {
-    width: 50%;
-  }
-
-  /** Mega banner ends */
-
+  
   /** Styles Carousel products start */
 
   .products .box-container .box .card-styles .card-footer .box-btn {
@@ -158,6 +152,18 @@
   .account_forms .box-container .box{
     width: 100%;
   }
+
+  /** Novedades */
+  .novedades .box-container .box-items{
+    flex-flow: column;
+ 
+  }
+
+  .novedades .box-container .box-items .box{
+    width: 100%;
+  
+  }
+  
 
   footer .box-container {
     padding: 2rem;

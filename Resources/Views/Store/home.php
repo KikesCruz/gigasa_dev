@@ -1,43 +1,94 @@
 <?php require PATH_ROOT . 'Resources/Views/Store/Shared/header.php'; ?>
 
 <section class="mega-banner">
-    <div class="box-container">
-
-        <div id="carouselExampleSlidesOnly" class="mega-banner_container carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-
-                <div class="carousel-item active">
-                    <img src="<?= URL_BASE . 'Public/Img/Store/Banner/Mega_banners/banner_one.jpg' ?>" class="d-block w-100" alt="...">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="<?= URL_BASE . 'Public/Img/Store/Banner/Mega_banners/banner_two.jpg' ?>" class="d-block w-100" alt="...">
-                </div>
-
-                <div class="carousel-item">
-                    <img src="<?= URL_BASE . 'Public/Img/Store/Banner/Mega_banners/banner_three.jpg' ?>" class="d-block w-100" alt="...">
-                </div>
-
-            </div>
+      <div class="box-container">
+        <div class="box__carousel owl-carousel owl-theme">
+          <div class="carousel-img">
+            <img src="<?=URL_BASE.'Public/Img/Store/Banner/Mega_banners/banner_one.jpg'?>" alt="">
+          </div>
+          <div class="carousel-img">
+            <img src="<?=URL_BASE.'Public/Img/Store/Banner/Mega_banners/banner_two.jpg'?>" alt="">
+          </div>
+          <div class="carousel-img">
+            <img src="<?=URL_BASE.'Public/Img/Store/Banner/Mega_banners/banner_three.jpg'?>" alt="">
+          </div>
         </div>
-
-        <div class="box_medium-banner">
-            <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Store/Banner/Medium_banner_header/medium_banner_one.jpg' ?>" alt>
-            </div>
-            <div class="box">
-                <img src="<?= URL_BASE . 'Public/Img/Store/Banner/Medium_banner_header/medium_banner_two.jpg' ?>" alt>
-            </div>
+        <div class="box__medium-banners">
+          <div class="box-img">
+            <img src="<?=URL_BASE.'Public/Img/Store/Banner/Medium_banner_header/medium_one.webp'?>" alt="">
+          </div>
+          <div class="box-img">
+            <img src="<?=URL_BASE.'Public/Img/Store/Banner/Medium_banner_header/medium_two.webp'?>" alt="">
+          </div>
         </div>
+      </div>
+    </section>
 
-    </div>
-</section>
+    <section class="categories">
+      <div class="box-container">
+        <h6 class="header">Categorías</h6>
+        <div class="carousel-category owl-carousel owl-theme ">
 
-<section class="loader-banner">
-    <div class="box-container">
-        <img src="<?= URL_BASE . 'Public/Img/Store/Banner/Loader_banners/banner-firts.webp' ?>" alt />
-    </div>
-</section>
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/promociones.svg'?>" alt="">
+              <h6>Promociones</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/dermo_cosmeticos.svg'?>" alt="">
+              <h6>Dermo Cosmeticos</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/medicamentos.svg'?>" alt="">
+              <h6>Medicamentos</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/botiquin.svg'?>" alt="">
+              <h6>Botiquin</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/suplementos_alimenticios.svg'?>" alt="">
+              <h6>Suplementos Alimenticios</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/cuidado_personal.svg'?>" alt="">
+              <h6>Cuidado Personal</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/tratamiento_capilar.svg'?>" alt="">
+              <h6>Tratamiento Capilar</h6>
+            </a>
+          </div>
+
+          <div class="item__category">
+            <a href="#">
+              <img src="<?=URL_BASE.'Public/Img/Store/Categories/salud_sexual.svg'?>" alt="">
+              <h6>Salud Sexual</h6>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
 
 <section class="products">
     <div class="box-container">

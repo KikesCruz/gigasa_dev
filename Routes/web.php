@@ -9,6 +9,8 @@ use App\Controllers\Admin\UsersController;
 use App\Controllers\Admin\BannersController;
 use App\Controllers\Admin\DepartmentsController;
 use App\Controllers\Admin\CategoriesController;
+use App\Controllers\Admin\BrandsController;
+use App\Controllers\Admin\CatalogoController;
 
 /**ADD SUBCAT */
 use App\Controllers\Admin\SubCategoriesController;
@@ -54,6 +56,16 @@ Route::post('/admin/categorias/enable',[CategoriesController::class,'enable']);
 Route::get('/admin/categorias/update',[CategoriesController::class,'update']);
 Route::post('/admin/categorias/update',[CategoriesController::class,'update']);
 
+/** Brands */
+Route::get('admin/brands',[BrandsController::class,'view']);
+Route::post('admin/brands/add',[BrandsController::class,'add']);
+Route::post('admin/brands/disable',[BrandsController::class,'disable']);
+Route::post('admin/brands/enable',[BrandsController::class,'enable']);
+Route::post('admin/brands/update',[BrandsController::class,'update']);
+
+
+/** Catalog */
+Route::get('admin/catalogo',[CatalogoController::class,'view']);
 
 /*** SUBCATEGORIAS ***/
 Route::get('/admin/subcategorias',[SubCategoriesController::class,'view']);

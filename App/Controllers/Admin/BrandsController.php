@@ -2,22 +2,22 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\Admin\DepartmentsModel;
+use App\Models\Admin\BrandsModel;
 
-class DepartmentsController extends Controller
+class BrandsController extends Controller
 {
 
     private $model;
 
     public function __construct()
     {
-        $this->model = new DepartmentsModel();
+        $this->model = new BrandsModel();
     }
     public function view()
     {
-        $data = $this->model->getDepartments();
+        $data = $this->model->getAllBrands();
 
-        return $this->views('departments', $data);
+        return $this->views('brands',$data);
     }
 
     public function add()
@@ -27,29 +27,22 @@ class DepartmentsController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            $request = $this->sanitizerString($_POST['brand_name']);
 
-            $request = [
-                'depto_name' => $this->sanitizerString($_POST['depto_name']),
-                'path_default' => FILES_IMG."Departments/",
-                'file_img' => $_FILES['img_file'],
-            ];
-            
-        
             if ($request != '') {
 
-                $data = $this->model->findByDepto($request['depto_name']);
+                $data = $this->model->findBybrand($request);
 
                 switch (true) {
                     case is_array($data):
-                        if ($data['depto_name'] == $request) {
+                        if ($data['brand_name'] == $request) {
 
                             $res_json = 'duplicate';
                         }
                         break;
 
                     case is_bool($data):
-                        $this->model->addDepto($request['depto_name']);
-                        $this -> img_save($request);
+                        $this->model->addbrand($request);
                         $res_json = 'success';
                         break;
                 }
@@ -68,9 +61,9 @@ class DepartmentsController extends Controller
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            $request = $_POST['id_depto'];
+            $request = $_POST['id_brand'];
 
-            $data = $this -> model -> enableDepto($request);
+            $data = $this -> model -> enablebrand($request);
 
             if($data == 'true'){
                 $response_json = $notifications[1];
@@ -90,9 +83,9 @@ class DepartmentsController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $request = $_POST['id_depto'];
+            $request = $_POST['id_brand'];
 
-            $data = $this->model->disableDepto($request);
+            $data = $this->model->disablebrand($request);
 
             if($data == 'true'){
                 $response_json = $notifications[1];
@@ -113,14 +106,14 @@ class DepartmentsController extends Controller
 
 
             $request = array (
-                "id_depto" => $_POST['id_depto'],
-                "name_depto" => $this -> sanitizerString($_POST['depto']),
+                "id_brand" => $_POST['id_brand'],
+                "name_brand" => $this -> sanitizerString($_POST['brand']),
                 
             );
 
             
-            if($request['name_depto'] != ''){
-                $data = $this->model->updateDepto($request);
+            if($request['name_brand'] != ''){
+                $data = $this->model->updatebrand($request);
 
                 if($data == 'true'){
                     $response_json = $notifications[1];
