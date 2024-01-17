@@ -53,6 +53,7 @@ class CategoriesModel{
 
     }
 
+
     public function new_category($param){
         $query = "INSERT INTO category VALUES (null,:category_name,default,default,:id_depto)";
 

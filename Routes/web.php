@@ -10,6 +10,9 @@ use App\Controllers\Admin\BannersController;
 use App\Controllers\Admin\DepartmentsController;
 use App\Controllers\Admin\CategoriesController;
 
+/**ADD SUBCAT */
+use App\Controllers\Admin\SubCategoriesController;
+
 // controllers e-commerce
 use App\Controllers\Store\StoreController;
 use App\Controllers\Store\CartController;
@@ -50,6 +53,15 @@ Route::post('/admin/categorias/disable',[CategoriesController::class,'disable'])
 Route::post('/admin/categorias/enable',[CategoriesController::class,'enable']);
 Route::get('/admin/categorias/update',[CategoriesController::class,'update']);
 Route::post('/admin/categorias/update',[CategoriesController::class,'update']);
+
+
+/*** SUBCATEGORIAS ***/
+Route::get('/admin/subcategorias',[SubCategoriesController::class,'view']);
+Route::post('/admin/subcategorias/add',[SubCategoriesController::class,'add']);
+Route::post('/admin/subcategorias/disable',[SubCategoriesController::class,'disable']);
+Route::post('/admin/subcategorias/enable',[SubCategoriesController::class,'enable']);
+Route::get('/admin/subcategorias/update',[SubCategoriesController::class,'update']);
+Route::post('/admin/subcategorias/update',[SubCategoriesController::class,'update']);
 
 
 /** Store Routes */

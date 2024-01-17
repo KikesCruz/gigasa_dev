@@ -14,6 +14,7 @@ class CategoriesController extends Controller
         $this->model = new CategoriesModel();
     }
 
+    
     public function view()
     {
 
