@@ -23,36 +23,40 @@ class BrandsController extends Controller
     public function add()
     {
 
-        $res_json = '';
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $request = $this->sanitizerString($_POST['brand_name']);
+            $name_brand = $this->sanitizerString($_POST['brand_name']);
 
-            if ($request != '') {
+            if ($name_brand== '' && $_FILES['img_file']['name'] == '') {
+                return json_encode($this->message_type(1));
+            }
 
-                $data = $this->model->findBybrand($request);
+
+                $data = $this->model->findBybrand($name_brand);
 
                 switch (true) {
                     case is_array($data):
-                        if ($data['brand_name'] == $request) {
-
-                            $res_json = 'duplicate';
+                        if ($data['brand_name'] == $name_brand) {
+                            return json_encode($this->message_type(3));
                         }
                         break;
 
                     case is_bool($data):
-                        $this->model->addbrand($request);
-                        $res_json = 'success';
+
+                    $img_save = $_FILES['img_file']['name'] == '' ? 'empty' : $this->img_save('Icons/Brands/', $name_brand, $_FILES);
+
+                    $brand_array = [
+                        'brand_name' => $name_brand,
+                        'img' => $img_save
+                    ];
+
+                    if ($this->model->addbrand($brand_array) == 'true') {
+                        return json_encode($this->message_type(0));
+                    }
                         break;
                 }
-            } else {
-                $res_json = 'empty';
             }
-
-            echo json_encode($res_json);
         }
-    }
 
     public function enable(){
 

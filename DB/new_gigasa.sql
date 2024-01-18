@@ -60,6 +60,9 @@ id_category int,
 create table brands(
 id_brand int auto_increment,
 brand_name varchar(60) not null,
+img_path varchar(100),
+img_name varchar(30),
+view_web varchar(10) default 'off',
 status_brand varchar(10) default 'on',
 create_at DATETIME default current_timestamp,
 

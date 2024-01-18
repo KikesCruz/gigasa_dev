@@ -16,7 +16,14 @@ class BrandsModel
     public function getAllBrands()
     {
 
-        $query = "SELECT * FROM brands";
+        $query = "
+        SELECT
+        id_brand,
+        brand_name,
+        concat(img_path,img_name) as img_path,
+        view_web,
+        status_brand
+        from brands";
 
         $this->db->query($query);
         $response = $this->db->resultSet();
@@ -26,7 +33,7 @@ class BrandsModel
 
     public function findBybrand($param)
     {
-        $query = "SELECT * FROM      WHERE brand_name = :brand_name";
+        $query = "SELECT * FROM  brands    WHERE brand_name = :brand_name";
 
         $this->db->query($query);
         $this->db->bind(":brand_name", $param);
@@ -38,10 +45,14 @@ class BrandsModel
 
     public function addbrand($param)
     {
-        $query = "INSERT INTO brands VALUES(null,:brand_name,default,default)";
+        $query = "INSERT INTO brands VALUES(null,:brand_name,:img_path,:img_name,default,default,default)";
 
         $this->db->query($query);
-        $this->db->bind(":brand_name", $param);
+
+        $this->db->bind(":brand_name", $param['brand_name']);
+
+        $this->db->bind(":img_path", $param['img'] == 'empty' ? '' : FILES_IMG.'Icons/Brands/');
+        $this->db->bind(":img_name",  $param['img'] == 'empty' ? '' : str_replace(' ','_',$param['brand_name'].'.webp'));
 
         if ($this->db->execute()) {
             return true;

@@ -21,9 +21,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
       <div class="container-box">
         <div class="box">
           <table id="table_categories" class="table table-bordered">
-            <?php echo "<pre>";
-            print_r($data['categories']);
-            echo "</pre>" ?>
+            
             <thead>
               <tr>
                 <th>#ID Depto</th>
@@ -32,6 +30,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                 <th>Categorías</th>
                 <th>Estatus</th>
                 <th>Estatus Web</th>
+                <th>Img</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -44,6 +43,17 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $category['id_category'] ?></td>
                   <td><?= $category['category_name'] ?></td>
                   <td><?= $category['status_category'] ?></td>
+                  <td><?= $category['view_web'] ?></td>
+                  <td><?= $category['path_img'] != '' ?
+                          '<button 
+                          id="btnEnableDepto" 
+                          type="button" 
+                          class="btn" 
+                          data-toggle="modal" 
+                          data-target="#enableModal">
+                          <i class="fa-solid fa-image"></i>
+                         </button>' :''?>
+                  </td>
                   <td>
                     <div class="group-btn">
                       <?= $category['status_category'] == 'off' ?
@@ -85,11 +95,11 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
           </table>
         </div>
         <div class="box box-form">
-          <form id="form_new_category" action="#">
+          <form id="form_new_category">
             <div class="row">
               <div class="col">
                 <label for="">Categoría</label>
-                <input name="name_category" type="text" class="form-control shadow-none" />
+                <input name="name_category" type="text" class="form-control shadow-none" autocomplete="off" />
               </div>
 
             </div>
@@ -108,7 +118,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             <div class="row">
               <div class="col">
                 <label for="">Imagen</label>
-                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/jpeg, image/jpg, image/png" />
+                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/svg+xml" />
               </div>
             </div>
             <div class="row p-2">

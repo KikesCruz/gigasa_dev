@@ -36,43 +36,44 @@ class CategoriesController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $name_category = $this->sanitizerString($_POST['name_category']);
-            $id_depto = $this->sanitizerInt($_POST['depto']);
 
-            if ($name_category == '' || $id_depto == 0) {
+            $category_array = [
+                "name_category" => $this->sanitizerString($_POST['name_category']),
+                "id_depto" => $_POST['depto'],
+                "file" => ''
+            ];
+
+
+            if ($category_array['name_category'] == '' || $category_array['id_depto'] == 0) {
                 return json_encode($this->message_type(1));
             }
 
-            $search = $this -> $this -> model -> searchCategory($name_category);
 
-            switch(true){
+
+            $search =  $this->model->searchCategory($category_array);
+
+
+            switch (true) {
                 case is_array($search):
 
-                    if($search['category_name'] == $name_category){
-                        return json_encode($this -> message_type(3));
+                    if ($search['category_name'] == $category_array['name_category']) {
+                        return json_encode($this->message_type(3));
                     }
 
-                break;
+                    break;
 
                 case is_bool($search):
 
-                $img_save = $_FILES['img_file']['name'] == '' ? 'empty' : $this->img_save('Categories/', $name_category, $_FILES);
+                    $img_save = $_FILES['img_file']['name'] == '' ? 'empty' : $this->img_save('Categories/', $category_array['name_category'], $_FILES);
+
+                    $category_array['file'] = $img_save;
                 
-                $depto_array = [
-                    'category_name' => $name_category,
-                    'depto_id' => $id_depto,
-                    'img' => $img_save
-                ];
+                    if ($this->model->new_category($category_array) == 'true') {
+                        return json_encode($this->message_type(0));
+                    }
 
-                if ($this->model->new_category($depto_array) == 'true') {
-                    return json_encode($this->message_type(0));
-                }
-
-                break;
+                    break;
             }
-
-
-    
         }
     }
 

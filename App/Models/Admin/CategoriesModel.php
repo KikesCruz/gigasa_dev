@@ -46,7 +46,7 @@ class CategoriesModel{
         $query = "select category_name from categories where category_name like :category_name and id_depto = :id_depto";
 
         $this -> db ->query($query);
-        $this -> db -> bind(":category_name",'%' .$param['name_category'].'%');
+        $this -> db -> bind(":category_name",'%'.$param['name_category'].'%');
         $this -> db -> bind(":id_depto",$param['id_depto']);
 
         $response = $this -> db -> resultOne();
@@ -61,6 +61,10 @@ class CategoriesModel{
         $this -> db -> query($query);
         $this -> db -> bind(":category_name",$param['name_category']);
         $this -> db -> bind(":id_depto",$param['id_depto']);
+
+        $this -> db -> bind(":img_path",$param['file'] == 'empty' ? '' : FILES_IMG.'Categories/');
+        $this -> db -> bind(":img_name",$param['file'] == 'empty' ? '' : str_replace(' ','_',$param['name_category'].'.svg') );
+
 
         if($this -> db -> execute()){
             return true;

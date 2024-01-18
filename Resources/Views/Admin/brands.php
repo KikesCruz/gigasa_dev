@@ -21,7 +21,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
       <div class="container-box">
 
         <div class="box">
-          <table class="table table-bordered">
+          <table id="tble_marcas" class="table table-bordered">
             <thead>
               <tr>
                 <th>#ID Marca</th>
@@ -39,8 +39,20 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $brand['id_brand'] ?></td>
                   <td><?= $brand['brand_name'] ?></td>
                   <td><?= $brand['status_brand'] ?></td>
-                  <td><i class="fa-solid fa-image"></i></td>
-                  <td><input type="checkbox" name="" id=""></td>
+                  <td>
+                  <?= $brand['img_path'] != '' ?
+                          '<button 
+                          id="btnEnableDepto" 
+                          type="button" 
+                          class="btn" 
+                          data-toggle="modal" 
+                          data-target="#enableModal">
+                          <i class="fa-solid fa-image"></i>
+                         </button>' :''?>
+                  </td>
+                  <td><?= $brand['view_web'] ?>
+                
+                  </td>
                   <td>
                     <div class="group-btn">
                       <?= $brand['status_brand'] == 'off' ?
@@ -87,10 +99,17 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
               </div>
 
             </div>
+            
+            <div class="row">
+              <div class="col">
+                <label for="">Imagen</label>
+                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/jpeg, image/jpg, image/png" />
+              </div>
+            </div>
 
             <div class="row p-2">
               <div class="col">
-                <button id="add_brand" type="submit" class="btn-theme-one"> <i class="fa-solid fa-plus"></i>
+                <button id="add_brand" type="button" class="btn-theme-one"> <i class="fa-solid fa-plus"></i>
                   Crear Nuevo</button>
               </div>
             </div>

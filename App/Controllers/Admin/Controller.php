@@ -72,8 +72,9 @@ class Controller
         
        $files_type = array("image/jpeg", "image/jpg","image/png");   
 
-        if(in_array($img['img_file']['type'], $files_type)){
-            $path = FILES_IMG.$view;
+       $path = FILES_IMG.$view;
+       
+       if(in_array($img['img_file']['type'], $files_type)){
 
             $save_img = str_replace(' ','_',$path.$img_name.'.webp');
 
@@ -82,6 +83,11 @@ class Controller
                 imagewebp($imagen_webp,$save_img,65);
                 imagedestroy($imagen_webp);
             }
+        }else if($img['img_file']['type'] == "image/svg+xml"){
+            
+            $save_img = str_replace(' ','_',$path.$img_name.'.svg');
+            move_uploaded_file($img['img_file']['tmp_name'],$save_img);
+               
         }
 
     }

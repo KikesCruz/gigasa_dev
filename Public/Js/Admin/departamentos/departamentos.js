@@ -23,7 +23,7 @@ $(document).on("click", "#add_depto", function (e) {
  const formdata = document.querySelector("#form_depto");
 
   let data = new FormData(formdata);
-  console.log(data);
+
 
   $.ajax({
     type: "POST",
