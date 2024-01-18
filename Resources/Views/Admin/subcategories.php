@@ -35,15 +35,12 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             <tbody>
               <?php
               foreach ($data['subcategories'] as $subs): ?>
-                <tr id="td_categories">
+                <tr id="td_subcategories">
                   <td>
                     <?= $subs['id_subcategory'] ?>
                   </td>
                   <td>
                     <?= $subs['subcategory_name'] ?>
-                  </td>
-                  <td>
-                    <?= $subs['status_subcategory'] ?>
                   </td>
                   <td>
                     <?= $subs['id_category'] ?>
@@ -52,11 +49,11 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                     <?= $subs['category_name'] ?>
                   </td>
                   <td>
-                    <?= $subs['status_category'] ?>
+                    <?= $subs['status_subcategory'] ?>
                   </td>
                   <td>
                     <div class="group-btn">
-                      <?= $subs['status_category'] == 'off' ?
+                      <?= $subs['status_subcategory'] == 'off' ?
                         '<button 
                           id="btnEnableCat" 
                           type="button" 
@@ -92,7 +89,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
         </div>
 
         <div class="box bow-form">
-        <form id="form_new_subcategory" action="#">
+          <form id="form_new_subcategory" action="#">
 
             <!---CATEGORY--->
             <div class="row mt-2">
@@ -103,7 +100,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
                   <?php foreach ($data['departments'] as $deptos): ?>
                   <option value="<?= $deptos['id_depto'] ?>">
-                      <?= $deptos['depto_name']?>
+                    <?= $deptos['depto_name'] ?>
                   </option>
                   <?php endforeach; ?>
                 </select>
@@ -113,8 +110,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             <div class="row mt-2">
               <div class="col">
                 <label for="">Asociar al la categoría de:</label>
-                <select name="id_category" id="category_list" class="form-control"
-                  aria-label="Default select example">
+                <select name="id_category" id="category_list" class="form-control" aria-label="Default select example">
                   <option value="0" selected disable>Categoría</option>
                   <?php foreach ($data['categories'] as $deptos): ?>
                     <option value="<?= $deptos['id_category'] ?>">
@@ -143,9 +139,59 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
         </div>
       </div>
     </section>
-
-
   </div>
+
+  <!-- ACTIVE MODAL -->
+  <div class="modal fade" id="enableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar la Subcategoría?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="body_modal_enable" class="body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISABLE MODAL -->
+  <div class="modal fade" id="disableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar la Subcategoría?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="body_modal_disable" class="body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPDATE MODAL -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Subcategoría</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="body_modal_update" class="body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <?php
   require PATH_ROOT . 'Resources/Views/Admin/Shared/footer.php';
   ?>

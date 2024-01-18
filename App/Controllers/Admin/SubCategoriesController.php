@@ -69,12 +69,58 @@ class SubCategoriesController extends Controller
         }
     }
 
-    public function disable($param){
+    public function enable()
+    {
+        $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $request = $_POST['id_subcat'];
+
+            if ($this->model->enable($request)) {
+                return json_encode($notifications[0]);
+            }
+        }
     }
 
-    public function enable($param){
-    }    
+    public function disable()
+    {
+        $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
 
-    public function update($param){
-    }    
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $request = $_POST['id_subcat'];
+
+            if ($this->model->disable($request)) {
+                return json_encode($notifications[0]);
+            }
+        }
+    }
+
+    public function update(){
+        $notifications = array('success', 'update', 'empty', 'error', 'duplicate');
+
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+            $categories =  $this->model->getAllCategories();
+           
+            return json_encode($categories);
+
+        }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            //return json_encode('post');
+
+            $request = [
+                'id_subcategory' => $_POST['id_subcat'],
+                'subcategory_name' => $_POST['subcat'],
+                'id_category' => $_POST['id_cat']
+                
+            ];  
+
+            $this -> debug($request);
+
+            $this -> model -> update($request);            
+        }
+
+    }
+
+  
 }

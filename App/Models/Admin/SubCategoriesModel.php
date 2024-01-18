@@ -52,7 +52,7 @@ class SubCategoriesModel{
     /***SEARCH SUBCAT BY  */
     public function searchSubCategory($param){
        
-        $query = "SELECT * FROM subcategory  WHERE subcategory_name LIKE :subcategory_name AND id_category = :id_category";
+        $query = "SELECT * FROM sub_category  WHERE subcategory_name LIKE :subcategory_name AND id_category = :id_category";
 
         $this -> db ->query($query);
         $this -> db -> bind(":subcategory_name",'%' .$param['name_subcategory'].'%');
@@ -65,11 +65,11 @@ class SubCategoriesModel{
     }
 
     public function new_subcategory($param){
-        $query = "INSERT INTO subcategory VALUES (NULL,:subcategory_name,default,default,:id_category)";
+        $query = "INSERT INTO sub_category VALUES (NULL,:subcategory_name,default,default,:id_category)";
 
         $this -> db -> query($query);
-        $this -> db -> bind(":category_name",$param['name_subcategory']);
-        $this -> db -> bind(":id_depto",$param['id_category']);
+        $this -> db -> bind(":subcategory_name",$param['name_subcategory']);
+        $this -> db -> bind(":id_category",$param['id_category']);
 
         if($this -> db -> execute()){
             return true;
@@ -77,5 +77,56 @@ class SubCategoriesModel{
             return false;
         }
     }
+
+
+    
+    public function disable($param){
+        $query = "UPDATE sub_category SET status_subcategory ='off' WHERE id_subcategory = :id_subcategory";
+
+        $this -> db -> query($query);
+        $this -> db -> bind(":id_subcategory",$param);
+
+        if($this -> db -> execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function enable($param){
+        $query = "UPDATE sub_category SET status_subcategory ='on' WHERE id_subcategory = :id_subcategory";
+
+        $this -> db -> query($query);
+        $this -> db -> bind(":id_subcategory",$param);
+
+        if($this -> db -> execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function update($param){
+        $set = $param['id_category'] == 0 ? "SET subcategory_name = :subcategory_name" : "SET id_category = :id_category";
+
+        $query = "UPDATE sub_category {$set} WHERE id_subcategory = :id_subcategory";
+
+        $this -> db -> query($query);
+
+        if($param['id_category'] == 0){
+            $this -> db -> bind(":id_subcategory",$param['id_subcategory']);
+            $this -> db -> bind(":subcategory_name",$param['subcategory_name']);
+        }else{
+            $this -> db -> bind(":id_subcategory",$param['id_subcategory']);
+            $this -> db -> bind(":id_category",$param['id_category']);
+        }
+
+        if($this -> db -> execute()){
+            return true;
+        }else{
+            return false;
+        }        
+    }
+
 
 }
