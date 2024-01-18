@@ -20,13 +20,18 @@ toastr.options = {
 $(document).on("click", "#add_brand", function (e) {
   e.preventDefault();
 
-  let formData = $("#form_brand").serialize();
+
+  const formdata = document.querySelector("#form_brand");
+
+  let data = new FormData(formdata);
 
   $.ajax({
     type: "POST",
     url: "brands/add",
-    data: formData,
+    data: data,
     dataType: "json",
+    contentType: false,
+    processData: false,
     success: function (response) {
       switch (response) {
         case "empty":
@@ -218,4 +223,15 @@ $(document).on("click", "#btnUpdateBrand", function (e) {
       },
     });
   });
+  
+
+
+  $(document).ready(function () {
+    $("#tble_marcas").DataTable({
+  
+      "processing": true,
+      
+  
+    });
+  }); 
   

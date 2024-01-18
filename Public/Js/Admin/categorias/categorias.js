@@ -18,13 +18,20 @@ toastr.options = {
 };
 
 $(document).on("click", "#btn_add_new", function () {
-  let formData = $("#form_new_category").serialize();
+  const formData = document.querySelector("#form_new_category");
 
+  let data = new FormData(formData);
+
+  console.log(data);
+
+  
   $.ajax({
     type: "POST",
     url: "categorias/add",
-    data: formData,
+    data: data,
     dataType: "json",
+    contentType: false,
+    processData: false,
     success: function (response) {
       switch (response) {
         case "empty":
@@ -234,3 +241,13 @@ $(document).on("click", "#btn_update_conf", function () {
     },
   });
 });
+
+
+$(document).ready(function () {
+  $("#table_categories").DataTable({
+
+    "processing": true,
+    
+
+  });
+}); 

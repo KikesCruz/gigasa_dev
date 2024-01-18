@@ -19,7 +19,7 @@ class SubCategoriesModel{
         cat.id_category,
         cat.category_name,
         cat.status_category 
-        FROM category cat
+        FROM categories cat
         INNER JOIN sub_category subcat ON (subcat.id_category = cat.id_category);';
 
         $this -> db -> query($query);
@@ -31,7 +31,7 @@ class SubCategoriesModel{
 
     /** ALL CAT */
     public function getAllCategories(){
-        $query = "SELECT * FROM category WHERE status_category = 'on'";
+        $query = "SELECT * FROM categories WHERE status_category = 'on'";
 
         $this -> db -> query($query);
         $response = $this -> db -> resultSet();
@@ -40,7 +40,7 @@ class SubCategoriesModel{
 
     /**ALL SUBCAT  */
     public function getAllDepartments(){
-        $query = "SELECT * FROM department WHERE status_depto = 'on'";
+        $query = "SELECT * FROM departments WHERE status_depto = 'on'";
 
         $this -> db -> query($query);
 

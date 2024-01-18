@@ -38,11 +38,14 @@ class DepartmentsModel
 
     public function addDepto($param)
     {
-        $query = "INSERT INTO departments VALUES(null,:depto_name,:img_name,default,default,default)";
+
+        $query = "INSERT INTO departments VALUES(null,:depto_name,:path_img,:img_name,default,default,default)";
 
         $this->db->query($query);
-        $this->db->bind(":depto_name", $param);
-        $this->db->bind(":img_name", str_replace(' ','_',$param.'.webp'));
+        $this->db->bind(":depto_name", $param['depto_name']);
+   
+        $this->db->bind(":path_img", $param['img'] == 'empty' ? '' : FILES_IMG.'Departments/');
+        $this->db->bind(":img_name",  $param['img'] == 'empty' ? '' : str_replace(' ','_',$param['depto_name'].'.webp'));
 
         if ($this->db->execute()) {
             return true;

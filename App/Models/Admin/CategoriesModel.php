@@ -18,9 +18,11 @@ class CategoriesModel{
         depto.status_depto,
         cat.id_category,
         cat.category_name,
-        cat.status_category 
-        from category cat
-        inner join department depto on (depto.id_depto = cat.id_depto)';
+        cat.status_category,
+        concat(cat.img_path,cat.img_name) as path_img,
+        cat.view_web
+        from categories cat
+        inner join departments depto on (depto.id_depto = cat.id_depto)';
 
         $this -> db -> query($query);
 
@@ -30,7 +32,7 @@ class CategoriesModel{
     }
 
     public function getAllDepartments(){
-        $query = "SELECT id_depto, depto_name, status_depto FROM department WHERE status_depto = 'on'";
+        $query = "SELECT id_depto, depto_name, status_depto FROM departments WHERE status_depto = 'on'";
 
         $this -> db -> query($query);
 
@@ -41,10 +43,10 @@ class CategoriesModel{
 
     public function searchCategory($param){
        
-        $query = "select * from category where category_name like :category_name and id_depto = :id_depto";
+        $query = "select category_name from categories where category_name like :category_name and id_depto = :id_depto";
 
         $this -> db ->query($query);
-        $this -> db -> bind(":category_name",'%' .$param['name_category'].'%');
+        $this -> db -> bind(":category_name",'%'.$param['name_category'].'%');
         $this -> db -> bind(":id_depto",$param['id_depto']);
 
         $response = $this -> db -> resultOne();
@@ -55,11 +57,15 @@ class CategoriesModel{
 
 
     public function new_category($param){
-        $query = "INSERT INTO category VALUES (null,:category_name,default,default,:id_depto)";
+        $query = "INSERT INTO categories VALUES (null,:category_name,:img_path,:img_name,default,default,default,:id_depto)";
 
         $this -> db -> query($query);
         $this -> db -> bind(":category_name",$param['name_category']);
         $this -> db -> bind(":id_depto",$param['id_depto']);
+
+        $this -> db -> bind(":img_path",$param['file'] == 'empty' ? '' : FILES_IMG.'Categories/');
+        $this -> db -> bind(":img_name",$param['file'] == 'empty' ? '' : str_replace(' ','_',$param['name_category'].'.svg') );
+
 
         if($this -> db -> execute()){
             return true;
@@ -69,7 +75,7 @@ class CategoriesModel{
     }
 
     public function disable($param){
-        $query = "UPDATE category SET status_category ='off' WHERE id_category = :id_category";
+        $query = "UPDATE categories SET status_category ='off' WHERE id_category = :id_category";
 
         $this -> db -> query($query);
         $this -> db -> bind(":id_category",$param);
@@ -82,7 +88,7 @@ class CategoriesModel{
     }
 
     public function enable($param){
-        $query = "UPDATE category SET status_category ='on' WHERE id_category = :id_category";
+        $query = "UPDATE categories SET status_category ='on' WHERE id_category = :id_category";
 
         $this -> db -> query($query);
         $this -> db -> bind(":id_category",$param);
@@ -98,7 +104,7 @@ class CategoriesModel{
 
         $set = $param['id_depto'] == 0 ? "SET category_name = :category_name" : "SET id_depto = :id_depto";
 
-        $query = "UPDATE category {$set} WHERE id_category = :id_category";
+        $query = "UPDATE categories {$set} WHERE id_category = :id_category";
 
         $this -> db -> query($query);
 

@@ -23,7 +23,7 @@ $(document).on("click", "#add_depto", function (e) {
  const formdata = document.querySelector("#form_depto");
 
   let data = new FormData(formdata);
-  console.log(data);
+
 
   $.ajax({
     type: "POST",
@@ -32,14 +32,13 @@ $(document).on("click", "#add_depto", function (e) {
     dataType: "json",
     contentType: false,
     processData: false,
-    success: function (response) {
-      console.log(response);
+    success: function (response) {  
       switch (response) {
         case "empty":
-          toastr["warning"]("Campos Vacíos", "Error");
+          toastr["warning"]("Campos Vacíos", "Advertencia");
           break;
         case "duplicate":
-          toastr["info"]("Ya se encuentra registrado", "Información");
+          toastr["warning"]("Ya se encuentra registrado", "Información");
           break;
         case "success":
           toastr["success"]("Se guardo correctamente", "Realizado");
@@ -224,3 +223,12 @@ $(document).on("click", "#btn_update_conf", function (e) {
     },
   });
 });
+
+$(document).ready(function () {
+  $("#tb_deptos").DataTable({
+
+    "processing": true,
+    
+
+  });
+}); 

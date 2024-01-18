@@ -17,11 +17,10 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
         </div>
       </div>
     </div>
-    <?php var_dump($data['subcategories']) ?>
     <section class="content">
       <div class="container-box">
         <div class="box">
-          <table class="table table-bordered">
+          <table id="table_categories" class="table table-bordered">
             <thead>
               <tr>
                 <th>#ID Subcategory</th>

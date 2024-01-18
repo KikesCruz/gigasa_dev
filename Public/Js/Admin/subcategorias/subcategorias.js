@@ -236,3 +236,10 @@ $(document).on("click", "#btn_update_conf", function () {
     },
   });
 });
+
+$(document).ready(function () {
+  $("#table_categories").DataTable({
+    "processing": true,
+
+  });
+}); 

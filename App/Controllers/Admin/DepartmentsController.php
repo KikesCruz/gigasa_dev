@@ -23,69 +23,66 @@ class DepartmentsController extends Controller
     public function add()
     {
 
-        $res_json = '';
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+            $name_depto = $this->sanitizerString($_POST['depto_name']);
 
-            $request = [
-                'depto_name' => $this->sanitizerString($_POST['depto_name']),
-                'path_default' => FILES_IMG."Departments/",
-                'file_img' => $_FILES['img_file'],
-            ];
-            
-        
-            if ($request != '') {
-
-                $data = $this->model->findByDepto($request['depto_name']);
-
-                switch (true) {
-                    case is_array($data):
-                        if ($data['depto_name'] == $request) {
-
-                            $res_json = 'duplicate';
-                        }
-                        break;
-
-                    case is_bool($data):
-                        $this->model->addDepto($request['depto_name']);
-                        $this -> img_save($request);
-                        $res_json = 'success';
-                        break;
-                }
-            } else {
-                $res_json = 'empty';
+            if ($name_depto == '' && $_FILES['img_file']['name'] == '') {
+                return json_encode($this->message_type(1));
             }
+        
+            $search = $this->model->findByDepto($name_depto);
 
-            echo json_encode($res_json);
+            switch (true) {
+                case is_array($search):
+                    if ($search['depto_name'] == $name_depto) {
+                        return json_encode($this->message_type(3));
+                    }
+                    break;
+
+                case is_bool($search):
+
+                    $img_save = $_FILES['img_file']['name'] == '' ? 'empty' : $this->img_save('Departments/', $name_depto, $_FILES);
+
+                    $depto_array = [
+                        'depto_name' => $name_depto,
+                        'img' => $img_save
+                    ];
+
+                    if ($this->model->addDepto($depto_array) == 'true') {
+                        return json_encode($this->message_type(0));
+                    }
+
+                    break;
+            }
         }
     }
 
-    public function enable(){
+    public function enable()
+    {
 
-        $notifications = array('success','update','empty','error');
+        $notifications = array('success', 'update', 'empty', 'error');
         $response_json = '';
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $request = $_POST['id_depto'];
 
-            $data = $this -> model -> enableDepto($request);
+            $data = $this->model->enableDepto($request);
 
-            if($data == 'true'){
+            if ($data == 'true') {
                 $response_json = $notifications[1];
-            }else{
+            } else {
                 $response_json = $notifications[3];
             }
 
             echo json_encode($response_json);
-
         }
     }
 
     public function disable()
     {
-        $notifications = array('success','update','empty','error');
+        $notifications = array('success', 'update', 'empty', 'error');
         $response_json = '';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -94,9 +91,9 @@ class DepartmentsController extends Controller
 
             $data = $this->model->disableDepto($request);
 
-            if($data == 'true'){
+            if ($data == 'true') {
                 $response_json = $notifications[1];
-            }else{
+            } else {
                 $response_json = $notifications[3];
             }
 
@@ -104,36 +101,35 @@ class DepartmentsController extends Controller
         }
     }
 
-    public function update(){
+    public function update()
+    {
 
-        $notifications = array('success','update','empty','error');
+        $notifications = array('success', 'update', 'empty', 'error');
         $response_json = '';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-            $request = array (
+            $request = array(
                 "id_depto" => $_POST['id_depto'],
-                "name_depto" => $this -> sanitizerString($_POST['depto']),
-                
+                "name_depto" => $this->sanitizerString($_POST['depto']),
+
             );
 
-            
-            if($request['name_depto'] != ''){
+
+            if ($request['name_depto'] != '') {
                 $data = $this->model->updateDepto($request);
 
-                if($data == 'true'){
+                if ($data == 'true') {
                     $response_json = $notifications[1];
-                }else{
+                } else {
                     $response_json = $notifications[3];
                 }
-
-            }else{
+            } else {
                 $response_json = $notifications[2];
             }
 
             echo json_encode($response_json);
-            
         }
     }
 }
