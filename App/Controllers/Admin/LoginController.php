@@ -18,7 +18,7 @@ class LoginController extends Controller{
         return $this ->views("login");
     }
 
-    public  function auth()
+  /*  public  function auth()
     {
         $json_response = '';
 
@@ -52,5 +52,5 @@ class LoginController extends Controller{
       
     
         echo json_encode($json_response);
-    }
+    }*/
 }

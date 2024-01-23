@@ -48,19 +48,21 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                 <div class="box-title">
                                                     <h6>Total Productos:</h6>
                                                 </div>
-                                                <span>56</span>
+                                                <span><?= $data['total_products'] ?></span>
                                             </div>
+
                                             <div class="box">
-                                                <div class="box-title">
-                                                    <h6>Productos Activos:</h6>
-                                                </div>
-                                                <span>56</span>
-                                            </div>
-                                            <div class="box">
-                                                <div class="box-title">
-                                                    <h6>Productos Inactivos:</h6>
-                                                </div>
-                                                <span>56</span>
+                                                <button 
+                                                id="btn_list_inactivos" 
+                                                type="button" 
+                                                class="btn" 
+                                                data-toggle="modal" 
+                                                data-target="#list_inactivos">
+                                                    <div class="box-title">
+                                                        <h6>Productos Inactivos:</h6>
+                                                    </div>
+                                                    <span><?= $data['total_inactivos'] ?></span>
+                                                </button>
                                             </div>
                                             <div class="box">
                                                 <div class="box-title">
@@ -72,53 +74,57 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                     </div>
                                     <!-- panels end -->
                                     <hr>
-                                    <!-- Filters start-->
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <div class="form-group">
-                                                <select class="form-control" name="" id="">
-                                                    <option value="">1</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <div class="form-group">
-                                                <select class="form-control" name="" id="">
-                                                    <option value="">1</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Filter End-->
-                                    <hr>
+
 
                                     <!-- Table start -->
                                     <div class="row">
                                         <div class="col-12">
-                                            <table class="table">
-                                                <thead class="thead-dark">
+                                            <table id="tb_catalogo" class="table">
+                                                <thead>
                                                     <tr>
                                                         <th scope="col"># SKU</th>
                                                         <th scope="col">Producto</th>
                                                         <th scope="col">Departamento</th>
                                                         <th scope="col">Categoría</th>
                                                         <th scope="col">Sub Categoría</th>
-                                                        <th scope="col">Precio</th>
+                                                        <th scope="col">Marca</th>
+
                                                         <th scope="col">Acciones</th>
+                                                        <th scope="col">Img</th>
                                                         <th scope="col">Web</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>7501165003040</td>
-                                                        <td>Aderogyl Solución Oral en Ampolletas de 3ml</td>
-                                                        <td>Vitaminas y suplementos</td>
-                                                        <td>Vitaminicos</td>
-                                                        <td>Prevencion de resfriado</td>
-                                                        <td>$133.00</td>
-                                                        <td></td>
-                                                        <td><input type="checkbox" name="" id=""></td>
-                                                    </tr>
+
+
+                                                    <?php foreach ($data['products'] as $product) : ?>
+
+                                                        <tr>
+                                                            <td><?= $product['sku'] ?></td>
+                                                            <td><?= $product['name_product'] ?></td>
+                                                            <td><?= $product['depto_name'] ?></td>
+                                                            <td><?= $product['category_name'] ?></td>
+                                                            <td><?= $product['subcategory_name'] ?></td>
+                                                            <td><?= $product['brand_name'] ?></td>
+                                                            <td>
+                                                                <div class="group-btn">
+
+                                                                    <button id="btnEnableDepto" type="button" class="btn" data-toggle="modal" data-target="#enableModal">
+                                                                        <i class="fa-solid fa-gear"></i>
+                                                                    </button>
+
+                                                            </td>
+                                                            <td>
+                                                                <?= $product['imgs'] <= 2 ? '<i class="fa-solid fa-image"></i>' : '' ?>
+                                                            </td>
+                                                            <td><input type="checkbox" name="" id=""></td>
+                                                        </tr>
+
+
+                                                    <?php endforeach; ?>
+
+
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -135,7 +141,10 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                     <div class="form-group row">
                                                         <label for="">SKU:</label>
                                                         <div class="col-sm-2">
-                                                            <input type="text" class="form-control" name="" id="">
+                                                            <input id="input_sku" class="form-control" name="sku" type="text">
+                                                            <div class="invalid-feedback">
+                                                                Ya esta registrado!
+                                                            </div>
                                                         </div>
 
                                                         <label for="">Nombre articulo:</label>
@@ -146,30 +155,42 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                     <div class="form-group row">
                                                         <label for="">Departamento:</label>
                                                         <div class="form-group col-2">
-                                                            <select class="form-control" name="" id="">
-                                                                <option value="">1</option>
+                                                            <select class="form-control" name="" id="departments">
+                                                                <option value="0" selected disable>Departamentos</option>
+                                                                <?php foreach ($data['departments'] as $department) : ?>
+                                                                    <option value="<?= $department['id_depto'] ?>"><?= $department['depto_name'] ?></option>
+
+                                                                <?php endforeach; ?>
+
                                                             </select>
                                                         </div>
 
                                                         <label for="">Categoría:</label>
-                                                        <div class="form-group col-2">
-                                                            <select class="form-control" name="" id="">
-                                                                <option value="">1</option>
+                                                        <div id="list_categories" class="form-group col-2">
+                                                            <select class="form-control" name="" id="options_categories">
+                                                                <option value="0" selected disable>Categorías</option>
                                                             </select>
                                                         </div>
 
 
                                                         <label for="">Sub Categoría:</label>
                                                         <div class="form-group col-2">
-                                                            <select class="form-control" name="" id="">
-                                                                <option value="">1</option>
+                                                            <select class="form-control" name="" id="options_sub_categories">
+                                                                <option value="0" selected disable>Sub Categorías</option>
                                                             </select>
                                                         </div>
 
                                                         <label for="">Marca:</label>
                                                         <div class="form-group col-2">
-                                                            <select class="form-control" name="" id="">
-                                                                <option value="">1</option>
+                                                            <select id="select_brands" class="selectpicker form-control" name="" data-live-search="true">
+                                                                <option value="0" selected disable>Marcas</option>
+
+                                                                <?php foreach ($data['brands'] as $brand) : ?>
+
+                                                                    <option value="<?= $brand['id_brand'] ?>"><?= $brand['brand_name'] ?></option>
+
+                                                                <?php endforeach; ?>
+
                                                             </select>
                                                         </div>
 
@@ -267,6 +288,39 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
     </div>
     <!-- /.content-wrapper -->
+
+
+    <!-- Modal List Inactivos-->
+<div class="modal fade" id="list_inactivos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div  class="modal-body">
+        <table id="tb_inactivos" class="table">
+            <thead>
+                <tr>
+                    <th>ID:</th>
+                    <th>SKU:</th>
+                    <th>Producto</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="box_inactivos">
+               
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

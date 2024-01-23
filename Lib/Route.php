@@ -24,6 +24,11 @@ class Route
         $uri = $_SERVER['REQUEST_URI'];
         $uri = trim($uri, '/');
 
+        if (strpos($uri, '?')) {
+            $uri = substr($uri, 0, strpos($uri, '?'));
+        }
+
+
         $method = $_SERVER['REQUEST_METHOD'];
 
         foreach (self::$routes[$method] as $route => $callback) {
@@ -37,7 +42,7 @@ class Route
                 $params = array_slice($matches, 1);
 
                 /** quitar negación si es php 8 */
-                if (is_callable($callback)) {
+                if (!is_callable($callback)) {
                     $response = $callback(...$params);
                 }
 
@@ -53,7 +58,7 @@ class Route
                 } else {
                     echo $response;
                 }
-                return $response;
+                return;
             }
         }
         echo  '404 not found';

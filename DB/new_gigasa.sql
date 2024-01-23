@@ -53,7 +53,7 @@ id_category int,
       constraint PK_sub_category primary key(id_subcategory asc),
       
       constraint FK_category_sub_category foreign key(id_category)
-            references category(id_category)
+            references categories(id_category)
 
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment=300;
 
@@ -71,16 +71,21 @@ create_at DATETIME default current_timestamp,
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment=400;
 
 
+drop table product_catalog
+
 create table product_catalog(
 id_catalog int auto_increment,
 name_product varchar(200) not null,
-image_path_one varchar(30),
-image_path_two varchar(30),
-image_path_three varchar(30),
+image_path_one varchar(30) default 'vacio',
+image_path_two varchar(30) default 'vacio',
+image_path_three varchar(30) default 'vacio',
+image_path_four varchar(30) default 'vacio',
+image_path_five varchar(30) default 'vacio',
 product_description TEXT not null,
 sku varchar(255) not null,
-regular_price decimal(12,2),
-wieght int not null,
+regular_price decimal(12,2)not null,
+wieght int,
+status varchar(10) default 'on',
 create_at DATETIME default CURRENT_TIMESTAMP,
 -- FK --
 id_brand int,
@@ -98,6 +103,15 @@ id_subcategory int,
       
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment=500;
 
+create table inventory(
+id_inventory int auto_increment,
+stock int,
+
+
+
+)engine=InnoDB default CHARSET=utf8mb4  auto_increment=600;
+
+
 -- users 
 create table users_type(
 id_type int auto_increment,
@@ -110,7 +124,7 @@ modified_at DATETIME,
 
 drop table users_type 
 
-SET FOREIGN_KEY_CHECKS=1;
+SET FOREIGN_KEY_CHECKS=0;
 create table users(
 id_user int auto_increment ,
 user_name varchar(50) not null,

@@ -25,7 +25,7 @@ use App\Controllers\Store\ProfileCustomerController;
 
 /** Routes admin */ 
 Route::get('/admin',[LoginController::class,'login']);
-Route::post('/admin/auth',[LoginController::class,'auth']);
+//Route::post('/admin/auth',[LoginController::class,'auth']);
 Route::get('/admin/home', [HomeController::class, 'home']);
 
 
@@ -66,6 +66,7 @@ Route::post('admin/brands/update',[BrandsController::class,'update']);
 
 /** Catalog */
 Route::get('admin/catalogo',[CatalogoController::class,'view']);
+
 
 /*** SUBCATEGORIAS ***/
 Route::get('/admin/subcategorias',[SubCategoriesController::class,'view']);

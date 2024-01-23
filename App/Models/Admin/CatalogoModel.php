@@ -1,0 +1,123 @@
+<?php
+
+namespace App\Models\Admin;
+
+use Lib\Database;
+
+class CatalogoModel
+{
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
+
+    public function getCatalogo()
+    {
+        $query = "
+        select 
+        products.id_catalog,
+        products.sku,
+        products.name_product,
+        d.depto_name,
+        c.category_name,
+        sc.subcategory_name,
+        b.brand_name,
+        sum(
+        if(products.image_path_one = 'vacio',1,0) +
+        if(products.image_path_two = 'vacio',1,0) +
+        if(products.image_path_three = 'vacio',1,0) +
+        if(products.image_path_four = 'vacio',1,0) +
+        if(products.image_path_five = 'vacio',1,0)
+        )as imgs 
+
+        from product_catalog products
+        inner join sub_category sc on (sc.id_subcategory = products.id_subcategory)
+        inner join categories c on (c.id_category = sc.id_category)
+        inner join departments d on (d.id_depto = c.id_depto)
+        inner join brands b on (b.id_brand = products.id_brand)
+        where sc.status_subcategory = 'on' and c.status_category = 'on' and d.status_depto ='on'
+        and products.status = 'on'
+        group by sku";
+
+
+        $this -> db -> query($query);
+
+        $reponse = $this -> db -> resultSet();
+
+        return $reponse;
+
+    }
+
+    public function getCatalogoInactivo(){
+        $query = "SELECT id_catalog,name_product,status FROM product_catalog WHERE status ='off'";
+
+        $this -> db -> query($query);
+
+        $response = $this -> db -> resultSet();
+        return $response;
+    }
+
+    public function getDepartments()
+    {
+        $query = "SELECT id_depto,depto_name FROM departments where status_depto = 'on'";
+
+        $this->db->query($query);
+
+        $response = $this->db->resultSet();
+
+        return $response;
+    }
+
+    public function getCategories($param)
+    {
+        $query = "select cat.id_category, cat.category_name,depto.id_depto  from categories cat
+        inner join departments depto on (depto.id_depto = cat.id_depto)
+        where cat.status_category = 'on' and depto.status_depto ='on' and depto.id_depto = :id_depto";
+
+        $this->db->query($query);
+        $this->db->bind(":id_depto", $param);
+
+        $response = $this->db->resultSet();
+
+        return $response;
+    }
+
+    public function getSubCategories($param)
+    {
+        $query = "select sub_cat.id_subcategory, sub_cat.subcategory_name from sub_category sub_cat
+        inner join categories cat on(cat.id_category = sub_cat.id_category)
+        where cat.status_category  = 'on' and sub_cat.status_subcategory ='on' and sub_cat.id_category = :id_category";
+
+        $this->db->query($query);
+        $this->db->bind(":id_category", $param);
+
+        $response = $this->db->resultSet();
+
+        return $response;
+    }
+
+    public function getBrands()
+    {
+        $query = "SELECT id_brand,brand_name FROM brands WHERE status_brand = 'on'";
+
+        $this->db->query($query);
+        $response = $this->db->resultSet();
+        return $response;
+    }
+
+
+    public function searchSku($param)
+    {
+        $query = "SELECT sku FROM product_catalog WHERE sku = :sku";
+
+        $this->db->query($query);
+
+        $this->db->bind(":sku", $param);
+
+        $response = $this->db->resultOne();
+
+        return $response;
+    }
+}

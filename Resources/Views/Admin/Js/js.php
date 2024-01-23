@@ -21,5 +21,9 @@ if ($js_file == 'admin') {
 
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.8/datatables.min.js"></script>
+
+<!-- Bootstrap Select -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
 <!-- Genera el archivo JS por view -->
 <script src="<?= URL_BASE . "Public/Js/Admin/" . $js_file . "/" . $js_file . ".js"; ?>"></script>
