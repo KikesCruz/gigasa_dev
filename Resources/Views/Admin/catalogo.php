@@ -128,7 +128,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                 <div class="tab-pane fade show active" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                                     <div class="row">
                                         <div class="col">
-                                            <form action="#">
+                                            <form id="form_product">
                                                 <div class="card-body">
                                                     <div class="container">
                                                         <div class="row">
@@ -141,12 +141,12 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                     <div class="container mt-3">
                                                         <div class="row">
                                                             <div class="col-2">
-                                                                <input id="input_sku" type="text" class="form-control" name="sku" id="" placeholder="SKU">
+                                                                <input id="input_sku" type="text" class="form-control" name="sku" placeholder="SKU">
                                                                 <div class="invalid-feedback">Ya esta registrado!</div>
                                                             </div>
 
                                                             <div class="col-8">
-                                                                <input type="text" class="form-control" name="" id="" placeholder="Nombre Producto">
+                                                                <input type="text" class="form-control" name="name_product"  placeholder="Nombre Producto">
                                                             </div>
 
                                                         </div>
@@ -155,7 +155,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                     <div class="container mt-3">
                                                         <div class="row">
                                                             <div class="col-2">
-                                                                <select class="form-control">
+                                                                <select id="departments" class="form-control" name="department">
                                                                     <option value="0" selected>Departamentos</option>
                                                                     <?php foreach ($data['departments'] as $department) : ?>
                                                                     <option value="<?= $department['id_depto'] ?>"><?= $department['depto_name'] ?></option>
@@ -164,8 +164,9 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                             </div>
 
 
-                                                            <div class="col-2">
-                                                                <select 
+                                                            <div class="col-2" id="options_categories">
+                                                                <select
+                                                                name="category"
                                                                 id="options_categories"
                                                                 class="form-control">
                                                                     <option value="0" selected>Categorías</option>
@@ -177,14 +178,15 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                             <div class="col-2">
                                                                 <select 
                                                                 id="options_sub_categories"
-                                                                class="form-control">
+                                                                class="form-control"
+                                                                name="sub_category">
                                                                     <option value="0" selected>Sub Categorías</option>
                                                                 </select>
                                                             </div>
 
 
                                                             <div class="col-2">
-                                                                <select class="form-control">
+                                                                <select class="form-control" name="brand">
                                                                     <option value="0" selected>Marcas</option>
                                                                 <?php foreach ($data['brands'] as $brand) : ?>
                                                                     <option value="<?= $brand['id_brand'] ?>"><?= $brand['brand_name'] ?></option>
@@ -197,10 +199,10 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                     <div class="container mt-3">
                                                         <div class="row">
                                                             <div class="col-2">
-                                                                <input type="text" class="form-control" placeholder="Precio $">
+                                                                <input type="text" class="form-control" name="precio"  placeholder="Precio $">
                                                             </div>
                                                             <div class="col-2">
-                                                                <input type="text" class="form-control" placeholder="peso">
+                                                                <input type="text" class="form-control" name="peso" placeholder="peso">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -209,7 +211,12 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                                                     <div class="container mt-3">
                                                         <div class="row">
                                                             <div class="col-md-11">
-                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese aquí una descripción del producto"></textarea>
+                                                                <textarea 
+                                                                name="details"
+                                                                class="form-control" 
+                                                                id="exampleFormControlTextarea1" 
+                                                                rows="3" 
+                                                                placeholder="Ingrese aquí una descripción del producto"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -228,10 +235,10 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
                                                             <div class="col-md-4">
                                                                 <div class="card" style="width: 15rem;">
-                                                                <img src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
+                                                                <img id="img_one" src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
                                                                     <div class="card-body">
                                                                         <div class="form-group input-file">
-                                                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <input id="input_one" data-img="img_one" name="img_product_one" type="file" class="form-control-file files">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -239,10 +246,16 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
                                                             <div class="col-md-4">
                                                                 <div class="card" style="width: 15rem;">
-                                                                <img src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
+                                                                <img id="img_two" src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
                                                                     <div class="card-body">
                                                                         <div class="form-group input-file">
-                                                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <input 
+                                                                            id="input_two" 
+                                                                            data-img="img_two"  
+                                                                            class="form-control-file files"
+                                                                            name="img_product_two" 
+                                                                            type="file" 
+                                                                            >
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -250,10 +263,16 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
                                                             <div class="col-md-4">
                                                                 <div class="card" style="width: 15rem;">
-                                                                <img src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
+                                                                <img id="img_three" src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
                                                                     <div class="card-body">
                                                                         <div class="form-group input-file">
-                                                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <input 
+                                                                            id="input_three"
+                                                                            data-img="img_three"
+                                                                            class="form-control-file files"
+                                                                            name="img_product_three"
+                                                                            type="file" 
+                                                                            >
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -261,10 +280,16 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
                                                             <div class="col-md-4">
                                                                 <div class="card" style="width: 15rem;">
-                                                                <img src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
+                                                                <img id="img_four" src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
                                                                     <div class="card-body">
                                                                         <div class="form-group input-file">
-                                                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <input 
+                                                                            id="input_four"
+                                                                            data-img="img_four"
+                                                                            type="file" 
+                                                                            class="form-control-file files" 
+                                                                            name="img_product_four"
+                                                                            >
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -272,10 +297,16 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
                                                             <div class="col-md-4">
                                                                 <div class="card" style="width: 15rem;">
-                                                                <img src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
+                                                                <img id="img_five" src="<?=IMG_URL.'Icons/Site/no_picture.webp'?>" class="card-img-top" alt="...">
                                                                     <div class="card-body">
                                                                         <div class="form-group input-file">
-                                                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <input
+                                                                            id="input_five"
+                                                                            data-img="img_five"
+                                                                            type="file"                                                                            type="file" 
+                                                                            class="form-control-file files" 
+                                                                            name="img_product_five" 
+                                                                            >
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -289,7 +320,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
                                                     <div class="container mt-3">
                                                         <div class="row">
-                                                            <button type="submit" class="btn-theme-one">Cargar Producto</button>
+                                                            <button id="btn_send_data_product" type="button" class="btn-theme-one">Cargar Producto</button>
                                                         </div>
                                                     </div>
                                                 </div>

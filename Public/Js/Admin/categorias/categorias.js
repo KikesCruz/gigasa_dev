@@ -21,9 +21,6 @@ $(document).on("click", "#btn_add_new", function () {
   const formData = document.querySelector("#form_new_category");
 
   let data = new FormData(formData);
-
-  console.log(data);
-
   
   $.ajax({
     type: "POST",

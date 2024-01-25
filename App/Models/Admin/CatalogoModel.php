@@ -120,4 +120,37 @@ class CatalogoModel
 
         return $response;
     }
+
+    public function new_product($param){
+        $query = "INSERT INTO product_catalog
+        VALUES (null,:sku,:name_product,
+            :image_path_one,:image_path_two,:image_path_three,
+            :image_path_four,:image_path_five,
+            :product_description,
+            :regular_price,:wieght,default,default,:id_brand,:id_subcategory)";
+        
+        $this -> db -> query($query);
+
+        $this -> db -> bind(":name_product",$param['name']);
+        $this -> db -> bind(":product_description", $param['details']);
+        $this -> db -> bind(":sku", $param['sku']);
+        $this -> db -> bind(":regular_price", $param['precio']);
+        $this -> db -> bind(":wieght", $param['peso']);
+        $this -> db -> bind(":id_brand", $param['brand']);
+        $this -> db -> bind(":id_subcategory", $param['sub_category']);
+
+        //imagenes
+        $this -> db -> bind(":image_path_one", $param['pictures'][0] == '' ? 'vacio':  $param['pictures'][0]);
+        $this -> db -> bind(":image_path_two", $param['pictures'][1] == '' ? 'vacio':  $param['pictures'][1]);
+        $this -> db -> bind(":image_path_three", $param['pictures'][2] == '' ? 'vacio':  $param['pictures'][2]);
+        $this -> db -> bind(":image_path_four", isset($param['pictures'][3]) == '' ? 'vacio':  $param['pictures'][3]);
+        $this -> db -> bind(":image_path_five", isset($param['pictures'][4]) == '' ? 'vacio':  $param['pictures'][4]);
+        
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
 }

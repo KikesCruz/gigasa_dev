@@ -66,6 +66,7 @@ Route::post('admin/brands/update',[BrandsController::class,'update']);
 
 /** Catalog */
 Route::get('admin/catalogo',[CatalogoController::class,'view']);
+Route::post('admin/catalogo/add',[CatalogoController::class,'add']);
 
 
 /*** SUBCATEGORIAS ***/

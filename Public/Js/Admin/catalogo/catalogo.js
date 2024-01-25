@@ -1,3 +1,22 @@
+/** Function add new category */
+toastr.options = {
+  closeButton: false,
+  debug: false,
+  newestOnTop: false,
+  progressBar: false,
+  positionClass: "toast-bottom-right",
+  preventDuplicates: false,
+  onclick: null,
+  showDuration: "300",
+  hideDuration: "1000",
+  timeOut: "2000",
+  extendedTimeOut: "1000",
+  showEasing: "swing",
+  hideEasing: "linear",
+  showMethod: "fadeIn",
+  hideMethod: "fadeOut",
+};
+
 $(document).ready(function () {
   $("#tb_catalogo thead tr")
     .clone(true)
@@ -66,14 +85,13 @@ $(document).on("click", "#btn_list_inactivos", function () {
     data: { list: "all" },
     dataType: "json",
     success: function (response) {
-
-      for(const product of response){
+      for (const product of response) {
         data += `
         
         <tr>
-        <td>${product['id_catalog']}</td>
-        <td>${product['name_product']}</td>
-        <td>${product['status']}</td>
+        <td>${product["id_catalog"]}</td>
+        <td>${product["name_product"]}</td>
+        <td>${product["status"]}</td>
         <td></td>
         </tr>
         `;
@@ -95,12 +113,18 @@ $(document).ready(function () {
       data: { id_depto: item },
       dataType: "json",
       success: function (response) {
-   
         for (const category of response) {
           categories += `<option value="${category["id_category"]}">${category["category_name"]}</option>`;
         }
+        categories = `
+        <select
+        name="category"
+        class="form-control">
+        <option value="0" selected>Categorías</option>
+        ${categories}
+        </select>`;
 
-        $("#options_categories").append(categories);
+        $("#options_categories").html(categories);
       },
     });
   });
@@ -146,5 +170,76 @@ $(document).ready(function () {
       },
     });
     $("#input_sku").removeClass("is-invalid");
+  });
+});
+
+$(document).on("click", ".files", function () {
+  var id = $(this).attr("id");
+  var id_two = "";
+  $("#" + id).change(function (e) {
+    const file = $("#" + id)[0].files[0];
+    const url = URL.createObjectURL(file);
+    id_two = $(this).attr("data-img");
+    $("#" + id_two).attr("src", url);
+  });
+});
+
+$(document).ready(function () {
+  $("#btn_send_data_product").on("click", function () {
+    const formData = document.querySelector("#form_product");
+
+    let data = new FormData(formData);
+
+    $.ajax({
+      type: "post",
+      url: "catalogo/add",
+      data: data,
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        if(response == 'img_empty'){
+          toastr["warning"]("Se requiere mínimo tres imágenes", "Advertencia");
+        }else if(response == 'success'){
+          toastr["success"]("Se guardo correctamente", "Realizado");
+          setTimeout(function () {
+            location.reload();
+          }, 500);
+        }else{
+          for (const alert of response) {
+            switch (alert) {
+              case "sku":
+                toastr["warning"]("Campo sku vacío", "Advertencia");
+                break;
+              case "name_product":
+                toastr["warning"]("Campo nombre de producto vacío", "Advertencia");
+                break;
+              case "department":
+              toastr["warning"]("No selecciono un departamento", "Advertencia");
+                break;
+              case "category":
+              toastr["warning"]("No selecciono una categoría", "Advertencia");
+                break;
+              case "sub_category":
+              toastr["warning"]("No selecciono una sub categoría", "Advertencia");
+                break;
+              case "brand":
+              toastr["warning"]("No selecciono una marca", "Advertencia");
+                break;
+              case "precio":
+              toastr["warning"]("Indique el precio de venta", "Advertencia");
+                break;
+              case "peso":
+              toastr["warning"]("Indique un peso", "Advertencia");
+                break;
+              case "details":
+              toastr["warning"]("Coloque una descripción", "Advertencia");
+                break;
+               
+            }
+          }
+        }
+      },
+    });
   });
 });
