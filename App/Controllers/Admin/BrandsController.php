@@ -23,36 +23,47 @@ class BrandsController extends Controller
     public function add()
     {
 
+
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $name_brand = $this->sanitizerString($_POST['brand_name']);
+            echo FILES_IMG;
+            $this -> debug($_POST);
+            $this -> debug($_FILES);
+          
 
-            if ($name_brand== '' && $_FILES['img_file']['name'] == '') {
+            $brand = [
+              "brand" => $this-> sanitizerString($_POST['brand_name']),
+              "picture" => []
+            ];
+
+            if ($brand['brand'] == '' && $_FILES['img_file']['name'] == '') {
                 return json_encode($this->message_type(1));
             }
 
 
-                $data = $this->model->findBybrand($name_brand);
-
+                $data = $this->model->findBybrand($brand['brand']);
+                echo is_bool($data);
+                print_r($data);
                 switch (true) {
                     case is_array($data):
-                        if ($data['brand_name'] == $name_brand) {
+                        if ($data['brand_name'] == $brand['brand']) {
                             return json_encode($this->message_type(3));
                         }
                         break;
 
                     case is_bool($data):
 
-                    $img_save = $_FILES['img_file']['name'] == '' ? 'empty' : $this->img_save('Icons/Brands/', $name_brand, $_FILES);
 
-                    $brand_array = [
-                        'brand_name' => $name_brand,
-                        'img' => $img_save
-                    ];
+                    $img_save = $_FILES['img_file']['name'] == '' ? 'empty' :  $this->img_product(FILES_IMG.'Icons/Brands/', $brand['brand'], $_FILES['img_file']['type'],$_FILES['img_file']['tmp_name']);
+                    $route_img = explode("Store/",$img_save);
 
-                    if ($this->model->addbrand($brand_array) == 'true') {
+                    $brand['picture'] = IMG_URL.$route_img[1];
+                    $this -> debug($brand);
+
+                    /*/if ($this->model->addbrand($brand_array) == 'true') {
                         return json_encode($this->message_type(0));
-                    }
+                    }*/
                         break;
                 }
             }

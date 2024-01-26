@@ -84,68 +84,51 @@ class CatalogoController extends Controller
             ];
 
             foreach ($_FILES as $key_img => $img) {
-              
+
                 $pictures[$key_img]['type'] = $img['type'];
                 $pictures[$key_img]['tmp_name'] = $img['tmp_name'];
             }
 
             $product['pictures'] = $pictures;
-     
-
-   
 
             foreach ($product as $key => $value) {
-               
-                    if($value == '' || $value == '0'){
-                        array_push($key_valid,$key);
-                    }
-                
+
+                if ($value == '' || $value == '0') {
+                    array_push($key_valid, $key);
+                }
             }
 
-            if(!empty($key_valid)){
+            if (!empty($key_valid)) {
                 return json_encode($key_valid);
             }
 
             $total = 0;
             foreach ($product['pictures'] as $key => $value) {
-                if($value['type'] != '' || $value['tmp_name'] != ''){    
+                if ($value['type'] != '' || $value['tmp_name'] != '') {
                     $total++;
-                }   
+                }
             }
-
-
 
             // Validaciones
-            if($total < 3){
+            if ($total < 3) {
                 return json_encode("img_empty");
             }
-           
 
-
-          
-        
-
-            $folder = $this -> new_folder($product['sku'],FILES_IMG.'Products/');
+            $folder = $this->new_folder($product['sku'], FILES_IMG . 'Products/');
             $name_img = 1;
             $names_array = [];
             foreach ($product['pictures'] as $key => $value) {
-                if($value['type'] != '' || $value['tmp_name'] != ''){  
-                   $img = $this ->  img_product($folder.'/',$product['sku']."_".$name_img++,$value['type'],$value['tmp_name']); 
-                   $route_img = explode("Store/",$img);
-                   array_push($names_array,IMG_URL.$route_img[1]);
-                }   
+                if ($value['type'] != '' || $value['tmp_name'] != '') {
+                    $img = $this->img_product($folder . '/', $product['sku'] . "_" . $name_img++, $value['type'], $value['tmp_name']);
+                    $route_img = explode("Store/", $img);
+                    array_push($names_array, IMG_URL . $route_img[1]);
+                }
             }
-               
+
             $product['pictures'] = $names_array;
 
-
-          
-
-            
-           $this -> model -> new_product($product);
-
+            $this->model->new_product($product);
             echo json_encode("success");
-            
         }
     }
 }
