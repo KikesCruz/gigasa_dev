@@ -40,7 +40,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $brand['brand_name'] ?></td>
                   <td><?= $brand['status_brand'] ?></td>
                   <td>
-                  <?= $brand['img_path'] != '' ?
+                  <?= $brand['img_path'] != 'url_empty' ?
                           '<button 
                           id="btnEnableDepto" 
                           type="button" 
@@ -103,7 +103,14 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             <div class="row">
               <div class="col">
                 <label for="">Imagen</label>
-                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/jpeg, image/jpg, image/png" />
+                <div class="row">
+                  <div class="col">
+                  <div class="form-group input-file">
+                  <input name="img_brand" type="file" class="form-control-file files" id="img_file_new" accept="image/jpeg, image/jpg, image/png, image/webp" />
+                </div>
+                  </div>
+                </div>
+             
               </div>
             </div>
 

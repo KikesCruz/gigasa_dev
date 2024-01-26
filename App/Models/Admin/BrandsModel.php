@@ -20,7 +20,7 @@ class BrandsModel
         SELECT
         id_brand,
         brand_name,
-        concat(img_path,img_name) as img_path,
+        img_path,
         view_web,
         status_brand
         from brands";
@@ -31,33 +31,54 @@ class BrandsModel
         return $response;
     }
 
-    public function findBybrand($param)
+    public function searchBrand($param)
     {
-        $query = "SELECT * FROM  brands    WHERE brand_name = :brand_name";
+        $query = "SELECT brand_name  FROM  brands WHERE brand_name = :brand_name";
 
         $this->db->query($query);
         $this->db->bind(":brand_name", $param);
 
         $response = $this->db->resultOne();
 
+        if(empty($response)){
+            $response = 'no_matches';
+        }else{
+            $response = $response['brand_name'];
+        }
         return $response;
     }
 
-    public function addbrand($param)
+    public function searchUrl($param){
+        $query = "SELECT brand_name,img_path FROM  brands WHERE id_brand = :id_brand";
+
+        $this->db->query($query);
+        $this->db->bind(":id_brand", $param);
+
+        $response = $this->db->resultOne();
+
+        if(empty($response)){
+            $response = 'no_matches';
+        }
+        
+        return $response;
+    }
+
+
+    public function new_brand($param)
     {
-        $query = "INSERT INTO brands VALUES(null,:brand_name,:img_path,:img_name,default,default,default)";
+        $query = "INSERT INTO brands VALUES(null,:brand_name,:img_path,default,default,default)";
 
         $this->db->query($query);
 
-        $this->db->bind(":brand_name", $param['brand_name']);
+        $this->db->bind(":brand_name", $param['brand']);
 
-        $this->db->bind(":img_path", $param['img'] == 'empty' ? '' : FILES_IMG.'Icons/Brands/');
-        $this->db->bind(":img_name",  $param['img'] == 'empty' ? '' : str_replace(' ','_',$param['brand_name'].'.webp'));
+        $this->db->bind(":img_path", $param['picture']);
+   
 
         if ($this->db->execute()) {
-            return true;
+            return "success";
         } else {
-            return false;
+            return "error";
         }
     }
 
@@ -91,12 +112,13 @@ class BrandsModel
         }
     }
 
-    public function updatebrand($param){
-        $query = "UPDATE brands SET brand_name = :brand_name WHERE id_brand = :id_brand";
+    public function update_brand($param){
+        $query = "UPDATE brands SET brand_name = :brand_name, img_path = :img_path WHERE id_brand = :id_brand";
 
         $this->db->query($query);
         $this->db->bind(":id_brand", $param['id_brand']);
         $this->db->bind(":brand_name", $param['name_brand']);
+        $this->db->bind(":img_path", $param['new_url']);
 
         if ($this->db->execute()) {
             return true;

@@ -28,7 +28,7 @@ class Controller
 
     public function redirect($route = false){
         if($route){
-            header("Location:".BASE_URL.$route);
+            header("Location:".URL_BASE.$route);
             exit;
         }else{
             header('Location:/admin');

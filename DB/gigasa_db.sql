@@ -8,8 +8,7 @@ use database gigasa_db;
 create table departments(
 id_depto int auto_increment,
 depto_name varchar(50) not null,
-path_img varchar(50),
-img_name varchar(30),
+path_img varchar(200),
 view_web varchar(10) default 'off',
 status_depto varchar(10) default 'on',
 
@@ -24,8 +23,7 @@ create_at DATETIME default CURRENT_TIMESTAMP,
 create table categories(
 id_category int auto_increment,
 category_name varchar(50) not null,
-img_path varchar(60),
-img_name varchar(50),
+img_path varchar(200),
 view_web varchar(10) default 'off',
 status_category varchar(10)  default 'on',
 create_at DATETIME default current_timestamp,
@@ -60,8 +58,7 @@ id_category int,
 create table brands(
 id_brand int auto_increment,
 brand_name varchar(60) not null,
-img_path varchar(100),
-img_name varchar(30),
+img_path varchar(200),
 view_web varchar(10) default 'off',
 status_brand varchar(10) default 'on',
 create_at DATETIME default current_timestamp,
@@ -84,7 +81,7 @@ image_path_four varchar(200) default 'vacio',
 image_path_five varchar(200) default 'vacio',
 product_description TEXT not null,
 regular_price decimal(12,2)not null,
-wieght int,
+weight int,
 status varchar(10) default 'on',
 create_at DATETIME default CURRENT_TIMESTAMP,
 -- FK --
@@ -106,9 +103,6 @@ id_subcategory int,
 create table inventory(
 id_inventory int auto_increment,
 stock int,
-
-
-
 )engine=InnoDB default CHARSET=utf8mb4  auto_increment=600;
 
 
@@ -124,7 +118,6 @@ modified_at DATETIME,
 
 drop table users_type 
 
-SET FOREIGN_KEY_CHECKS=0;
 create table users(
 id_user int auto_increment ,
 user_name varchar(50) not null,
@@ -139,3 +132,4 @@ id_type int,
             references users_type(id_type)
 
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment=200;
+SET FOREIGN_KEY_CHECKS=0;
