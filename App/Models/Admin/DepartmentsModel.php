@@ -24,7 +24,7 @@ class DepartmentsModel
         return $response;
     }
 
-    public function findByDepto($param)
+    public function searchDepartment($param)
     {
         $query = "SELECT depto_name FROM departments WHERE depto_name = :depto_name";
 
@@ -33,24 +33,43 @@ class DepartmentsModel
 
         $response = $this->db->resultOne();
 
+        if (empty($response)) {
+            $response = 'no_matches';
+        } else {
+            $response = $response['depto_name'];
+        }
         return $response;
     }
 
-    public function addDepto($param)
+    public function searchUrl($param)
     {
-
-        $query = "INSERT INTO departments VALUES(null,:depto_name,:path_img,:img_name,default,default,default)";
+        $query = "SELECT depto_name,path_img FROM departments WHERE id_depto = :id_depto";
 
         $this->db->query($query);
-        $this->db->bind(":depto_name", $param['depto_name']);
-   
-        $this->db->bind(":path_img", $param['img'] == 'empty' ? '' : FILES_IMG.'Departments/');
-        $this->db->bind(":img_name",  $param['img'] == 'empty' ? '' : str_replace(' ','_',$param['depto_name'].'.webp'));
+        $this->db->bind(":id_depto", $param);
+
+        $response = $this->db->resultOne();
+
+        if (empty($response)) {
+            $response = 'no_matches';
+        } 
+        return $response;
+    }
+
+    public function new_department($param)
+    {
+
+        $query = "INSERT INTO departments VALUES(null,:depto_name,:path_img,default,default,default)";
+
+        $this->db->query($query);
+        $this->db->bind(":depto_name", $param['name_department']);
+        $this->db->bind(":path_img", $param['picture']);
+
 
         if ($this->db->execute()) {
-            return true;
+            return "success";
         } else {
-            return false;
+            return "error";
         }
     }
 
@@ -84,17 +103,48 @@ class DepartmentsModel
         }
     }
 
-    public function updateDepto($param){
-        $query = "UPDATE departments SET depto_name = :depto_name WHERE id_depto = :id_depto ";
+    public function updateDepto($param)
+    {
+        $query = "UPDATE departments SET depto_name = :depto_name, path_img = :path_img  WHERE id_depto = :id_depto ";
 
         $this->db->query($query);
-        $this->db->bind(":id_depto", $param['id_depto']);
-        $this->db->bind(":depto_name", $param['name_depto']);
+        $this->db->bind(":id_depto", $param['id_department']);
+        $this->db->bind(":depto_name", $param['department_name']);
+        $this->db->bind(":path_img", $param['new_url']);
 
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function off_web($param){
+        $query = "UPDATE departments SET view_web = 'off'  WHERE id_depto = :id_depto ";
+
+        $this->db->query($query);
+        $this->db->bind(":id_depto", $param);
+   
+
+        if ($this->db->execute()) {
+            return 'success';
+        } else {
+            return 'error';
+        }
+    }
+
+    
+    public function on_web($param){
+        $query = "UPDATE departments SET view_web = 'on'  WHERE id_depto = :id_depto ";
+
+        $this->db->query($query);
+        $this->db->bind(":id_depto", $param);
+   
+
+        if ($this->db->execute()) {
+            return 'success';
+        } else {
+            return 'error';
         }
     }
 }

@@ -49,7 +49,7 @@ class BrandsController extends Controller
                 $notify =   $this->model->new_brand($brand);
             } else {
 
-                $url_img = $this->img_product($route, $brand['brand'], $_FILES['img_brand']['type'], $_FILES['img_brand']['tmp_name']);
+                $url_img = $this->img_save($route, $brand['brand'], $_FILES['img_brand']['type'], $_FILES['img_brand']['tmp_name']);
                 $url_img = explode("Store/", $url_img);
                 $brand['picture'] = IMG_URL . $url_img[1];
 

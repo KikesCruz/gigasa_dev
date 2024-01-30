@@ -224,6 +224,91 @@ $(document).on("click", "#btn_update_conf", function (e) {
   });
 });
 
+
+$(document).on("click", "#btnOffWeb", function(){
+  let table = $(this).closest("#tableDeptos");
+
+  let body_modal = `
+      <form id="form_off_web">
+          <div class="row p-3" style="display:none;">
+              <div class="col-4">
+                  <input name="id_depto" class="form-control shadow-none" type="text" value="${table
+                    .find("td:eq(0)")
+                    .text()}" readonly>
+              </div>
+          </div>
+          <div class="row p-3">
+              <div class="col-12 d-flex flex-row-reverse">
+                  <button id="btn_conf_web_off" type="button" class="btn-theme-one ml-1">Actualizar</button>
+                  <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
+              </div>
+          </div>
+      </form>
+      `;
+
+  $("#body_modal_offWeb").html(body_modal);
+});
+
+$(document).on("click","#btn_conf_web_off", function(){
+
+  let data = $("#form_off_web").serialize();
+
+  $.ajax({
+    type: "POST",
+    url: "departamentos/off-web",
+    data: data,
+    dataType: "json",
+    success: function (response) {
+      
+    }
+  });
+
+
+});
+
+
+$(document).on("click", "#btnOnWeb", function(){
+  let table = $(this).closest("#tableDeptos");
+
+  let body_modal = `
+      <form id="form_on_web">
+          <div class="row p-3" style="display:none;">
+              <div class="col-4">
+                  <input name="id_depto" class="form-control shadow-none" type="text" value="${table
+                    .find("td:eq(0)")
+                    .text()}" readonly>
+              </div>
+          </div>
+          <div class="row p-3">
+              <div class="col-12 d-flex flex-row-reverse">
+                  <button id="btn_conf_web_on" type="button" class="btn-theme-one ml-1">Actualizar</button>
+                  <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
+              </div>
+          </div>
+      </form>
+      `;
+
+  $("#body_modal_onWeb").html(body_modal);
+});
+
+$(document).on("click","#btn_conf_web_on", function(){
+
+  let data = $("#form_on_web").serialize();
+
+  $.ajax({
+    type: "POST",
+    url: "departamentos/on-web",
+    data: data,
+    dataType: "json",
+    success: function (response) {
+      
+    }
+  });
+
+
+});
+
+
 $(document).ready(function () {
   $("#tb_deptos").DataTable({
 

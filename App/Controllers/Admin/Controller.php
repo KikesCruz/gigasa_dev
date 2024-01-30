@@ -68,32 +68,7 @@ class Controller
     }
 
 
-    public function img_save($view, $img_name, $img){
-        
-       $files_type = array("image/jpeg", "image/jpg","image/png");   
-
-       $path = FILES_IMG.$view;
-       
-       if(in_array($img['img_file']['type'], $files_type)){
-
-            $save_img = str_replace(' ','_',$path.$img_name.'.webp');
-
-            if(move_uploaded_file($img['img_file']['tmp_name'],$save_img)){
-                $imagen_webp = imagecreatefromstring(file_get_contents($save_img));
-                imagewebp($imagen_webp,$save_img,65);
-                imagedestroy($imagen_webp);
-            }
-        }else if($img['img_file']['type'] == "image/svg+xml"){
-            
-            $save_img = str_replace(' ','_',$path.$img_name.'.svg');
-            move_uploaded_file($img['img_file']['tmp_name'],$save_img);
-               
-        }
-
-    }
-
-    
-    public function img_product($route, $img_name, $type,$tmp){
+    public function img_save($route, $img_name, $type,$tmp){
         
         $files_type = array("image/jpeg", "image/jpg","image/png");   
  
@@ -122,7 +97,7 @@ class Controller
      }
 
     public function message_type($message){
-        $messages = ['success','empty','error','duplicate'];
+        $messages = ['success','empty','error','duplicate','update'];
 
         
         foreach ($messages as $key => $value) {

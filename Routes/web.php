@@ -46,6 +46,8 @@ Route::post('/admin/departamentos/add', [DepartmentsController::class, 'add']);
 Route::post('/admin/departamentos/enable', [DepartmentsController::class, 'enable']);
 Route::post('/admin/departamentos/disable', [DepartmentsController::class, 'disable']);
 Route::post('/admin/departamentos/update', [DepartmentsController::class, 'update']);
+Route::post('/admin/departamentos/off-web', [DepartmentsController::class, 'off_web']);
+Route::post('/admin/departamentos/on-web', [DepartmentsController::class, 'on_web']);
 
 
 /** Categorías */

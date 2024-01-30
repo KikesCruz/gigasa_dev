@@ -14,7 +14,7 @@ class CategoriesController extends Controller
         $this->model = new CategoriesModel();
     }
 
-    
+
     public function view()
     {
 
@@ -38,43 +38,48 @@ class CategoriesController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-            $category_array = [
-                "name_category" => $this->sanitizerString($_POST['name_category']),
-                "id_depto" => $_POST['depto'],
-                "file" => ''
+            $notify = '';
+            $route = FILES_IMG . 'Categories/';
+
+            $category = [
+                "category" => $this->sanitizerString($_POST['name_category']),
+                "id_department" => $_POST['depto'],
+                "picture" => 'empty_url'
             ];
 
-
-            if ($category_array['name_category'] == '' || $category_array['id_depto'] == 0) {
+            if ($category['category'] == '') {
                 return json_encode($this->message_type(1));
             }
 
-
-
-            $search =  $this->model->searchCategory($category_array);
-
-
-            switch (true) {
-                case is_array($search):
-
-                    if ($search['category_name'] == $category_array['name_category']) {
-                        return json_encode($this->message_type(3));
-                    }
-
-                    break;
-
-                case is_bool($search):
-
-                    $img_save = $_FILES['img_file']['name'] == '' ? 'empty' : $this->img_save('Categories/', $category_array['name_category'], $_FILES);
-
-                    $category_array['file'] = $img_save;
-                
-                    if ($this->model->new_category($category_array) == 'true') {
-                        return json_encode($this->message_type(0));
-                    }
-
-                    break;
+            if ($category['id_department'] == 0) {
+                return json_encode($this->message_type(2));
             }
+
+
+            $name_category = $this->model->searchCategory($category);
+
+            if ($name_category == $category['category']) {
+                return json_encode($this->message_type(3));
+            }
+
+            if ($_FILES['img_file']['name'] == '') {
+                $notify = $this->model->new_category($category);
+            } else {
+                $url_img = $this->img_save($route, $category['category'], $_FILES['img_file']['type'], $_FILES['img_file']['tmp_name']);
+                $url_img = explode("Store/",$url_img);
+                $category['picture'] = IMG_URL.$url_img[1];
+
+                $notify = $this -> model -> new_category($category);
+            }
+
+
+            if ($notify  == 'success') {
+                return json_encode($this->message_type(0));
+            } else {
+                return json_encode($this->message_type(2));
+            }
+
+
         }
     }
 

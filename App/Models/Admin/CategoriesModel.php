@@ -19,7 +19,7 @@ class CategoriesModel{
         cat.id_category,
         cat.category_name,
         cat.status_category,
-        concat(cat.img_path,cat.img_name) as path_img,
+        cat.img_path,
         cat.view_web
         from categories cat
         inner join departments depto on (depto.id_depto = cat.id_depto)';
@@ -46,25 +46,29 @@ class CategoriesModel{
         $query = "select category_name from categories where category_name like :category_name and id_depto = :id_depto";
 
         $this -> db ->query($query);
-        $this -> db -> bind(":category_name",'%'.$param['name_category'].'%');
-        $this -> db -> bind(":id_depto",$param['id_depto']);
+        $this -> db -> bind(":category_name",'%'.$param['category'].'%');
+        $this -> db -> bind(":id_depto",$param['id_department']);
 
         $response = $this -> db -> resultOne();
 
+       
+        if (empty($response)) {
+            $response = 'no_matches';
+        } else {
+            $response = $response['category_name'];
+        }
         return $response;
 
     }
 
 
     public function new_category($param){
-        $query = "INSERT INTO categories VALUES (null,:category_name,:img_path,:img_name,default,default,default,:id_depto)";
+        $query = "INSERT INTO categories VALUES (null,:category_name,:img_path,default,default,default,:id_depto)";
 
         $this -> db -> query($query);
-        $this -> db -> bind(":category_name",$param['name_category']);
-        $this -> db -> bind(":id_depto",$param['id_depto']);
-
-        $this -> db -> bind(":img_path",$param['file'] == 'empty' ? '' : FILES_IMG.'Categories/');
-        $this -> db -> bind(":img_name",$param['file'] == 'empty' ? '' : str_replace(' ','_',$param['name_category'].'.svg') );
+        $this -> db -> bind(":category_name",$param['category']);
+        $this -> db -> bind(":id_depto",$param['id_department']);
+        $this -> db -> bind(":img_path",$param['picture']);
 
 
         if($this -> db -> execute()){

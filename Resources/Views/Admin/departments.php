@@ -27,7 +27,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                 <th>#ID Depto</th>
                 <th>Departamentos</th>
                 <th>Estatus</th>
-                <th>Web Estatus</th>
+                <th>Web</th>
                 <th>Img</th>
                 <th>Acciones</th>
               </tr>
@@ -39,22 +39,61 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $depto['id_depto'] ?></td>
                   <td><?= $depto['depto_name'] ?></td>
                   <td><?= $depto['status_depto'] ?></td>
-                  <td><?= $depto['view_web'] ?></td>
                   <td>
-                  <div class="group-btn">
-                    <?= $depto['img_name'] != '' ?
-                          '<button 
+
+                    <?php if ($depto['path_img'] != 'url_empty') : ?>
+                      <?= $depto['view_web'] == 'off' ?
+                        '<button 
+                     id="btnOnWeb" 
+                     type="button" 
+                     class="btn" 
+                     data-toggle="modal" 
+                     data-target="#onWeb">
+                     <i class="fa-solid fa-store"></i>
+                     </button>'
+                        :
+                        '<button 
+                     id="btnOffWeb" 
+                     type="button" 
+                     class="btn" 
+                     data-toggle="modal" 
+                     data-target="#offWeb">
+                     <i class="fa-solid fa-store-slash btn-error-icon"></i>
+                     </button>'
+                      ?>
+                    <?php endif; ?>
+
+
+                  </td>
+
+
+
+                  <td>
+                    <div class="group-btn">
+                      <?= $depto['path_img'] != 'url_empty' ?
+                        '<button 
                           id="btnEnableDepto" 
                           type="button" 
                           class="btn" 
                           data-toggle="modal" 
                           data-target="#enableModal">
-                          <i class="fa-solid fa-image"></i>
-                         </button>' :''
-                    ?>
-                  </div>  
-                  
+                          <i class="fa-solid fa-image btn-update-icon"></i>
+                         </button>' :
+                        '<button 
+                          id="btnEnableDepto" 
+                          type="button" 
+                          class="btn" 
+                          data-toggle="modal" 
+                          data-target="#enableModal">
+                          <i class="fa-solid fa-ban btn-error-icon"></i>
+                         </button>'
+                      ?>
+                    </div>
+
                   </td>
+
+
+
                   <td>
                     <div class="group-btn">
                       <?= $depto['status_depto'] == 'off' ?
@@ -171,6 +210,40 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
           </button>
         </div>
         <div id="body_modal_update" class="body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- View in web  -->
+  <div class="modal fade" id="offWeb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿No visible en web?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="body_modal_offWeb" class="body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="onWeb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿No visible en web?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="body_modal_onWeb" class="body">
 
         </div>
       </div>

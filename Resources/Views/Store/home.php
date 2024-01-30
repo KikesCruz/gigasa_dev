@@ -29,7 +29,21 @@
         <h6 class="header">Categorías</h6>
         <div class="carousel-category owl-carousel owl-theme ">
 
-          <div class="item__category">
+
+
+
+         <?php foreach( $data['departments'] as $department ) : ?>
+
+         <div class="item__category">
+            <a href="search/<?= base64_encode($department['id_depto'])?>">
+              <img src="<?=$department['path_img']?>" alt="">
+              <h6><?=$department['depto_name']?></h6>
+            </a>
+          </div>
+
+         <?php endforeach; ?>
+
+         <!-- <div class="item__category">
             <a href="#">
               <img src="<?=URL_BASE.'Public/Img/Store/Categories/promociones.svg'?>" alt="">
               <h6>Promociones</h6>
@@ -83,7 +97,7 @@
               <img src="<?=URL_BASE.'Public/Img/Store/Categories/salud_sexual.svg'?>" alt="">
               <h6>Salud Sexual</h6>
             </a>
-          </div>
+          </div> -->
 
         </div>
       </div>

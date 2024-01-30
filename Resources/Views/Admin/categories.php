@@ -29,7 +29,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                 <th>#ID Cat</th>
                 <th>Categorías</th>
                 <th>Estatus</th>
-                <th>Estatus Web</th>
+                <th>Web</th>
                 <th>Img</th>
                 <th>Acciones</th>
               </tr>
@@ -44,7 +44,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $category['category_name'] ?></td>
                   <td><?= $category['status_category'] ?></td>
                   <td><?= $category['view_web'] ?></td>
-                  <td><?= $category['path_img'] != '' ?
+                  <td><?= $category['img_path'] != 'empty_url' ?
                           '<button 
                           id="btnEnableDepto" 
                           type="button" 
@@ -99,7 +99,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             <div class="row">
               <div class="col">
                 <label for="">Categoría</label>
-                <input name="name_category" type="text" class="form-control shadow-none" autocomplete="off" />
+                <input name="name_category" type="text" class="form-control shadow-none"/>
               </div>
 
             </div>

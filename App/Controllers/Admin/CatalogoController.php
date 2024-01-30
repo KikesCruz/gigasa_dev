@@ -119,7 +119,7 @@ class CatalogoController extends Controller
             $names_array = [];
             foreach ($product['pictures'] as $key => $value) {
                 if ($value['type'] != '' || $value['tmp_name'] != '') {
-                    $img = $this->img_product($folder . '/', $product['sku'] . "_" . $name_img++, $value['type'], $value['tmp_name']);
+                    $img = $this->img_save($folder . '/', $product['sku'] . "_" . $name_img++, $value['type'], $value['tmp_name']);
                     $route_img = explode("Store/", $img);
                     array_push($names_array, IMG_URL . $route_img[1]);
                 }
