@@ -116,7 +116,7 @@ $(document).ready(function () {
 $(document).ready(function () {
  let categories = '';
   
-  setTimeout(function(){
+  setTimeout(
     $.ajax({
       type: "GET",
       url: "/categories",
@@ -141,8 +141,8 @@ $(document).ready(function () {
   
         $("#categories-icons").html(categories);
       }
-    });
-  },500);
+    }),500)
+
 
 
 
