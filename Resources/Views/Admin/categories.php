@@ -11,7 +11,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-12 text-center mt-2">
-            <h1>Categorías</h1>
+            <h1>Categorias</h1>
           </div>
         </div>
       </div>
@@ -19,15 +19,13 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
     <section class="content">
       <div class="container-box">
+
         <div class="box">
-          <table id="table_categories" class="table table-bordered">
-            
+          <table id="tb_categories" class="table table-striped  table-condensed" style="width:100%">
             <thead>
               <tr>
-                <th>#ID Depto</th>
-                <th>Departamentos</th>
-                <th>#ID Cat</th>
-                <th>Categorías</th>
+                <th>#</th>
+                <th>Categorias</th>
                 <th>Estatus</th>
                 <th>Web</th>
                 <th>Img</th>
@@ -36,101 +34,120 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             </thead>
             <tbody>
 
-              <?php foreach ($data['categories'] as $category) : ?>
-                <tr id='tb_categories'>
-                  <td><?= $category['id_depto'] ?></td>
-                  <td class="text-wrap" style="width: 1rem"><?= $category['depto_name'] ?></td>
-                  <td><?= $category['id_category'] ?></td>
-                  <td><?= $category['category_name'] ?></td>
-                  <td><?= $category['status_category'] ?></td>
-                  <td><?= $category['view_web'] ?></td>
-                  <td><?= $category['img_path'] != 'empty_url' ?
-                          '<button 
-                          id="btnEnableDepto" 
-                          type="button" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#enableModal">
-                          <i class="fa-solid fa-image"></i>
-                         </button>' :''?>
+              <?php foreach ($data as $categories) : ?>
+                <tr id="tr_category">
+                  <td><?= $categories['id_category'] ?></td>
+                  <td><?= $categories['name_category'] ?></td>
+                  <td>
+                
+                  
+                  <?= $categories['status'] == 'activado' ? 
+                  '<button
+                  id="" 
+                  type="button" 
+                  data-toggle="modal" 
+                  data-target="#off_category_modal"
+                  class="btn-status success">
+                  activado
+                  </button>'
+                  : 
+                  '<button class="btn-status error">
+                  desactivado
+                  </button>'
+                  ?>
+
                   </td>
                   <td>
-                    <div class="group-btn">
-                      <?= $category['status_category'] == 'off' ?
-                        '<button 
-                          id="btnEnableCat" 
-                          type="button" 
-                          class="btn" 
+
+                    <?php if ($categories['img_path'] != 'url_empty') : ?>
+                    
+                       <button 
+                       id="btn_update_web" 
+                       type="button" 
+                       class="btn-icons-web <?=$categories['view_web']=='on'?'off':'on'?>" 
+                       data-toggle="modal" 
+                       data-target="#modal_web"
+                       data-web="<?=$categories['view_web']?>">
+                       <?=$categories['view_web'] == 'on' ? '<i class="fa-solid fa-store-slash"></i>':' <i class="fa-solid fa-store"></i>'?>
+                       </button>
+                    
+                    
+                    <?php endif; ?>
+
+
+                  </td>
+
+
+
+                  <td>
+                
+                      <?= $categories['img_path'] == 'url_empty' ?
+                          '<button
+                          id="btnEnableDepto" 
+                          type="button"
+                          class="btn-icons-img error" 
                           data-toggle="modal" 
                           data-target="#enableModal">
-                          <i class="fa-solid fa-circle-check btn-enable-icon"></i>
+                          <i class="fa-solid fa-ban"></i>
                          </button>'
-                        :
-                        '<button 
-                          id="btnUpdateCat" 
-                          type="button" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#editModal">
-                          <i class="fa-solid fa-pen-to-square btn-update-icon"></i>
-                          </button>
-                        <button 
-                          id="btnDisableCat" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#disableModal">
-                          <i class="fa-solid fa-circle-minus btn-error-icon"></i>
-                        </button>
-                       '
-                        ?>
-                    </div>
+                         :
+                         '<button 
+                         id="btnEnableDepto" 
+                         type="button" 
+                         class="btn-icons-img img" 
+                         data-toggle="modal" 
+                         data-target="#">
+                         <i class="fa-solid fa-image"></i>
+                        </button>'
+                      ?>
+               
+
+                  </td>
+
+
+
+                  <td>
+                   
+                    
                   </td>
                 </tr>
-
               <?php endforeach; ?>
-
-
 
             </tbody>
           </table>
         </div>
+
         <div class="box box-form">
-          <form id="form_new_category">
+          <form id="form_depto">
             <div class="row">
               <div class="col">
                 <label for="">Categoría</label>
-                <input name="name_category" type="text" class="form-control shadow-none"/>
-              </div>
-
-            </div>
-            <div class="row mt-2">
-              <div class="col">
-                <label for="">Asociar al departamento de:</label>
-                <select name="depto" id="depto_list" class="form-control" aria-label="Default select example">
-                  <option value="0" selected disable>Departamentos</option>
-
-                  <?php foreach ($data['departments'] as $deptos) : ?>
-                    <option value="<?= $deptos['id_depto'] ?>"><?= $deptos['depto_name'] ?></option>
-                  <?php endforeach; ?>
-                </select>
+                <input name="category_name" id="depto_name" type="text" class="form-control shadow-none" autocomplete="false" />
               </div>
             </div>
+
             <div class="row">
               <div class="col">
-                <label for="">Imagen</label>
-                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/svg+xml" />
+                <label for="">Imagen <span>*solo formato svg</span></label>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group input-file">
+                    <input name="img_category" type="file" class="form-control-file files" id="img_file_new" accept="image/svg+xml"  />
+                  </div>
+                </div>
+              </div>
               </div>
             </div>
+
             <div class="row p-2">
               <div class="col">
-                <button id="btn_add_new" type="button" class="btn-theme-one">
-                  <i class="fa-solid fa-plus"></i>
-                  Crear Nuevo
-                </button>
+                <button id="add_depto" type="submit" class="btn-theme-one"> <i class="fa-solid fa-plus"></i>
+                  Crear Nuevo</button>
               </div>
             </div>
           </form>
         </div>
+
       </div>
     </section>
   </div>
@@ -144,7 +161,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar la categoría?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar el departamento?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -158,7 +175,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
   <!-- disable modal -->
 
-  <div class="modal fade" id="disableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="off_category_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -179,7 +196,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualizar categoría</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Actualice el nombre</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -191,6 +208,15 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     </div>
   </div>
 
+
+  <!-- View in web  -->
+  <div class="modal fade" id="modal_web" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div id="modal-content-web" class="modal-content">
+        
+      </div>
+    </div>
+  </div>
 
 
   <?php

@@ -73,7 +73,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #181c32;
   text-align: left;
 }
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -11135,7 +11135,7 @@ body.sidebar-collapse:not(.sidebar-mini-xs):not(.sidebar-mini-md):not(
   }
 }
 .content-wrapper {
-  background-color: #f4f6f9;
+  background-color: #ebecf5;
 }
 .content-wrapper > .content {
   padding: 0 0.5rem;
@@ -12227,7 +12227,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   height: 100vh;
   overflow-y: hidden;
   z-index: 1038;
-  background-color: #191919;
+  background-color: #1e1e2d;
 }
 .main-sidebar a:-moz-focusring {
   border: 0;
@@ -37771,7 +37771,7 @@ body.iframe-mode-fullscreen.layout-navbar-fixed .wrapper .content-wrapper {
   left: 0;
   width: 100%;
   display: none;
-  background-color: #f4f6f9;
+  background-color: #ebecf5;
 }
 .content-wrapper.iframe-mode .tab-loading > div {
   display: -ms-flexbox;

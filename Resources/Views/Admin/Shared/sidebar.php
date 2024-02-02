@@ -3,7 +3,8 @@
     <!-- Brand Logo -->
     <div class="box-logo">
         <div class="box">
-            <img src="<?= URL_BASE.'Public/Img/Ecommerce/Icons/Site/icon-vertical.png'?>" class="brand-image">
+            <img src="<?= IMG_URL.'Icons/Site/icon-vertical.png'?>" class="brand-image">
+     
         </div>
         <div class="box">
             <span>Admin Panel</span>
@@ -33,21 +34,21 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item sub-links">
-                        <a href="./departamentos" class="nav-link">
+                        <a href="./categories" class="nav-link">
 
-                            <p>Departamentos</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item sub-links">
-                        <a href="./categorias" class="nav-link">
                             <p>Categorías</p>
                         </a>
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="./subcategorias" class="nav-link">
+                        <a href="./categorias" class="nav-link">
                             <p>Sub Categorías</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item sub-links">
+                        <a href="./subcategorias" class="nav-link">
+                            <p>Tipos de artículos</p>
                         </a>
                     </li>
 

@@ -1,4 +1,8 @@
 :root {
+
+  --theme-background:#ebecf5;
+
+
   --bg-side-bar: #eef5ff;
   --bg-navbar: ##75cb36;
   --hover-side-item: #c1f2b0;
@@ -8,11 +12,35 @@
   --bg-btn-error:#ff004d;
   --bg-btn-update:#3AB0FF;
   --bg-btn-ad:#5FD068;
+
+  --error-bg:#ffe2e5;
+  --font-error-bg:#f64e8b;
+
+  --success-bg:#c9f7f5;
+  --font-bg-success:#1bc4bc;
+
+  --primary-bg:#d1d3e0;
+  --primary-font:#4e5353;
+
+  --alternative-bg:#fff4de;
+  --alternative-font:#ffa800;
+}
+
+body{
+  background: var(--theme-background);
 }
 
 thead input {
   width: 100%;
 }
+.dt-body-nowrap {
+  white-space: nowrap;
+}
+
+
+
+
+
 
 img {
   width: 100%;
@@ -22,25 +50,58 @@ img {
     background-color: var(--bg--widget);
 }
 
-.group-btn button i{
-font-weight: 600;
-font-size: 1.3rem;
+
+
+/** column status buttons */
+.btn-status{
+  border: none;
+  border-radius:0.5rem ;
 }
 
-button .btn-error-icon{
-   color: var(--bg-btn-error);
-  
+.btn-status.success{
+  background-color: var(--success-bg);
+  color: var(--font-bg-success);
 }
 
-button .btn-update-icon{
-   color: var(--bg-btn-update);
-
+.btn-status.error{
+  background-color: var(--error-bg);
+  color: var(--font-error-bg);
 }
 
-button .btn-enable-icon{
-   color: var(--bg-btn-ad);
-
+/** column img buttons */
+.btn-icons-img{
+  border: none;
+  border-radius: 0.3rem;
 }
+
+.btn-icons-img.error{
+  background-color: var(--error-bg);
+  color: var(--font-error-bg);
+}
+
+.btn-icons-img.img{
+  background-color: var(--primary-bg);
+  color: var(--primary-font);
+}
+
+/** column web buttons */
+.btn-icons-web{
+  border: none;
+  border-radius: 0.3rem;
+}
+
+.btn-icons-web.on{
+  background-color: var(--alternative-bg);
+  color: var(--alternative-font);
+}
+
+.btn-icons-web.off{
+  background-color: var(--error-bg);
+  color: var(--font-error-bg);
+}
+
+
+
 
 .input-file{
   position: relative;
@@ -72,19 +133,19 @@ button .btn-enable-icon{
 
 /** buttons themes */
 .btn-theme-one {
-  padding: 0.5rem 3%;
-  border-radius: 0.5rem;
-  border: solid 1px #3887BE;
-  background-color: #f6f8f8;
-  color: #0d4958;
+  padding: 0.4rem 3%;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: #187de4;
+  color: #ffffff;
   font-weight: 600;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
 }
 
 .btn-theme-one:hover{
-    background-color: #112f42 ;
-    border: solid 1px #d3dbdf;
-    color: white;
+    background-color: #1261b1;
+    border: none;
+
 }
 
 .btn-theme-two {
@@ -136,9 +197,8 @@ button .btn-enable-icon{
 }
 .content .container-box .box{
   background: white;
-  border: solid 1px gray;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   padding: 0.5rem;
 
 }

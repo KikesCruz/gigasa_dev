@@ -7,7 +7,8 @@ use App\Controllers\Admin\HomeController;
 use App\Controllers\Admin\ProfileController;
 use App\Controllers\Admin\UsersController;
 use App\Controllers\Admin\BannersController;
-use App\Controllers\Admin\DepartmentsController;
+
+use App\Controllers\Admin\CategoryController;
 use App\Controllers\Admin\CategoriesController;
 use App\Controllers\Admin\BrandsController;
 use App\Controllers\Admin\CatalogoController;
@@ -40,17 +41,16 @@ Route::post('/admin/users/active', [UsersController::class, 'users_active']);
 Route::get('/admin/banners', [BannersController::class, 'banners_page']);
 Route::post('/admin/banners/upload', [BannersController::class, 'banners_upload']);
 
-/** Departamentos */
-Route::get('/admin/departamentos',[DepartmentsController::class,'view']);
-Route::post('/admin/departamentos/add', [DepartmentsController::class, 'add']);
-Route::post('/admin/departamentos/enable', [DepartmentsController::class, 'enable']);
-Route::post('/admin/departamentos/disable', [DepartmentsController::class, 'disable']);
-Route::post('/admin/departamentos/update', [DepartmentsController::class, 'update']);
-Route::post('/admin/departamentos/off-web', [DepartmentsController::class, 'off_web']);
-Route::post('/admin/departamentos/on-web', [DepartmentsController::class, 'on_web']);
+/** Categories */
+Route::get('/admin/categories',[CategoryController::class,'view']);
+Route::post('/admin/categories/add', [CategoryController::class, 'add']);
+Route::post('/admin/categories/enable', [CategoryController::class, 'enable']);
+Route::post('/admin/categories/disable', [CategoryController::class, 'disable']);
+Route::post('/admin/categories/update', [CategoryController::class, 'update']);
+Route::post('/admin/categories/web_update_status', [CategoryController::class, 'web_status']);
 
 
-/** Categorías */
+/** sub Categorías */
 Route::get('/admin/categorias',[CategoriesController::class,'view']);
 Route::post('/admin/categorias/add',[CategoriesController::class,'add']);
 Route::post('/admin/categorias/disable',[CategoriesController::class,'disable']);
@@ -66,12 +66,12 @@ Route::post('admin/brands/enable',[BrandsController::class,'enable']);
 Route::post('admin/brands/update',[BrandsController::class,'update']);
 
 
-/** Catalog */
+/** Products */
 Route::get('admin/catalogo',[CatalogoController::class,'view']);
 Route::post('admin/catalogo/add',[CatalogoController::class,'add']);
 
 
-/*** SUBCATEGORIAS ***/
+/*** type products ***/
 Route::get('/admin/subcategorias',[SubCategoriesController::class,'view']);
 Route::post('/admin/subcategorias/add',[SubCategoriesController::class,'add']);
 Route::post('/admin/subcategorias/disable',[SubCategoriesController::class,'disable']);
@@ -83,6 +83,7 @@ Route::post('/admin/subcategorias/update',[SubCategoriesController::class,'updat
 /** Store Routes */
 
 Route::get('/', [StoreController::class, 'home']);
+Route::get('/categories', [StoreController::class, 'categories']);
 
 Route::get('/cart', [CartController::class, 'view']);
 

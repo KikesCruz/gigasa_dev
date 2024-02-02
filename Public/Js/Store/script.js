@@ -111,3 +111,40 @@ $(document).ready(function () {
     $(".big-image img").attr("src", image);
   });
 });
+
+
+$(document).ready(function () {
+ let categories = '';
+  
+  setTimeout(function(){
+    $.ajax({
+      type: "GET",
+      url: "/categories",
+      dataType: "json",
+      success: function (response) {
+  
+        for (const category of response) {
+  
+          categories += `
+          <div class="item__category">
+              <a href="search/<?= base64_encode($categories['id_category'])?>">
+                <img src="${category['img_path']}" alt="">
+                <h6>${category['name_category']}</h6>
+              </a>
+            </div>
+          
+          `;
+  
+          
+          console.log(category['name_category']);
+        }
+  
+        $("#categories-icons").html(categories);
+      }
+    });
+  },500);
+
+
+
+
+});

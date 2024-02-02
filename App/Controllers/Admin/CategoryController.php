@@ -2,22 +2,22 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\Admin\DepartmentsModel;
+use App\Models\Admin\CategoryModel;
 
-class DepartmentsController extends Controller
+class CategoryController extends Controller
 {
 
     private $model;
 
     public function __construct()
     {
-        $this->model = new DepartmentsModel();
+        $this->model = new CategoryModel();
     }
     public function view()
     {
-        $data = $this->model->getDepartments();
+        $data = $this->model->getCategories();
 
-        return $this->views('departments', $data);
+        return $this->views('categories', $data);
     }
 
     public function add()
@@ -26,32 +26,32 @@ class DepartmentsController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $notify = '';
-            $route = FILES_IMG.'Departments/';
+            $route = FILES_IMG.'Categories/';
 
             
-            $department = [
-                "name_department" => $this -> sanitizerString($_POST['depto_name']),
+            $categories = [
+                "name_category" => $this -> sanitizerString($_POST['category_name']),
                 "picture" => "url_empty"
             ];
 
-            if($department['name_department'] == ''){
+            if($categories['name_category'] == ''){
                 return json_encode($this->message_type(1));
             }
 
-            $name_depto = $this -> model -> searchDepartment($department['name_department']);
+            $name_category = $this -> model -> search_category($categories['name_category']);
             
-            if($name_depto == $department['name_department']){
+            if($name_category == $categories['name_category']){
                 return json_encode($this->message_type(3));
             }
 
-            if($_FILES['img_file']['name'] == ''){
-                $notify = $this -> model -> new_department($department);
+            if($_FILES['img_category']['name'] == ''){
+                $notify = $this -> model -> new_category($categories);
             }else{
-                $url_img = $this->img_save($route, $department['name_department'], $_FILES['img_file']['type'], $_FILES['img_file']['tmp_name']);
+                $url_img = $this->img_save($route, $categories['name_category'], $_FILES['img_category']['type'], $_FILES['img_category']['tmp_name']);
                 $url_img = explode("Store/", $url_img);
-                $department['picture'] = IMG_URL . $url_img[1];
+                $categories['picture'] = IMG_URL . $url_img[1];
 
-                $notify =   $this->model->new_department($department);  
+                $notify =   $this->model->new_category($categories);  
             }
 
             if ($notify  == 'success') {
@@ -152,37 +152,28 @@ class DepartmentsController extends Controller
         }
     }
 
-    public function off_web(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
-            $notify = '';
-            
-            $response = $this -> model -> off_web($_POST['id_depto']);
 
-            if($response == 'success'){
-                $notify = $this -> message_type(0);
-            }else{
-                $notify = $this -> message_type(2);
-            }
 
-            return json_encode($notify);
+    public function web_status(){
+        $notify = '';
+        
+        $category =[
+            "id_category" => $_POST['category_id'],
+            "web_status" => $_POST["category_web_status"] == 'on' ? 'off':'on',
+        ];
+
+        $response = $this -> model -> web_status($category);
+
+        
+        if($response == 'success'){
+            $notify = $this -> message_type(4);
+        }else{
+            $notify = $this -> message_type(2);
         }
+
+        return json_encode($notify);
+
     }
 
-    public function on_web(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
-            $notify = '';
-            
-            $response = $this -> model -> on_web($_POST['id_depto']);
-
-            if($response == 'success'){
-                $notify = $this -> message_type(0);
-            }else{
-                $notify = $this -> message_type(2);
-            }
-
-            return json_encode($notify);
-        }
-    }
+  
 }

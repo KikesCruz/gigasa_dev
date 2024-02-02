@@ -11,7 +11,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-12 text-center mt-2">
-            <h1>Departamentos</h1>
+            <h1>Categorías</h1>
           </div>
         </div>
       </div>
@@ -19,13 +19,15 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
     <section class="content">
       <div class="container-box">
-
         <div class="box">
-          <table id="tb_deptos" class="table table-bordered">
+          <table id="table_categories" class="table table-bordered">
+            
             <thead>
               <tr>
                 <th>#ID Depto</th>
                 <th>Departamentos</th>
+                <th>#ID Cat</th>
+                <th>Categorías</th>
                 <th>Estatus</th>
                 <th>Web</th>
                 <th>Img</th>
@@ -34,71 +36,29 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             </thead>
             <tbody>
 
-              <?php foreach ($data as $depto) : ?>
-                <tr id="tableDeptos">
-                  <td><?= $depto['id_depto'] ?></td>
-                  <td><?= $depto['depto_name'] ?></td>
-                  <td><?= $depto['status_depto'] ?></td>
-                  <td>
-
-                    <?php if ($depto['path_img'] != 'url_empty') : ?>
-                      <?= $depto['view_web'] == 'off' ?
-                        '<button 
-                     id="btnOnWeb" 
-                     type="button" 
-                     class="btn" 
-                     data-toggle="modal" 
-                     data-target="#onWeb">
-                     <i class="fa-solid fa-store"></i>
-                     </button>'
-                        :
-                        '<button 
-                     id="btnOffWeb" 
-                     type="button" 
-                     class="btn" 
-                     data-toggle="modal" 
-                     data-target="#offWeb">
-                     <i class="fa-solid fa-store-slash btn-error-icon"></i>
-                     </button>'
-                      ?>
-                    <?php endif; ?>
-
-
-                  </td>
-
-
-
-                  <td>
-                    <div class="group-btn">
-                      <?= $depto['path_img'] != 'url_empty' ?
-                        '<button 
+              <?php foreach ($data['categories'] as $category) : ?>
+                <tr id='tb_categories'>
+                  <td><?= $category['id_depto'] ?></td>
+                  <td class="text-wrap" style="width: 1rem"><?= $category['depto_name'] ?></td>
+                  <td><?= $category['id_category'] ?></td>
+                  <td><?= $category['category_name'] ?></td>
+                  <td><?= $category['status_category'] ?></td>
+                  <td><?= $category['view_web'] ?></td>
+                  <td><?= $category['img_path'] != 'empty_url' ?
+                          '<button 
                           id="btnEnableDepto" 
                           type="button" 
                           class="btn" 
                           data-toggle="modal" 
                           data-target="#enableModal">
-                          <i class="fa-solid fa-image btn-update-icon"></i>
-                         </button>' :
-                        '<button 
-                          id="btnEnableDepto" 
-                          type="button" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#enableModal">
-                          <i class="fa-solid fa-ban btn-error-icon"></i>
-                         </button>'
-                      ?>
-                    </div>
-
+                          <i class="fa-solid fa-image"></i>
+                         </button>' :''?>
                   </td>
-
-
-
                   <td>
                     <div class="group-btn">
-                      <?= $depto['status_depto'] == 'off' ?
+                      <?= $category['status_category'] == 'off' ?
                         '<button 
-                          id="btnEnableDepto" 
+                          id="btnEnableCat" 
                           type="button" 
                           class="btn" 
                           data-toggle="modal" 
@@ -107,7 +67,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                          </button>'
                         :
                         '<button 
-                          id="btnUpdateDepto" 
+                          id="btnUpdateCat" 
                           type="button" 
                           class="btn" 
                           data-toggle="modal" 
@@ -115,47 +75,62 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                           <i class="fa-solid fa-pen-to-square btn-update-icon"></i>
                           </button>
                         <button 
-                          id="btnDisableDepto" 
+                          id="btnDisableCat" 
                           class="btn" 
                           data-toggle="modal" 
                           data-target="#disableModal">
                           <i class="fa-solid fa-circle-minus btn-error-icon"></i>
                         </button>
                        '
-                      ?>
+                        ?>
                     </div>
                   </td>
                 </tr>
+
               <?php endforeach; ?>
+
+
 
             </tbody>
           </table>
         </div>
         <div class="box box-form">
-          <form id="form_depto">
+          <form id="form_new_category">
             <div class="row">
               <div class="col">
-                <label for="">Departamento</label>
-                <input name="depto_name" id="depto_name" type="text" class="form-control shadow-none" />
+                <label for="">Categoría</label>
+                <input name="name_category" type="text" class="form-control shadow-none"/>
+              </div>
+
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <label for="">Asociar al departamento de:</label>
+                <select name="depto" id="depto_list" class="form-control" aria-label="Default select example">
+                  <option value="0" selected disable>Departamentos</option>
+
+                  <?php foreach ($data['departments'] as $deptos) : ?>
+                    <option value="<?= $deptos['id_depto'] ?>"><?= $deptos['depto_name'] ?></option>
+                  <?php endforeach; ?>
+                </select>
               </div>
             </div>
-
             <div class="row">
               <div class="col">
                 <label for="">Imagen</label>
-                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/jpeg, image/jpg, image/png" />
+                <input name="img_file" type="file" class="form-control-file shadow-none" id="img_file_new" accept="image/svg+xml" />
               </div>
             </div>
-
             <div class="row p-2">
               <div class="col">
-                <button id="add_depto" type="submit" class="btn-theme-one"> <i class="fa-solid fa-plus"></i>
-                  Crear Nuevo</button>
+                <button id="btn_add_new" type="button" class="btn-theme-one">
+                  <i class="fa-solid fa-plus"></i>
+                  Crear Nuevo
+                </button>
               </div>
             </div>
           </form>
         </div>
-
       </div>
     </section>
   </div>
@@ -169,7 +144,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar el departamento?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar la categoría?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -187,7 +162,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar el departamento?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar la categoría?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -204,46 +179,12 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualice el nombre</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar categoría</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div id="body_modal_update" class="body">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- View in web  -->
-  <div class="modal fade" id="offWeb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿No visible en web?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_offWeb" class="body">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="onWeb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿No visible en web?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_onWeb" class="body">
 
         </div>
       </div>

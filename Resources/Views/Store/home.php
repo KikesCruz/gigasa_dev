@@ -27,77 +27,7 @@
     <section class="categories">
       <div class="box-container">
         <h6 class="header">Categorías</h6>
-        <div class="carousel-category owl-carousel owl-theme ">
-
-
-
-
-         <?php foreach( $data['departments'] as $department ) : ?>
-
-         <div class="item__category">
-            <a href="search/<?= base64_encode($department['id_depto'])?>">
-              <img src="<?=$department['path_img']?>" alt="">
-              <h6><?=$department['depto_name']?></h6>
-            </a>
-          </div>
-
-         <?php endforeach; ?>
-
-         <!-- <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/promociones.svg'?>" alt="">
-              <h6>Promociones</h6>
-            </a>
-          </div>
-
-          <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/dermo_cosmeticos.svg'?>" alt="">
-              <h6>Dermo Cosmeticos</h6>
-            </a>
-          </div>
-
-          <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/medicamentos.svg'?>" alt="">
-              <h6>Medicamentos</h6>
-            </a>
-          </div>
-
-          <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/botiquin.svg'?>" alt="">
-              <h6>Botiquin</h6>
-            </a>
-          </div>
-
-          <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/suplementos_alimenticios.svg'?>" alt="">
-              <h6>Suplementos Alimenticios</h6>
-            </a>
-          </div>
-
-          <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/cuidado_personal.svg'?>" alt="">
-              <h6>Cuidado Personal</h6>
-            </a>
-          </div>
-
-          <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/tratamiento_capilar.svg'?>" alt="">
-              <h6>Tratamiento Capilar</h6>
-            </a>
-          </div>
-
-          <div class="item__category">
-            <a href="#">
-              <img src="<?=URL_BASE.'Public/Img/Store/Categories/salud_sexual.svg'?>" alt="">
-              <h6>Salud Sexual</h6>
-            </a>
-          </div> -->
+        <div id="categories-icons" class="carousel-category owl-carousel owl-theme ">
 
         </div>
       </div>

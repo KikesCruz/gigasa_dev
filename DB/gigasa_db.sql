@@ -5,13 +5,12 @@ drop database gigasa_db;
 
 use database gigasa_db;
 
-create table departments(
-id_depto int auto_increment,
-depto_name varchar(50) not null,
-path_img varchar(200) default 'url_vacio',
+create table categories(
+id_category int auto_increment,
+name varchar(50) not null,
+img_path varchar(200) default 'url_vacio',
 view_web varchar(10) default 'off',
 status_depto varchar(10) default 'on',
-
 create_at DATETIME default CURRENT_TIMESTAMP,
       
       constraint PK_deptos primary key(
