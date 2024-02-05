@@ -39,22 +39,19 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $categories['id_category'] ?></td>
                   <td><?= $categories['name_category'] ?></td>
                   <td>
+
+                  <button
+                  id="btn_update_status"
+                  type="button"
+                  class="btn-status <?= $categories['status'] == 'activado' ? 'success' : 'error' ?>"
+                  data-status='<?= $categories['status'] ?>'
+                  data-toggle="modal"
+                  data-target="#modal_status"
+                  >
+                  <?= $categories['status'] ?>
+
+                  </button>
                 
-                  
-                  <?= $categories['status'] == 'activado' ? 
-                  '<button
-                  id="" 
-                  type="button" 
-                  data-toggle="modal" 
-                  data-target="#off_category_modal"
-                  class="btn-status success">
-                  activado
-                  </button>'
-                  : 
-                  '<button class="btn-status error">
-                  desactivado
-                  </button>'
-                  ?>
 
                   </td>
                   <td>
@@ -118,11 +115,11 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
         </div>
 
         <div class="box box-form">
-          <form id="form_depto">
+          <form id="form_category">
             <div class="row">
               <div class="col">
                 <label for="">Categoría</label>
-                <input name="category_name" id="depto_name" type="text" class="form-control shadow-none" autocomplete="false" />
+                <input name="category_name" type="text" class="form-control shadow-none" autocomplete="false" />
               </div>
             </div>
 
@@ -141,7 +138,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
             <div class="row p-2">
               <div class="col">
-                <button id="add_depto" type="submit" class="btn-theme-one"> <i class="fa-solid fa-plus"></i>
+                <button id="new_category" type="button" class="btn-theme-one"> <i class="fa-solid fa-plus"></i>
                   Crear Nuevo</button>
               </div>
             </div>
@@ -156,40 +153,16 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
   <!-- Modals area--->
 
-  <!-- active modal -->
-  <div class="modal fade" id="enableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- modal estatus -->
+  <div class="modal fade" id="modal_status" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar el departamento?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_enable" class="body">
-
-        </div>
+      <div id="modal-content-status" class="modal-content">
+       
       </div>
     </div>
   </div>
 
-  <!-- disable modal -->
 
-  <div class="modal fade" id="off_category_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar la categoría?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_disable" class="body">
-
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Edit department modal-->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

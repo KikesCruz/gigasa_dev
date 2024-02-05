@@ -16,155 +16,146 @@ toastr.options = {
   hideMethod: "fadeOut",
 };
 
-/** function add new depto */
-$(document).on("click", "#add_depto", function (e) {
-  e.preventDefault();
+let messages = {
+  empty: {
+    type: "warning",
+    text: "Campos Vacíos",
+    title: "Advertencia",
+  },
+  duplicate: {
+    type: "warning",
+    text: "Ya se encuentra registrado",
+    title: "Información",
+  },
+  success: {
+    type: "success",
+    text: "Se guardó correctamente",
+    title: "Realizado",
+    reload: true,
+  },
+  error: {
+    type: "error",
+    text: "Ocurrió un error",
+    title: "Error",
+  },
+};
 
-  const formdata = document.querySelector("#form_depto");
+function get_table(btn) {
+  return $(btn).closest("#tr_category");
+}
 
-  let data = new FormData(formdata);
-
-  $.ajax({
-    type: "POST",
-    url: "categories/add",
+function request_data(
+  method,
+  url,
+  data,
+  callbackResponse,
+  isMultiData = false
+) {
+  let ajaxOptions = {
+    type: method,
+    url: url,
     data: data,
     dataType: "json",
-    contentType: false,
-    processData: false,
     success: function (response) {
-      switch (response) {
-        case "empty":
-          toastr["warning"]("Campos Vacíos", "Advertencia");
-          break;
-        case "duplicate":
-          toastr["warning"]("Ya se encuentra registrado", "Información");
-          break;
-        case "success":
-          toastr["success"]("Se guardo correctamente", "Realizado");
-          setTimeout(function () {
-            location.reload();
-          }, 500);
-
-          break;
-      }
+      callbackResponse(response);
     },
-  });
-});
+  };
 
-/** function active depto */
-$(document).on("click", "#btnEnableDepto", function () {
-  let table = $(this).closest("#tableDeptos");
+  if (isMultiData) {
+    ajaxOptions.contentType = false;
+    ajaxOptions.processData = false;
+  }
 
-  let body_modal = `
-    <form id="enable_depto">
-        <div class="row p-3">
-            <div class="col-4">
-                <input name="id_depto" class="form-control shadow-none" type="text" value="${table
-                  .find("td:eq(0)")
-                  .text()}" readonly>
-            </div>
-            <div class="col-8">
-                <input name="depto" class="form-control shadow-none" type="text" value="${table
-                  .find("td:eq(1)")
-                  .text()}" readonly>
-            </div>
-        </div>
-            <hr>
-        <div class="row p-3">
-        <div class="col-12 d-flex flex-row-reverse">
-        <button id="btn_enable_conf" type="button" class="btn-theme-one ml-1">Activar</button>
-        <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
+  return $.ajax(ajaxOptions);
+}
+
+/** Function update status categories */
+$(document).on("click", "#btn_update_status, #btn_conf_status", function () {
+  if ($(this).is("#btn_update_status")) {
+    let table = get_table(this);
+    let id_category = table.find("td:eq(0)").text();
+    let name_category = table.find("td:eq(1)").text();
+    let status = $(this).attr("data-status");
+    let title =
+      status == "activado"
+        ? "¿Desactivar esta categoría?"
+        : "¿Activar esta categoría?";
+    let status_category = status == "activado" ? "desactivado" : "activado";
+
+    let content_modal = `
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-        </div>
-    </form>
-    `;
-  $("#body_modal_enable").html(body_modal);
-});
+    <div class="body">
+        <form id="form_status">
+            <div class="row p-3">
+                <div class="col-4">
+                    <input name="id_category" class="form-control shadow-none" type="text" value="${id_category}" readonly>
+                </div>
+                <div class="col-8">
+                    <input class="form-control shadow-none" type="text" value="${name_category}" readonly>
+                </div>
+                <input name="status_category" class="form-control shadow-none" type="text" value="${status_category}" style="display:none;">
+            </div>
+            <div class="row p-3">
+                <div class="col-12 d-flex flex-row-reverse">
+                    <button id="btn_conf_status" type="button" class="btn-theme-one ml-1">Si</button>
+                    <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </form>
+    </div>`;
 
-$(document).on("click", "#btn_enable_conf", function (e) {
-  e.preventDefault();
+    $("#modal-content-status").html(content_modal);
+  } else if ($(this).is("#btn_conf_status")) {
+    let form_data = $("#form_status").serialize();
 
-  $.ajax({
-    type: "POST",
-    url: "departamentos/enable",
-    data: $("#enable_depto").serialize(),
-    dataType: "json",
-    success: function (response) {
-      switch (response) {
-        case "update":
-          toastr["success"]("Se actualizo correctamente", "Realizado");
+    request_data("POST", "categories/status", form_data, function (response) {
+      let message = messages[response];
+      if (message) {
+        toastr[message.type](message.text, message.title);
+
+        if (message.reload) {
           setTimeout(function () {
             location.reload();
           }, 500);
-          break;
-
-        case "error":
-          toastr["error"]("Sucedió un error al actualizar", "Error");
-          break;
+        }
       }
-    },
-  });
+    });
+  }
 });
 
-/** function disable depto */
-$(document).on("click", "#btnDisableDepto", function () {
-  let table = $(this).closest("#tableDeptos");
+/** Function new category */
 
-  let body_modal = `
-    <form id="disable_depto">
-        <div class="row p-3">
-            <div class="col-4">
-                <input name="id_depto" class="form-control shadow-none" type="text" value="${table
-                  .find("td:eq(0)")
-                  .text()}" readonly>
-            </div>
-            <div class="col-8">
-                <input name="depto" class="form-control shadow-none" type="text" value="${table
-                  .find("td:eq(1)")
-                  .text()}" readonly>
-            </div>
-        </div>
-            <hr>
-        <div class="row p-3">
-            <div class="col-12 d-flex flex-row-reverse">
-                <button id="btn_disable_conf" type="button" class="btn-theme-one ml-1">Desactivar</button>
-                <button type="button" class="btn-theme-two" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </form>
-    `;
-  $("#body_modal_disable").html(body_modal);
-});
+$(document).on("click", "#new_category", function () {
+  const form = document.querySelector("#form_category");
+  let form_data = new FormData(form);
 
-$(document).on("click", "#btn_disable_conf", function (e) {
-  e.preventDefault();
+  request_data(
+    "POST",
+    "categories/add",
+    form_data,
+    function (response) {
+      let message = messages[response];
+      if (message) {
+        toastr[message.type](message.text, message.title);
 
-  $.ajax({
-    type: "POST",
-    url: "departamentos/disable",
-    data: $("#disable_depto").serialize(),
-    dataType: "json",
-    success: function (response) {
-      switch (response) {
-        case "update":
-          toastr["success"]("Se actualizo correctamente", "Realizado");
+        if (message.reload) {
           setTimeout(function () {
             location.reload();
           }, 500);
-          break;
-
-        case "error":
-          toastr["error"]("Sucedió un error al actualizar", "Error");
-          break;
+        }
       }
     },
-  });
+    true
+  );
 });
 
 /** function update depto */
 $(document).on("click", "#btnUpdateDepto", function (e) {
-  let table = $(this).closest("#tableDeptos");
-
   let body_modal = `
       <form id="update_depto">
           <div class="row p-3">
@@ -224,7 +215,7 @@ $(document).on("click", "#btn_update_conf", function (e) {
 /** update status view in web function */
 $(document).on("click", "#btn_update_web", function () {
   let data = $(this).attr("data-web");
-  let table = $(this).closest("#tr_category");
+
   let title = "";
 
   if (data == "on") {
@@ -232,8 +223,6 @@ $(document).on("click", "#btn_update_web", function () {
   } else {
     title = "¿Hacer visible imagen en la web?";
   }
-
-
 
   let content_modal = `
     <div class="modal-header">
@@ -264,10 +253,8 @@ $(document).on("click", "#btn_update_web", function () {
   $("#modal-content-web").html(content_modal);
 });
 
-
-$(document).on("click", "#btn_conf_web", function(){
-
- let form_data = $("#form_status_web").serialize();
+$(document).on("click", "#btn_conf_web", function () {
+  let form_data = $("#form_status_web").serialize();
 
   $.ajax({
     type: "POST",
@@ -275,26 +262,16 @@ $(document).on("click", "#btn_conf_web", function(){
     data: form_data,
     dataType: "json",
     success: function (response) {
-      switch (response) {
-        case "update":
-          toastr["success"]("Se actualizo correctamente", "Realizado");
-          setTimeout(function () {
-            location.reload();
-          }, 500);
-          break;
+      toastr[messages.type](messages.text, messages.title);
 
-        case "error":
-          toastr["error"]("Sucedió un error al actualizar", "Error");
-          break;
+      if (messages.reload) {
+        setTimeout(function () {
+          location.reload();
+        }, 500);
       }
-    }
+    },
   });
-
-
-
 });
-
-
 
 $(document).ready(function () {
   $("#tb_categories").DataTable({

@@ -41,15 +41,25 @@ class Route
             if (preg_match("#^$route$#", $uri, $matches)) {
                 $params = array_slice($matches, 1);
 
-                /** quitar negación si es php 8 */
-                if (!is_callable($callback)) {
+                /* quitar negación si es php 8
+                if (is_callable($callback)) {
                     $response = $callback(...$params);
                 }
 
                 if (is_array($callback)) {
                     $controller = new $callback[0];
                     $response = $controller->{$callback[1]}(...$params);
+                }*/
+
+                if (is_callable($callback)) {
+                    $response = call_user_func_array($callback, $params);
                 }
+    
+                if (is_array($callback)) {
+                    $controller = new $callback[0];
+                    $response = call_user_func_array([$controller, $callback[1]], $params);
+                }
+
 
                 if (is_array($response) || is_object($response)) {
 

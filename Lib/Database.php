@@ -23,13 +23,13 @@ class Database
 
         $options = array(
             PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         );
 
         // se instancia PDO 
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             $this->error = $e->getMessage();
             echo $this->error;
         }
@@ -69,17 +69,31 @@ class Database
         return $this->stmt->execute();
     }
 
-    // obtine todos los resultados
-    public function resultSet()
+    // get todos los resultados
+    public function set_result()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // obtine un solo resultado
-    public function resultOne()
+    public function only_result()
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function closed(){
+        return $this -> stmt = null;
+    }
+
+    public function validate_data($keys, $data){
+        foreach ($keys as $value) {
+            if(!array_key_exists($value, $data)){
+                return 'error';
+            }
+        }
+
+        return $data;
     }
 }

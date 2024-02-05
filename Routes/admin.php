@@ -16,11 +16,7 @@ use App\Controllers\Admin\CatalogoController;
 /**ADD SUBCAT */
 use App\Controllers\Admin\SubCategoriesController;
 
-// controllers e-commerce
-use App\Controllers\Store\StoreController;
-use App\Controllers\Store\CartController;
-use App\Controllers\Store\CustomerController;
-use App\Controllers\Store\ProfileCustomerController;
+
 
 
 
@@ -44,8 +40,7 @@ Route::post('/admin/banners/upload', [BannersController::class, 'banners_upload'
 /** Categories */
 Route::get('/admin/categories',[CategoryController::class,'view']);
 Route::post('/admin/categories/add', [CategoryController::class, 'add']);
-Route::post('/admin/categories/enable', [CategoryController::class, 'enable']);
-Route::post('/admin/categories/disable', [CategoryController::class, 'disable']);
+Route::post('/admin/categories/status', [CategoryController::class, 'status_update']);
 Route::post('/admin/categories/update', [CategoryController::class, 'update']);
 Route::post('/admin/categories/web_update_status', [CategoryController::class, 'web_status']);
 
@@ -80,16 +75,5 @@ Route::get('/admin/subcategorias/update',[SubCategoriesController::class,'update
 Route::post('/admin/subcategorias/update',[SubCategoriesController::class,'update']);
 
 
-/** Store Routes */
-
-Route::get('/', [StoreController::class, 'home']);
-Route::get('/categories', [StoreController::class, 'categories']);
-
-Route::get('/cart', [CartController::class, 'view']);
-
-Route::get('/account', [CustomerController::class, 'view']);
-
-Route::get('/profile', [ProfileCustomerController::class, 'view']);
 
 
-Route::dispatch();

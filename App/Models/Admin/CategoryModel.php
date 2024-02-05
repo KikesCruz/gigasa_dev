@@ -1,17 +1,31 @@
 <?php
 
+/**
+ * Author: Enrique Cruz
+ * DB_functions: 
+ *  set_result() => conjunto de datos,
+ *  only_result() => un solo dato
+ *  validate_Data() => verifica array
+ */
+
 namespace App\Models\Admin;
 
 use Lib\Database;
+use PDOException;
+
+
 
 class CategoryModel
 {
 
     private $db;
+
+
     public function __construct()
     {
         $this->db = new Database();
     }
+
 
     public function getCategories()
     {
@@ -19,7 +33,7 @@ class CategoryModel
         $query = "SELECT id_category,name_category, img_path, view_web, status FROM categories";
 
         $this->db->query($query);
-        $response = $this->db->resultSet();
+        $response = $this->db->set_result();
 
         return $response;
     }
@@ -31,7 +45,7 @@ class CategoryModel
         $this->db->query($query);
         $this->db->bind(":name_category", $param);
 
-        $response = $this->db->resultOne();
+        $response = $this->db->only_result();
 
         if (empty($response)) {
             $response = 'no_matches';
@@ -48,11 +62,11 @@ class CategoryModel
         $this->db->query($query);
         $this->db->bind(":id_category", $param);
 
-        $response = $this->db->resultOne();
+        $response = $this->db->only_result();
 
         if (empty($response)) {
             $response = 'no_matches';
-        } 
+        }
         return $response;
     }
 
@@ -75,20 +89,31 @@ class CategoryModel
 
     public function status_category($param)
     {
+        $validate = '';
+        $keys = ['id_category', 'status'];
 
-        $query = "UPDATE categories SET status = 'on' WHERE id_category = :id_category ";
+        $validate =  $this->db->validate_data($keys, $param);
+
+        if (!is_array($validate)) {
+            return $validate;
+        }
+
+        $query = "UPDATE categories SET status = :status WHERE id_category = :id_category ";
 
         $this->db->query($query);
-        $this->db->bind(":id_category", $param);
+        $this->db->bind(":id_category", $validate['id_category']);
+        $this->db->bind(":status", $validate['status']);
 
-        if ($this->db->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+
+        $message = $this->db->execute();
+        $this->db->closed();
+
+
+
+        return $message;
     }
 
- 
+
     public function update_category($param)
     {
         $query = "UPDATE categories SET name_category = :name_category, img_path = :img_path  WHERE id_category = :id_category";
@@ -105,13 +130,14 @@ class CategoryModel
         }
     }
 
-    public function web_status($param){
+    public function web_status($param)
+    {
         $query = "UPDATE categories SET view_web = :status_web  WHERE id_category = :id_category";
 
         $this->db->query($query);
         $this->db->bind(":id_category", $param['id_category']);
         $this->db->bind(":status_web", $param['web_status']);
-   
+
 
         if ($this->db->execute()) {
             return 'success';
@@ -119,7 +145,4 @@ class CategoryModel
             return 'error';
         }
     }
-
-    
-
 }
