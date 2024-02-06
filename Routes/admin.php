@@ -43,6 +43,8 @@ Route::post('/admin/categories/add', [CategoryController::class, 'add']);
 Route::post('/admin/categories/status', [CategoryController::class, 'status_update']);
 Route::post('/admin/categories/update', [CategoryController::class, 'update']);
 Route::post('/admin/categories/web_update_status', [CategoryController::class, 'web_status']);
+Route::get('/admin/categories/update_img', [CategoryController::class, 'update_img']);
+Route::post('/admin/categories/update_img', [CategoryController::class, 'update_img']);
 
 
 /** sub Categorías */

@@ -4,7 +4,8 @@ namespace App\Models\Store;
 
 use Lib\Database;
 
-class StoreModel
+class NavBarModel
+
 {
 
     private $db;
@@ -14,10 +15,10 @@ class StoreModel
     }
 
     public function getCategories(){
-        $query = "SELECT id_category,name_category, img_path, view_web, status FROM categories WHERE view_web = 'on' and status ='activado' ";
+        $query = "SELECT id_category,name_category FROM categories WHERE view_web = 'on' and status ='activado' ";
 
         $this->db->query($query);
-        $response = $this->db->set_result();
+        $response = $this->db -> set_result();
 
         return $response;
     }

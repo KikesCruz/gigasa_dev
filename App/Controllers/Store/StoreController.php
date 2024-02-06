@@ -15,12 +15,14 @@ class StoreController extends Controller
     public function home()
     { 
 
-        return $this->views("home");
-    }
+        $categories = $this -> model ->getCategories();
+        
+        $home_page = [
+            "categories" => $categories
+        ];
 
-    public function categories(){
-         $categories = $this -> model ->getCategories();
 
-        return json_encode($categories);
+        return $this->views("home",$home_page);
     }
+    
 }

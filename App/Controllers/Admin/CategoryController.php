@@ -108,46 +108,48 @@ class CategoryController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $department = [
-                "id_department" => $_POST['id_depto'],
-                "department_name" => $this->sanitizerString($_POST['depto']),
-                "new_url" => "url_empty"
+            $category = [
+                "id_category" => $_POST['id_category'],
+                "category_name" => $this->sanitizerString($_POST['category_name']),
+                "url_img" => "url_empty"
             ];
 
-            if ($department['department_name'] == '') {
+            if ($category['category_name'] == '') {
+                return json_encode($this->message_type(2));
+            }
+
+            $name_depto = $this->model->search_category($category['category_name']);
+
+            if ($name_depto == $category['category_name']) {
                 return json_encode($this->message_type(1));
             }
 
-            $name_depto = $this->model->searchDepartment($department['department_name']);
+            $img_url = $this->model->search_img($category['id_category']);
 
-            if ($name_depto == $department['department_name']) {
-                return json_encode($this->message_type(3));
+            
+
+            if ($img_url['img_path'] == 'url_empty') {
+                $this->model->update_category($category);
+                return json_encode($this->message_type(0));
             }
 
-            $img_url = $this->model->searchUrl($department['id_department']);
-
-            if ($img_url['path_img'] == 'url_empty') {
-                $this->model->updateDepto($department);
-                return json_encode($this->message_type(4));
-            }
-
-            $img_old = explode(IMG_URL, $img_url['path_img']);
+            $img_old = explode(IMG_URL, $img_url['img_path']);
             $img_old = FILES_IMG . $img_old[1];
 
-            $img_new = explode($img_url['depto_name'] . ".webp", $img_old);
+            $img_new = explode($img_url['name_category'] . ".svg", $img_old);
 
-            $img_new = $img_new[0] . $department['department_name'] . ".webp";
+            $img_new = $img_new[0] . $category['category_name'] . ".svg";
 
             rename($img_old, str_replace(" ", "_", $img_new));
 
             $img_format = str_replace(FILES_IMG, IMG_URL, $img_new);
 
-            $department['new_url'] = str_replace(" ", "_", $img_format);
+            $category['url_img'] = str_replace(" ", "_", $img_format);
 
-            $this->model->updateDepto($department);
+            $this -> model -> update_category($category);
 
 
-            return json_encode($this->message_type(4));
+            return json_encode($this->message_type(0));
         }
     }
 
@@ -166,11 +168,56 @@ class CategoryController extends Controller
 
 
         if ($response == 'success') {
-            $notify = $this->message_type(4);
+            $notify = $this->message_type(0);
         } else {
-            $notify = $this->message_type(2);
+            $notify = $this->message_type(3);
         }
 
         return json_encode($notify);
+    }
+
+    public function update_img(){
+    
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+           
+
+            $picture = $_GET['id_category'];
+
+            $response = $this->model->getImg($picture);
+
+          return json_encode($response);
+
+        }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            $route = FILES_IMG.'Categories/';
+            $notify='';
+            
+            $category = [
+                "id_category" => $_POST['id_category'],
+                "picture" => ""
+            ];
+            
+            if($_FILES['img_category_new']['name'] != ''){
+
+                $name_category = $this->model->search_category_by_id($category['id_category']);
+                
+                $url_img = $this -> img_save($route,$name_category, $_FILES['img_category_new']['type'], $_FILES['img_category_new']['tmp_name'],$_FILES['img_category_new']['name']);
+                $url_img = explode('Store/',$url_img);
+                $category['picture'] = IMG_URL . $url_img[1]; 
+                
+            }
+
+
+            $notify = $this ->model -> update_img_category($category);
+
+
+            return json_encode($notify == 'success' ? $this->message_type(0) : $this->message_type(3));
+
+
+
+
+        }
+
     }
 }

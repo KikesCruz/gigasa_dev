@@ -11,36 +11,36 @@ class CategoriesModel{
         $this -> db = new Database();
     }
 
-    public function getAllCategories(){
+    public function list_sub_categories(){
         $query = 'select 
-        depto.id_depto, 
-        depto.depto_name, 
-        depto.status_depto,
+        sc.id_sub_category,
+        sc.name_sub_category,
+        sc.status,
         cat.id_category,
-        cat.category_name,
-        cat.status_category,
-        cat.img_path,
-        cat.view_web
-        from categories cat
-        inner join departments depto on (depto.id_depto = cat.id_depto)';
+        cat.name_category
+        
+        from sub_categories sc
+        inner join categories cat on (cat.id_category = sc.id_category)';
 
         $this -> db -> query($query);
 
-        $response = $this -> db -> resultSet();
+        $response = $this -> db -> set_result();
 
         return $response;
     }
 
-    public function getAllDepartments(){
-        $query = "SELECT id_depto, depto_name, status_depto FROM departments WHERE status_depto = 'on'";
+    public function list_categories(){
+        $query = "SELECT id_category, name_category, status FROM categories WHERE status = 'activado'";
 
         $this -> db -> query($query);
 
-        $response = $this -> db -> resultSet();
+        $response = $this -> db -> set_result();
 
         return $response;
     }
 
+
+    /*
     public function searchCategory($param){
        
         $query = "select category_name from categories where category_name like :category_name and id_depto = :id_depto";
@@ -49,7 +49,7 @@ class CategoriesModel{
         $this -> db -> bind(":category_name",'%'.$param['category'].'%');
         $this -> db -> bind(":id_depto",$param['id_department']);
 
-        $response = $this -> db -> resultOne();
+        $response = $this -> db -> only_result();
 
        
         if (empty($response)) {
@@ -126,5 +126,5 @@ class CategoriesModel{
             return false;
         }
 
-    }
+    }*/
 }

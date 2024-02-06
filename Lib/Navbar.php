@@ -1,14 +1,15 @@
 <?php 
-class Navbar{
 
+use App\Models\Store\NavBarModel;
+class Navbar {
 
 
     static function menu(){
 
-        $items = [
-            "Patente","Dermatologia","Similares"
-        ];
+        $categorias = new NavbarModel();
+        $items = $categorias->getCategories();
 
+      
         return $items;
 
     }

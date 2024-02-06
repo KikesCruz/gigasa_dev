@@ -18,17 +18,17 @@ class CategoriesController extends Controller
     public function view()
     {
 
-        $categories =  $this->model->getAllCategories();
-        $departments = $this->model->getAllDepartments();
+        $sub_categories =  $this->model->list_sub_categories();
+        $categories = $this->model->list_categories();
 
         $dataArray = [
-            "departments" => $departments,
-            "categories" => $categories
+            "categories" => $categories,
+            "sub_categories" => $sub_categories
         ];
 
 
 
-        return $this->views('categories', $dataArray);
+        return $this->views('sub_categories', $dataArray);
     }
 
     public function add()
