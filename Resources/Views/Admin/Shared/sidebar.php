@@ -34,20 +34,20 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item sub-links">
-                        <a href="./categories" class="nav-link">
+                        <a href="./categorias" class="nav-link">
 
                             <p>Categorías</p>
                         </a>
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="./categorias" class="nav-link">
+                        <a href="./sub-categorias" class="nav-link">
                             <p>Sub Categorías</p>
                         </a>
                     </li>
 
                     <li class="nav-item sub-links">
-                        <a href="./subcategorias" class="nav-link">
+                        <a href="./tipo-articulos" class="nav-link">
                             <p>Tipos de artículos</p>
                         </a>
                     </li>

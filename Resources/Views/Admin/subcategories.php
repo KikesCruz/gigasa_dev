@@ -157,22 +157,6 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
     </div>
   </div>
 
-  <!-- DISABLE MODAL -->
-  <div class="modal fade" id="disableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar la Subcategoría?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_disable" class="body">
-
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- UPDATE MODAL -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

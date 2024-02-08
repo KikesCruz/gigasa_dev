@@ -33,7 +33,7 @@ class CategoryController extends Controller
     {
         $data = $this->model->getCategories();
 
-        return $this->views('categories', $data);
+        return $this->views('categorias', $data);
     }
 
     public function add()

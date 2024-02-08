@@ -5,7 +5,7 @@ drop database gigasa_db;
 
 use database gigasa_db;
 
-drop table categories 
+drop table sub_categories 
 
 create table categories(
 id_category int auto_increment,
@@ -19,11 +19,13 @@ created DATETIME default CURRENT_TIMESTAMP,
 
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment = 100;
 
+
+drop table sub_categories 
 create table sub_categories(
 id_sub_category int auto_increment,
 id_category int,
 name_sub_category varchar(50) not null,
-status varchar(10)  default 'on',
+status_subcategory varchar(15) default 'activado',
 created DATETIME default current_timestamp,
 
       constraint PK_category primary key(id_sub_category asc),

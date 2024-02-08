@@ -21,8 +21,8 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
       <div class="container-box">
         <div class="box">
 
-          <table  class='table table-striped  table-condensed' style='width:100%' >
-            
+          <table class='table table-striped  table-condensed' style='width:100%'>
+
             <thead>
               <tr>
                 <th>#ID Sub Cat</th>
@@ -36,25 +36,23 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
             <tbody>
 
               <?php foreach ($data['sub_categories'] as $sub_category) : ?>
-                <tr id='tb_categories'>
+                <tr id='tr_subcategories'>
                   <td><?= $sub_category['id_sub_category'] ?></td>
                   <td class="text-wrap" style="width: 1rem"><?= $sub_category['name_sub_category'] ?></td>
                   <td><?= $sub_category['id_category'] ?></td>
                   <td><?= $sub_category['name_category'] ?></td>
                   <td>
-                    <button
-                        id=""
-                        type="button"
-                        class="btn-status <?= $sub_category['status'] == 'activado' ? 'success' : 'error' ?>"
-                        data-toggle=""
-                        data-target="#">
-                      <?= $sub_category['status'] ?>
+                    <button id="btn_status" type="button" class="btn-status <?= $sub_category['status_subcategory'] == 'activado' ? 'success' : 'error' ?>" data-status="<?= $sub_category['status_subcategory'] ?>" data-toggle="modal" data-target="#modal_status">
+                      <?= $sub_category['status_subcategory'] ?>
                     </button>
                   </td>
                   <td>
-                    <button
+                    <button 
+                    id="btn_edit" 
+                    data-toggle="modal" 
+                    data-target="#modal_edit"
                     class="btn"
-                    >
+                      >
                       <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                   </td>
@@ -65,35 +63,38 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
         </div>
         <div class="box box-form">
-          <form id="form_new_category">
+          <form id="form_sub_category" autocomplete="off">
+
             <div class="row">
               <div class="col">
                 <label for="">Sub Categoría</label>
-                <input name="name_category" type="text" class="form-control shadow-none"/>
+                <input name="name_subcategory" type="text" class="form-control shadow-none" />
               </div>
 
             </div>
             <div class="row mt-2">
-              <div class="col">
+              <div id="categories" class="col">
                 <label for="">Asociar a la categoría:</label>
-                <select name="depto" id="depto_list" class="form-control" aria-label="Default select example">
-                  <option value="0" selected disable>Categorías</option>
+                <select name="category" id="depto_list" class="form-control" aria-label="Default select example">
 
+                  <option value="0" selected disable>Categorías</option>
                   <?php foreach ($data['categories'] as $category) : ?>
                     <option value="<?= $category['id_category'] ?>"><?= $category['name_category'] ?></option>
                   <?php endforeach; ?>
+
                 </select>
               </div>
             </div>
-          
+
             <div class="row p-2">
               <div class="col">
-                <button id="btn_add_new" type="button" class="btn-theme-one">
+                <button id="btn_add_subcategory" type="button" class="btn-theme-one">
                   <i class="fa-solid fa-plus"></i>
-                  Crear Nuevo
+                  Crear Sub Categoría
                 </button>
               </div>
             </div>
+
           </form>
         </div>
       </div>
@@ -104,47 +105,22 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
   <!-- Modals area--->
 
-  <!-- active modal -->
-  <div class="modal fade" id="enableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- modal status change sub category -->
+  <div class="modal fade" id="modal_status" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar la categoría?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_enable" class="body">
-
-        </div>
+      <div id="content-status" class="modal-content">
       </div>
     </div>
   </div>
 
-  <!-- disable modal -->
 
-  <div class="modal fade" id="disableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar la categoría?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_disable" class="body">
-
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Edit department modal-->
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modal_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualizar categoría</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar sub categoría</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
