@@ -15,7 +15,8 @@ class NavBarModel
     }
 
     public function getCategories(){
-        $query = "SELECT id_category,name_category FROM categories WHERE view_web = 'on' and status ='activado' ";
+        $query = "select name_category, sc.name_sub_category from categories cat
+        inner join sub_categories sc on(sc.id_category = cat.id_category)";
 
         $this->db->query($query);
         $response = $this->db -> set_result();

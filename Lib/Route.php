@@ -24,7 +24,11 @@ class Route
         $uri = $_SERVER['REQUEST_URI'];
         $uri = trim($uri, '/');
 
-        if (strpos($uri, '?')) {
+        /*if (strpos($uri, '?')) {
+            $uri = substr($uri, 0, strpos($uri, '?'));
+        }*/
+
+        if (strpos($uri, '?') !== false) {
             $uri = substr($uri, 0, strpos($uri, '?'));
         }
 
@@ -42,7 +46,7 @@ class Route
                 $params = array_slice($matches, 1);
 
                 // quitar negación si es php 8
-                if (!is_callable($callback)) {
+                if (is_callable($callback)) {
                     $response = $callback(...$params);
                 }
 
@@ -50,16 +54,6 @@ class Route
                     $controller = new $callback[0];
                     $response = $controller->{$callback[1]}(...$params);
                 }
-
-                /*if (is_callable($callback)) {
-                    $response = call_user_func_array($callback, $params);
-                }
-    
-                if (is_array($callback)) {
-                    $controller = new $callback[0];
-                    $response = call_user_func_array([$controller, $callback[1]], $params);
-                }*/
-
 
                 if (is_array($response) || is_object($response)) {
 

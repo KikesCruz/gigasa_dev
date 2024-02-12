@@ -74,6 +74,7 @@ class SubCategoryController extends Controller
 
 
             $notify = $this->model->add_sub_category($subcategory);
+            
 
             return json_encode($notify == 'success' ? $this->message_type(0) : $this->message_type(3));
         }

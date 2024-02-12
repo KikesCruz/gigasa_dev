@@ -5,7 +5,7 @@ drop database gigasa_db;
 
 use database gigasa_db;
 
-drop table sub_categories 
+drop table categories 
 
 create table categories(
 id_category int auto_increment,

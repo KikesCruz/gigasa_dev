@@ -46,6 +46,7 @@
     </nav>
 </header>
 
+<?= var_dump(Navbar::menu()); ?>
 
 <div class='navbar-bottom'>
     <ul class='box_navbar_bottom'>
@@ -55,7 +56,12 @@
 
             <?php foreach( Navbar::menu() as $value) : ?>
 
-                <li><a href='view/category/<?=$value['name_category']?>'><?=$value['name_category']?></a></li>
+                <li><a href='view/category/<?=$value['name_category']?>'><?=$value['name_category']?></a>
+                    <ul>
+                        <li><a href="#"><?=$value['name_sub_category']?> </a></li>
+                    </ul>
+
+                </li>
             
 
                 <?php endforeach; ?>
