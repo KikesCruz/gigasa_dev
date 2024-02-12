@@ -114,11 +114,11 @@ class SubCategoryController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
             $id_subcategory = $_GET['id_subcategory'];
-
             
+            $categories = $this->model->list_categories();
 
-            return json_encode($this -> model -> search_category_by_id($id_subcategory));
-            
+            $category = $this -> model -> search_category_by_id($id_subcategory);
+
 
         }else if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $subcategory = [
@@ -138,6 +138,7 @@ class SubCategoryController extends Controller
 
 
             $response = $this->model->edit_subcategory($subcategory);
+   
            return json_encode($response == 'success' ? $this->message_type(0) : $this->message_type(3));
         }
     }

@@ -46,7 +46,7 @@ class Route
                 $params = array_slice($matches, 1);
 
                 // quitar negación si es php 8
-                if (is_callable($callback)) {
+                if (!is_callable($callback)) {
                     $response = $callback(...$params);
                 }
 

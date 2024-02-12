@@ -157,37 +157,70 @@ $(document).on("click", "#btn_status, #conf_change_status", function () {
 /** function edit sub category */
 $(document).on("click", "#btn_edit, #btn_update_conf", function () {
   if ($(this).is("#btn_edit")) {
+
     let table = get_table(this);
     let id_subcategory = table.find("td:eq(0)").text().trim();
     let name_subcategory = table.find("td:eq(1)").text().trim();
+    let id_category = table.find("td:eq(2)").text().trim();
+    let name_category = table.find("td:eq(3)").text().trim();
     let categories = $("#categories").html();
-
-
-    request_data('GET','sub-categorias/edit',{"id_subcategory":id_subcategory},function(response){
-
-      let body_modal = `
+    
+    let body_modal = `
       <form id="form_edit">
               <div class="row p-3">
-                  <div class="col-4">
+                <div class="col-4">
                   <input 
                   name="id_subcategory" 
                   class="form-control shadow-none" 
                   type="text" value="${id_subcategory}" readonly>
-                  </div>
-                  <div class="col-8">
+                </div>
+                <div class="col-8">
                   <input 
                   name="name_subcategory" 
                   class="form-control shadow-none" 
                   type="text" 
                   value="${name_subcategory}">
-                  </div>
+                </div>
               </div>
+
+              <div class="row p-2">
+                <div class="col">
+
+                  <h6>Categoría Actual:</h6>
+                
+                </div>
+              </div>
+
+              <div class="row p-3">
+                <div class="col-8">
+                <input 
+                  name="name_subcategory" 
+                  class="form-control shadow-none" 
+                  type="text" 
+                  value="${name_category}">
+                </div>
+                <div class="col-4">
+                <input 
+                  name="name_subcategory" 
+                  class="form-control shadow-none" 
+                  type="text" 
+                  value="${id_category}">
+                </div>
+              </div>
+            
+              
+              <div class="row p-3">
+              <div class="col-8">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              </div>
+          </div>
+
               <div class="row p-3">
                   <div class="col-8">
-                  <option value="${response['id_category']}" selected disable>${response['name_category']}</option>
                   ${categories}
                   </div>
-          
+              </div>
+           
               </div>
               <hr>
               <div class="row p-3">
@@ -208,13 +241,7 @@ $(document).on("click", "#btn_edit, #btn_update_conf", function () {
       `;
 
       $("#body_modal_update").html(body_modal);
-    });
 
-
-
-    
-
-    
   } else if ($(this).is("#btn_update_conf")) {
     let form_data = $("#form_edit").serialize();
 

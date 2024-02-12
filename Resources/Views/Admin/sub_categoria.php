@@ -73,9 +73,9 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
             </div>
             <div class="row mt-2">
-              <div id="categories" class="col">
+              <div class="col" id="categories">
                 <label for="">Asociar a la categoría:</label>
-                <select name="category" id="depto_list" class="form-control" aria-label="Default select example">
+                <select name="category"  class="form-control" aria-label="Default select example">
 
                   <option value="0" selected disable>Categorías</option>
                   <?php foreach ($data['categories'] as $category) : ?>
