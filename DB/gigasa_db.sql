@@ -35,13 +35,13 @@ created DATETIME default current_timestamp,
 
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment=200;
 
-
+drop table type_products;
 create table type_products(
 id_type_product int auto_increment,
 -- FK --
 id_sub_category int,
 name_type varchar(50) not null,
-status varchar(10) default 'on',
+status varchar(15) default 'activado',
 created DATETIME default current_timestamp,
 
       constraint PK_type_products primary key(id_type_product asc),
@@ -51,12 +51,14 @@ created DATETIME default current_timestamp,
 
 )engine=InnoDB default CHARSET=utf8mb4 auto_increment=300;
 
+
+drop table brands;
 create table brands(
 id_brand int auto_increment,
 name_brand varchar(60) not null,
 img_path varchar(200),
 view_web varchar(10) default 'off',
-status_brand varchar(10) default 'on',
+status_brand varchar(15) default 'activado',
 created DATETIME default current_timestamp,
 
       constraint PK_brands primary key(id_brand asc)
