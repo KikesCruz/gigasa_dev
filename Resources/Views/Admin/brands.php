@@ -21,7 +21,7 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
       <div class="container-box">
 
         <div class="box">
-          <table id="tble_marcas" class="table table-bordered">
+          <table id="tble_marcas" class='table table-striped  table-condensed' style='width:100%'>
             <thead>
               <tr>
                 <th>#ID Marca</th>
@@ -37,52 +37,38 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
               <?php foreach ($data as $brand) : ?>
                 <tr id="tb_marcas">
                   <td><?= $brand['id_brand'] ?></td>
-                  <td><?= $brand['brand_name'] ?></td>
-                  <td><?= $brand['status_brand'] ?></td>
+                  <td><?= $brand['name_brand'] ?></td>
                   <td>
-                  <?= $brand['img_path'] != 'url_empty' ?
-                          '<button 
-                          id="btnEnableDepto" 
-                          type="button" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#enableModal">
-                          <i class="fa-solid fa-image"></i>
-                         </button>' :''?>
-                  </td>
-                  <td><?= $brand['view_web'] ?>
-                
+                    <button 
+                    id="btn_status" 
+                    type="button" 
+                    class="btn-status <?= $brand['status_brand'] == 'activado' ? 'success' : 'error' ?>" 
+                    data-status="<?= $brand['status_brand'] ?>" 
+                    data-toggle="modal" 
+                    data-target="#modal_status">
+                    <?= $brand['status_brand'] ?>
+                    </button>
+
                   </td>
                   <td>
-                    <div class="group-btn">
-                      <?= $brand['status_brand'] == 'off' ?
-                        '<button 
-                          id="btnEnableBrand" 
-                          type="button" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#enableModal">
-                          <i class="fa-solid fa-circle-check btn-enable-icon"></i>
-                         </button>'
-                        :
-                        '<button 
-                          id="btnUpdateBrand" 
-                          type="button" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#editModal">
-                          <i class="fa-solid fa-pen-to-square btn-update-icon"></i>
-                          </button>
-                        <button 
-                          id="btnDisableBrand" 
-                          class="btn" 
-                          data-toggle="modal" 
-                          data-target="#disableModal">
-                          <i class="fa-solid fa-circle-minus btn-error-icon"></i>
-                        </button>
-                       '
-                      ?>
-                    </div>
+                    <button 
+                    id='btn_img_category' 
+                    type='button' 
+                    class="btn-icons-img <?= $brand['img_path'] == 'url_empty' ? 'error' : 'img' ?>" 
+                    data-toggle='modal' 
+                    data-target='#modal_img_category'>
+                      <?= $brand['img_path'] == 'url_empty' ? '<i class="fa-solid fa-ban"></i>' : '<i class="fa-solid fa-image"></i>' ?>
+                    </button>
+                  </td>
+                  <td>
+                    <?php if ($brand['img_path'] != 'url_empty' && $brand['status_brand'] != 'desactivado') : ?>
+                      <button id='btn_update_web' type='button' class="btn-icons-web <?= $brand['view_web'] == 'on' ? 'off' : 'on' ?>" data-toggle='modal' data-target='#modal_web' data-web="<?= $brand['view_web'] ?>">
+                        <?= $brand['view_web'] == 'on' ? '<i class="fa-solid fa-store-slash"></i>' : ' <i class="fa-solid fa-store"></i>' ?>
+                      </button>
+                    <?php endif;
+                    ?>
+                  </td>
+                  <td>
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -99,18 +85,18 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
               </div>
 
             </div>
-            
+
             <div class="row">
               <div class="col">
                 <label for="">Imagen</label>
                 <div class="row">
                   <div class="col">
-                  <div class="form-group input-file">
-                  <input name="img_brand" type="file" class="form-control-file files" id="img_file_new" accept="image/jpeg, image/jpg, image/png, image/webp" />
-                </div>
+                    <div class="form-group input-file">
+                      <input name="img_brand" type="file" class="form-control-file files" id="img_file_new" accept="image/jpeg, image/jpg, image/png, image/webp" />
+                    </div>
                   </div>
                 </div>
-             
+
               </div>
             </div>
 
@@ -131,59 +117,14 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
 
   <!-- Modals area--->
 
-  <!-- active modal -->
-  <div class="modal fade" id="enableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea activar la marca?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_enable" class="body">
+  <!-- modal estatus -->
+  <div class='modal fade' id='modal_status' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog'>
+      <div id='modal-content-status' class='modal-content'>
 
-        </div>
       </div>
     </div>
   </div>
-
-  <!-- disable modal -->
-
-  <div class="modal fade" id="disableModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro desea desactivar el departamento?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_disable" class="body">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit department modal-->
-  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualice el nombre</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="body_modal_update" class="body">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 
   <?php
   require PATH_ROOT . 'Resources/Views/Admin/Shared/footer.php';

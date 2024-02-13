@@ -6,7 +6,7 @@ use App\Controllers\Admin\LoginController;
 use App\Controllers\Admin\HomeController;
 use App\Controllers\Admin\ProfileController;
 use App\Controllers\Admin\UsersController;
-use App\Controllers\Admin\BannersController;
+
 
 use App\Controllers\Admin\CategoryController;
 use App\Controllers\Admin\SubCategoryController;
@@ -20,9 +20,7 @@ Route::get('/admin',[LoginController::class,'login']);
 Route::get('/admin/home', [HomeController::class, 'home']);
 
 
-/** Routes Banners */
-Route::get('/admin/banners', [BannersController::class, 'banners_page']);
-Route::post('/admin/banners/upload', [BannersController::class, 'banners_upload']);
+
 
 /** Categories */
 Route::get('/admin/categorias',[CategoryController::class,'view']);
@@ -52,3 +50,7 @@ Route::post('/admin/tipo-articulos/status',[ProductTypeController::class,'update
 Route::get('admin/catalogo',[CatalogoController::class,'view']);
 Route::post('admin/catalogo/add',[CatalogoController::class,'add']);
 
+
+/** Brands */
+Route::get('admin/brands',[BrandsController::class,'view']);
+Route::post('admin/brands/add',[BrandsController::class,'add']);

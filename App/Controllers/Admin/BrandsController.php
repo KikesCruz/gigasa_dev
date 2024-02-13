@@ -15,7 +15,7 @@ class BrandsController extends Controller
     }
     public function view()
     {
-        $data = $this->model->getAllBrands();
+        $data = $this->model->get_brands();
 
         return $this->views('brands', $data);
     }
@@ -34,14 +34,14 @@ class BrandsController extends Controller
             ];
 
             if ($brand['brand'] == '') {
-                return json_encode($this->message_type(1));
+                return json_encode($this->message_type(2));
             }
 
 
-            $data = $this->model->searchBrand($brand['brand']);
+            $data = $this->model->search_brand($brand['brand']);
 
             if ($data == $brand['brand']) {
-                return json_encode($this->message_type(3));
+                return json_encode($this->message_type(1));
             }
 
             if ($_FILES['img_brand']['name'] == '') {
@@ -49,7 +49,7 @@ class BrandsController extends Controller
                 $notify =   $this->model->new_brand($brand);
             } else {
 
-                $url_img = $this->img_save($route, $brand['brand'], $_FILES['img_brand']['type'], $_FILES['img_brand']['tmp_name']);
+                $url_img = $this->img_save($route, $brand['brand'], $_FILES['img_brand']['type'], $_FILES['img_brand']['tmp_name'],$_FILES['img_brand']['name']);
                 $url_img = explode("Store/", $url_img);
                 $brand['picture'] = IMG_URL . $url_img[1];
 
@@ -60,7 +60,7 @@ class BrandsController extends Controller
             if ($notify  == 'success') {
                 return json_encode($this->message_type(0));
             } else {
-                return json_encode($this->message_type(2));
+                return json_encode($this->message_type(3));
             }
         }
     }
