@@ -15,59 +15,79 @@ class CatalogoModel
 
     public function getCatalogo()
     {
-        $query = "
-        select 
-        products.id_catalog,
-        products.sku,
-        products.name_product,
-        d.depto_name,
-        c.category_name,
-        sc.subcategory_name,
-        b.brand_name,
-        sum(
-        if(products.image_path_one = 'vacio',1,0) +
-        if(products.image_path_two = 'vacio',1,0) +
-        if(products.image_path_three = 'vacio',1,0) +
-        if(products.image_path_four = 'vacio',1,0) +
-        if(products.image_path_five = 'vacio',1,0)
-        )as imgs 
 
-        from product_catalog products
-        inner join sub_category sc on (sc.id_subcategory = products.id_subcategory)
-        inner join categories c on (c.id_category = sc.id_category)
-        inner join departments d on (d.id_depto = c.id_depto)
-        inner join brands b on (b.id_brand = products.id_brand)
-        where sc.status_subcategory = 'on' and c.status_category = 'on' and d.status_depto ='on'
-        and products.status = 'on'
-        group by sku";
+        try {
+            $query = "
+            select 
+            products.id_catalog,
+            products.sku,
+            products.name_product,
+            d.depto_name,
+            c.category_name,
+            sc.subcategory_name,
+            b.brand_name,
+            sum(
+            if(products.image_path_one = 'vacio',1,0) +
+            if(products.image_path_two = 'vacio',1,0) +
+            if(products.image_path_three = 'vacio',1,0) +
+            if(products.image_path_four = 'vacio',1,0) +
+            if(products.image_path_five = 'vacio',1,0)
+            )as imgs 
+    
+            from product_catalog products
+            inner join sub_category sc on (sc.id_subcategory = products.id_subcategory)
+            inner join categories c on (c.id_category = sc.id_category)
+            inner join departments d on (d.id_depto = c.id_depto)
+            inner join brands b on (b.id_brand = products.id_brand)
+            where sc.status_subcategory = 'on' and c.status_category = 'on' and d.status_depto ='on'
+            and products.status = 'on'
+            group by sku";
 
 
-        $this -> db -> query($query);
+            $this->db->query($query);
 
-        $reponse = $this -> db -> resultSet();
+            $reponse = $this->db->set_result();
 
-        return $reponse;
-
+            return $reponse;
+        } catch (\PDOException $e) {
+            return [];
+        }
     }
 
-    public function getCatalogoInactivo(){
-        $query = "SELECT id_catalog,name_product,status FROM product_catalog WHERE status ='off'";
+    public function getCatalogoInactivo()
+    {
 
-        $this -> db -> query($query);
 
-        $response = $this -> db -> resultSet();
-        return $response;
+        try {
+            $query = "SELECT id_catalog,name_product,status FROM product_catalog WHERE status ='off'";
+
+            $this->db->query($query);
+    
+            $response = $this->db->set_result();
+            return $response;
+        } catch (\PDOException $e) {
+            return [];
+        }
+
+     
     }
 
     public function getDepartments()
     {
-        $query = "SELECT id_depto,depto_name FROM departments where status_depto = 'on'";
 
-        $this->db->query($query);
+        try {
+            $query = "SELECT id_depto,depto_name FROM departments where status_depto = 'on'";
 
-        $response = $this->db->resultSet();
+            $this->db->query($query);
+    
+            $response = $this->db->set_result();
+    
+            return $response;
+        }catch (\PDOException $e) {
+            return [];
+        }
 
-        return $response;
+      
     }
 
     public function getCategories($param)
@@ -79,7 +99,7 @@ class CatalogoModel
         $this->db->query($query);
         $this->db->bind(":id_depto", $param);
 
-        $response = $this->db->resultSet();
+        $response = $this->db->set_result();
 
         return $response;
     }
@@ -93,18 +113,25 @@ class CatalogoModel
         $this->db->query($query);
         $this->db->bind(":id_category", $param);
 
-        $response = $this->db->resultSet();
+        $response = $this->db->set_result();
 
         return $response;
     }
 
     public function getBrands()
     {
-        $query = "SELECT id_brand,brand_name FROM brands WHERE status_brand = 'on'";
 
-        $this->db->query($query);
-        $response = $this->db->resultSet();
-        return $response;
+        try {
+            
+            $query = "SELECT id_brand,brand_name FROM brands WHERE status_brand = 'on'";
+    
+            $this->db->query($query);
+            $response = $this->db->set_result();
+            return $response;
+        } catch (\PDOException $e) {
+            return [];
+        }
+
     }
 
 
@@ -116,41 +143,41 @@ class CatalogoModel
 
         $this->db->bind(":sku", $param);
 
-        $response = $this->db->resultOne();
+        $response = $this->db->only_result();
 
         return $response;
     }
 
-    public function new_product($param){
+    public function new_product($param)
+    {
         $query = "INSERT INTO product_catalog
         VALUES (null,:sku,:name_product,
             :image_path_one,:image_path_two,:image_path_three,
             :image_path_four,:image_path_five,
             :product_description,
             :regular_price,:wieght,default,default,:id_brand,:id_subcategory)";
-        
-        $this -> db -> query($query);
 
-        $this -> db -> bind(":name_product",$param['name']);
-        $this -> db -> bind(":product_description", $param['details']);
-        $this -> db -> bind(":sku", $param['sku']);
-        $this -> db -> bind(":regular_price", $param['precio']);
-        $this -> db -> bind(":wieght", $param['peso']);
-        $this -> db -> bind(":id_brand", $param['brand']);
-        $this -> db -> bind(":id_subcategory", $param['sub_category']);
+        $this->db->query($query);
+
+        $this->db->bind(":name_product", $param['name']);
+        $this->db->bind(":product_description", $param['details']);
+        $this->db->bind(":sku", $param['sku']);
+        $this->db->bind(":regular_price", $param['precio']);
+        $this->db->bind(":wieght", $param['peso']);
+        $this->db->bind(":id_brand", $param['brand']);
+        $this->db->bind(":id_subcategory", $param['sub_category']);
 
         //imagenes
-        $this -> db -> bind(":image_path_one", $param['pictures'][0] == '' ? 'vacio':  $param['pictures'][0]);
-        $this -> db -> bind(":image_path_two", $param['pictures'][1] == '' ? 'vacio':  $param['pictures'][1]);
-        $this -> db -> bind(":image_path_three", $param['pictures'][2] == '' ? 'vacio':  $param['pictures'][2]);
-        $this -> db -> bind(":image_path_four", isset($param['pictures'][3]) == '' ? 'vacio':  $param['pictures'][3]);
-        $this -> db -> bind(":image_path_five", isset($param['pictures'][4]) == '' ? 'vacio':  $param['pictures'][4]);
-        
+        $this->db->bind(":image_path_one", $param['pictures'][0] == '' ? 'vacio' :  $param['pictures'][0]);
+        $this->db->bind(":image_path_two", $param['pictures'][1] == '' ? 'vacio' :  $param['pictures'][1]);
+        $this->db->bind(":image_path_three", $param['pictures'][2] == '' ? 'vacio' :  $param['pictures'][2]);
+        $this->db->bind(":image_path_four", isset($param['pictures'][3]) == '' ? 'vacio' :  $param['pictures'][3]);
+        $this->db->bind(":image_path_five", isset($param['pictures'][4]) == '' ? 'vacio' :  $param['pictures'][4]);
+
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
-        
     }
 }

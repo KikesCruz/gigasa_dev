@@ -42,7 +42,11 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                   <td><?= $sub_category['id_category'] ?></td>
                   <td><?= $sub_category['name_category'] ?></td>
                   <td>
-                    <button id="btn_status" type="button" class="btn-status <?= $sub_category['status_subcategory'] == 'activado' ? 'success' : 'error' ?>" data-status="<?= $sub_category['status_subcategory'] ?>" data-toggle="modal" data-target="#modal_status">
+                    <button 
+                    id="btn_status" 
+                    type="button" 
+                    class="btn-status <?= $sub_category['status_subcategory'] == 'activado' ? 'success' : 'error' ?>" 
+                    data-status="<?= $sub_category['status_subcategory'] ?>" data-toggle="modal" data-target="#modal_status">
                       <?= $sub_category['status_subcategory'] ?>
                     </button>
                   </td>
@@ -70,8 +74,8 @@ require PATH_ROOT . 'Resources/Views/Admin/Shared/header.php';
                 <label for="">Sub Categoría</label>
                 <input name="name_subcategory" type="text" class="form-control shadow-none" />
               </div>
-
             </div>
+
             <div class="row mt-2">
               <div class="col" id="categories">
                 <label for="">Asociar a la categoría:</label>
